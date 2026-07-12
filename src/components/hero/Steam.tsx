@@ -1,5 +1,6 @@
 import { memo } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { useStopAnimations } from '../a11y/useStopAnimations'
 
 interface SteamProps {
   className?: string
@@ -12,7 +13,7 @@ const WISPS = [
 ]
 
 const Steam = memo(function Steam({ className }: SteamProps) {
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useStopAnimations()
 
   return (
     <svg

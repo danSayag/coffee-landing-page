@@ -1,9 +1,10 @@
 import { type CSSProperties, type ReactNode } from 'react'
-import { motion, useReducedMotion, useTransform } from 'framer-motion'
+import { motion, useTransform } from 'framer-motion'
 import CoffeeBean from './CoffeeBean'
 import CoffeeCup from './CoffeeCup'
 import Steam from './Steam'
 import { useMouseParallax, type ParallaxSprings } from './useMouseParallax'
+import { useStopAnimations } from '../a11y/useStopAnimations'
 
 interface ParallaxLayerProps {
   depth: number
@@ -47,7 +48,7 @@ const FLOATING_BEANS: FloatingBean[] = [
 
 function CoffeeComposition() {
   const springs = useMouseParallax()
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useStopAnimations()
 
   return (
     <div

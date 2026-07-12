@@ -1,22 +1,46 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { useI18n } from '../i18n'
+import LanguageSwitcher from './a11y/LanguageSwitcher'
 
-const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'Origins', href: '#origins' },
-  { label: 'Our Coffee', href: '#coffee' },
-  { label: 'Café', href: '#cafe' },
-  { label: 'Story', href: '#story' },
-  { label: 'Contact', href: '#contact' },
-]
+const SECTION_IDS = ['home', 'origins', 'coffee', 'cafe', 'story', 'contact']
 
 function Navbar() {
+  const { t } = useI18n()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [active, setActive] = useState('home')
   const { scrollY } = useScroll()
 
+  const navLinks = [
+    { label: t.nav.home, href: '#home' },
+    { label: t.nav.origins, href: '#origins' },
+    { label: t.nav.coffee, href: '#coffee' },
+    { label: t.nav.cafe, href: '#cafe' },
+    { label: t.nav.story, href: '#story' },
+    { label: t.nav.contact, href: '#contact' },
+  ]
+
   useMotionValueEvent(scrollY, 'change', (latest) => setScrolled(latest > 24))
+
+  // Highlight the nav item of the section currently in view.
+  useEffect(() => {
+    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => el !== null,
+    )
+    if (sections.length === 0) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(entry.target.id)
+        }
+      },
+      { rootMargin: '-35% 0px -55% 0px' },
+    )
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <motion.header
@@ -29,7 +53,7 @@ function Navbar() {
           : 'border-b border-transparent bg-transparent'
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 sm:px-8">
+      <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6 sm:px-8">
         <a href="#home" className="flex items-center gap-2.5" aria-label="Terra Roasters — home">
           <svg viewBox="0 0 64 64" className="h-7 w-7" aria-hidden="true" focusable="false">
             <g transform="rotate(24 32 32)">
@@ -48,24 +72,36 @@ function Navbar() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="relative text-sm font-medium text-cream/70 transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-gold after:transition-[width] after:duration-300 hover:text-cream hover:after:w-full"
-            >
-              {link.label}
-            </a>
-          ))}
+        <nav
+          className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-8 lg:flex"
+          aria-label="Primary"
+        >
+          {navLinks.map((link) => {
+            const isActive = link.href === `#${active}`
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                aria-current={isActive ? 'true' : undefined}
+                className={`relative text-sm font-medium transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:bg-gold after:transition-[width] after:duration-300 hover:text-cream hover:after:w-full ${
+                  isActive ? 'text-gold after:w-full' : 'text-cream/70 after:w-0'
+                }`}
+              >
+                {link.label}
+              </a>
+            )
+          })}
         </nav>
 
         <div className="flex items-center gap-3">
+          <div className="hidden md:block">
+            <LanguageSwitcher />
+          </div>
           <a
             href="#cafe"
             className="hidden rounded-full border border-gold/70 px-5 py-2.5 text-sm font-semibold text-gold transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-espresso-950 sm:inline-flex"
           >
-            Visit Our Café
+            {t.nav.visitCafe}
           </a>
           <button
             type="button"
@@ -92,22 +128,31 @@ function Navbar() {
             className="overflow-hidden border-t border-cream/5 bg-espresso-950/95 backdrop-blur-md lg:hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-5">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="rounded-lg px-3 py-2.5 text-base text-cream/75 transition-colors hover:bg-espresso-800/60 hover:text-cream"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = link.href === `#${active}`
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    aria-current={isActive ? 'true' : undefined}
+                    className={`rounded-lg px-3 py-2.5 text-base transition-colors hover:bg-espresso-800/60 hover:text-cream ${
+                      isActive ? 'bg-espresso-800/40 text-gold' : 'text-cream/75'
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                )
+              })}
+              <div className="mt-3 flex justify-center md:hidden">
+                <LanguageSwitcher />
+              </div>
               <a
                 href="#cafe"
                 onClick={() => setMenuOpen(false)}
                 className="mt-3 rounded-full border border-gold/70 px-5 py-3 text-center text-sm font-semibold text-gold transition-colors hover:bg-gold hover:text-espresso-950 sm:hidden"
               >
-                Visit Our Café
+                {t.nav.visitCafe}
               </a>
             </div>
           </motion.nav>

@@ -1,9 +1,10 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import CoffeeBean from './CoffeeBean'
 import Particles from './Particles'
+import { useStopAnimations } from '../a11y/useStopAnimations'
 
 function HeroBackground() {
-  const reduceMotion = useReducedMotion()
+  const reduceMotion = useStopAnimations()
 
   return (
     <div aria-hidden="true" className="absolute inset-0 overflow-hidden">

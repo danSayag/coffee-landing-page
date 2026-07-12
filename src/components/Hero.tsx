@@ -3,18 +3,9 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Check } from 'lucide-react'
 import HeroBackground from './hero/HeroBackground'
 import CoffeeComposition from './hero/CoffeeComposition'
+import { useI18n } from '../i18n'
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
-
-const HEADLINE: { text: string; accent?: boolean; breakBefore?: boolean }[] = [
-  { text: 'Every' },
-  { text: 'Bean' },
-  { text: 'Has', breakBefore: true },
-  { text: 'a' },
-  { text: 'Story.', accent: true },
-]
-
-const TRUST_BADGES = ['Sourced From 40+ Countries', 'Roasted In House', 'Specialty Grade Coffee']
 
 function fadeUp(delay: number) {
   return {
@@ -25,6 +16,8 @@ function fadeUp(delay: number) {
 }
 
 function Hero() {
+  const { t } = useI18n()
+
   return (
     <section id="home" className="relative flex min-h-svh items-center overflow-hidden lg:h-svh lg:min-h-[760px]">
       <HeroBackground />
@@ -35,11 +28,11 @@ function Hero() {
             {...fadeUp(0.35)}
             className="flex items-center justify-center gap-4 text-[0.7rem] font-semibold uppercase tracking-[0.35em] text-gold lg:justify-start"
           >
-            Specialty Coffee From Around the World
+            {t.hero.kicker}
           </motion.p>
 
           <h1 className="mt-6 font-display text-[clamp(3.25rem,8vw,5.5rem)] font-medium leading-[1.04] tracking-[-0.015em]">
-            {HEADLINE.map((word, index) => (
+            {t.hero.headline.map((word, index) => (
               <Fragment key={`${index}-${word.text}`}>
                 {word.breakBefore && <br />}
                 <span className="relative inline-block">
@@ -81,8 +74,7 @@ function Hero() {
             {...fadeUp(1.1)}
             className="mx-auto mt-7 max-w-xl text-base leading-relaxed text-cream/70 sm:text-lg lg:mx-0"
           >
-            Anyone can serve coffee. We source rare beans from the world&rsquo;s finest farms, roast them in house,
-            and craft every cup into a moment worth savoring.
+            {t.hero.paragraph}
           </motion.p>
 
           <motion.div {...fadeUp(1.25)} className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
@@ -90,14 +82,14 @@ function Hero() {
               href="#coffee"
               className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gold px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-bright hover:shadow-[0_16px_44px_-10px_rgba(200,155,91,0.65)] sm:w-auto"
             >
-              Explore Our Coffee
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+              {t.hero.ctaExplore}
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
             </a>
             <a
               href="#cafe"
               className="inline-flex w-full items-center justify-center rounded-full border border-gold/70 px-8 py-4 text-sm font-bold tracking-wide text-gold transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-espresso-950 sm:w-auto"
             >
-              Visit Our Café
+              {t.hero.ctaCafe}
             </a>
           </motion.div>
 
@@ -105,7 +97,7 @@ function Hero() {
             {...fadeUp(1.4)}
             className="mt-12 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 border-t border-cream/10 pt-7 lg:justify-start"
           >
-            {TRUST_BADGES.map((badge) => (
+            {t.hero.badges.map((badge) => (
               <li key={badge} className="flex items-center gap-2.5">
                 <span
                   className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10"

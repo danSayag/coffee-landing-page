@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { useMotionValue, useReducedMotion, useSpring, type MotionValue } from 'framer-motion'
+import { useMotionValue, useSpring, type MotionValue } from 'framer-motion'
+import { useStopAnimations } from '../a11y/useStopAnimations'
 
 const SPRING = { stiffness: 55, damping: 18, mass: 0.6 }
 
@@ -17,7 +18,7 @@ export function useMouseParallax(): ParallaxSprings {
   const pointerY = useMotionValue(0)
   const springX = useSpring(pointerX, SPRING)
   const springY = useSpring(pointerY, SPRING)
-  const prefersReducedMotion = useReducedMotion()
+  const prefersReducedMotion = useStopAnimations()
 
   useEffect(() => {
     if (prefersReducedMotion) return

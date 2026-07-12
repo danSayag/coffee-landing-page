@@ -9,8 +9,8 @@
   --color-gold-soft: #dcc8a1;
   --color-cream: #f5f0e8;
 
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", "Frank Ruhl Libre", Georgia, serif;
+  --font-body: "Manrope", "Assistant", ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
@@ -29,6 +29,20 @@
   :focus-visible {
     outline: 2px solid var(--color-gold);
     outline-offset: 3px;
+  }
+
+  /* Every clickable control shows a pointer cursor */
+  button:not(:disabled),
+  [role='button']:not(:disabled),
+  a[href],
+  label[for],
+  select,
+  summary {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
   }
 }
 
@@ -66,7 +80,165 @@
     scroll-behavior: auto;
   }
 
-  .hero-particle {
+  .hero-particle,
+  .bean-pulse,
+  .bean-breathe,
+  .steam-wisp,
+  .ember,
+  .animate-ping-slow {
     animation: none;
   }
+
+  .bean-pulse {
+    opacity: 0;
+  }
+}
+
+/* Origin-map bean heartbeat: rings ripple outward forever */
+.bean-pulse {
+  transform: translate(-50%, -50%) scale(0.4);
+  opacity: 0;
+  animation: bean-pulse 2.6s ease-out infinite;
+}
+
+@keyframes bean-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0.75;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.9);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.9);
+    opacity: 0;
+  }
+}
+
+.bean-breathe {
+  animation: bean-breathe 3.2s ease-in-out infinite;
+}
+
+@keyframes bean-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+/* Steam wisps rising from cups and roasters */
+.steam-wisp {
+  animation: steam-rise 4.2s ease-in-out infinite;
+}
+
+@keyframes steam-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  35% {
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Tiny embers inside the roasting drum */
+.ember {
+  animation: ember-rise 3.4s ease-out infinite;
+}
+
+@keyframes ember-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  25% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-44px);
+  }
+}
+
+/* Slow radar ping (map placeholder pin) */
+.animate-ping-slow {
+  animation: ping-slow 2.8s ease-out infinite;
+  transform-origin: center;
+}
+
+@keyframes ping-slow {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  80% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* Hide scrollbars on swipe carousels while keeping them scrollable */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Accessibility modes (toggled on <html> by the accessibility widget)
+--------------------------------------------------------------------------- */
+
+/* High contrast: brighten the palette and deepen the background */
+:root.a11y-contrast {
+  --color-espresso-950: #000000;
+  --color-espresso-900: #0a0705;
+  --color-espresso-800: #221610;
+  --color-gold: #ffc46f;
+  --color-gold-bright: #ffd28a;
+  --color-gold-soft: #ffe3b8;
+  --color-cream: #ffffff;
+}
+
+.a11y-contrast body {
+  background-color: #000000;
+}
+
+/* Underline all links */
+.a11y-underline a {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-gold);
+}
+
+/* Stop animations: freeze CSS animations/transitions site-wide */
+.a11y-no-motion,
+.a11y-no-motion * ,
+.a11y-no-motion *::before,
+.a11y-no-motion *::after {
+  animation-duration: 0.001s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001s !important;
+  scroll-behavior: auto !important;
+}
+
+.a11y-no-motion .hero-particle {
+  animation: none !important;
+  opacity: 0;
 }
