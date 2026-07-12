@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-espresso-950: #15110f;
+  --color-espresso-900: #1b1410;
+  --color-espresso-800: #2e221a;
+  --color-gold: #c89b5b;
+  --color-gold-bright: #dcae6e;
+  --color-gold-soft: #dcc8a1;
+  --color-cream: #f5f0e8;
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-espresso-950 font-body text-cream antialiased;
+  }
+
+  ::selection {
+    @apply bg-gold/30 text-cream;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.hero-particle {
+  position: absolute;
+  border-radius: 9999px;
+  background-color: var(--color-gold-soft);
+  opacity: 0;
+  animation: particle-drift linear infinite;
+}
+
+@keyframes particle-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--particle-opacity, 0.3);
+  }
+  85% {
+    opacity: var(--particle-opacity, 0.3);
+  }
+  100% {
+    transform: translate3d(var(--particle-x, 12px), -140px, 0);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-particle {
+    animation: none;
+  }
+}
