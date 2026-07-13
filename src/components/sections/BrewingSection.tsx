@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import type { BrewId } from '../../i18n/sections'
-import { EASE, Meter, SectionHeading, SteamWisps, useSections } from './shared'
+import { EASE, Meter, SectionHeading, SteamWisps, reveal, useSections } from './shared'
 
 const BREW_ORDER: BrewId[] = ['espresso', 'v60', 'frenchpress', 'moka', 'coldbrew', 'cappuccino']
 
@@ -99,7 +100,7 @@ function BrewingSection() {
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 sm:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <SectionHeading heading={s.brewing.heading} description={s.brewing.description} />
 
         {/* horizontal selector with a traveling liquid underline */}
@@ -184,6 +185,16 @@ function BrewingSection() {
             </div>
           </div>
         </div>
+
+        <motion.div {...reveal(0.2)} className="mt-12 flex justify-center">
+          <a
+            href="#quiz"
+            className="group inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
+          >
+            {s.brewing.cta}
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
+          </a>
+        </motion.div>
       </div>
     </section>
   )

@@ -2,6 +2,11 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 import { translations, type Lang, type Translation } from './translations'
 
 const STORAGE_KEY = 'terra-lang'
+const URL_PARAM = 'lang'
+
+function isLang(value: string | null): value is Lang {
+  return value === 'en' || value === 'fr' || value === 'he'
+}
 
 interface I18nValue {
   lang: Lang
@@ -12,15 +17,19 @@ interface I18nValue {
 
 const I18nContext = createContext<I18nValue | null>(null)
 
-function readStoredLang(): Lang {
+/** URL ?lang= takes priority so links can be shared in a specific language; falls back to the
+ *  last choice stored locally, and defaults to English when neither is set. */
+function readInitialLang(): Lang {
   if (typeof window === 'undefined') return 'en'
+  const fromUrl = new URLSearchParams(window.location.search).get(URL_PARAM)
+  if (isLang(fromUrl)) return fromUrl
   const stored = window.localStorage.getItem(STORAGE_KEY)
-  if (stored === 'en' || stored === 'fr' || stored === 'he') return stored
+  if (isLang(stored)) return stored
   return 'en'
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(readStoredLang)
+  const [lang, setLangState] = useState<Lang>(readInitialLang)
 
   const setLang = useCallback((next: Lang) => {
     setLangState(next)
@@ -29,6 +38,13 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     } catch {
       /* storage unavailable */
     }
+    const url = new URL(window.location.href)
+    if (next === 'en') {
+      url.searchParams.delete(URL_PARAM)
+    } else {
+      url.searchParams.set(URL_PARAM, next)
+    }
+    window.history.replaceState(window.history.state, '', url)
   }, [])
 
   const t = translations[lang]
@@ -37,6 +53,15 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     document.documentElement.lang = lang
     document.documentElement.dir = t.dir
   }, [lang, t.dir])
+
+  useEffect(() => {
+    const onPopState = () => {
+      const fromUrl = new URLSearchParams(window.location.search).get(URL_PARAM)
+      setLangState(isLang(fromUrl) ? fromUrl : 'en')
+    }
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [])
 
   const value = useMemo<I18nValue>(() => ({ lang, dir: t.dir, t, setLang }), [lang, t, setLang])
 

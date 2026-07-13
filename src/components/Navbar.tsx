@@ -1,13 +1,17 @@
 ﻿import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { useLocation } from 'react-router-dom'
 import { useI18n } from '../i18n'
 import LanguageSwitcher from './a11y/LanguageSwitcher'
+import HashLink from './HashLink'
 
-const SECTION_IDS = ['home', 'origins', 'coffee', 'cafe', 'story', 'contact']
+// Sections that only exist on the home page ('/').
+const HOME_SECTION_IDS = ['home', 'origins', 'cafe', 'story', 'contact']
 
 function Navbar() {
   const { t } = useI18n()
+  const { pathname } = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [active, setActive] = useState('home')
@@ -16,7 +20,7 @@ function Navbar() {
   const navLinks = [
     { label: t.nav.home, href: '#home' },
     { label: t.nav.origins, href: '#origins' },
-    { label: t.nav.coffee, href: '#coffee' },
+    { label: t.nav.coffee, href: '/coffee-origins' },
     { label: t.nav.cafe, href: '#cafe' },
     { label: t.nav.story, href: '#story' },
     { label: t.nav.contact, href: '#contact' },
@@ -24,9 +28,11 @@ function Navbar() {
 
   useMotionValueEvent(scrollY, 'change', (latest) => setScrolled(latest > 24))
 
-  // Highlight the nav item of the section currently in view.
+  // Highlight the nav item of the home-page section currently in view. Re-attaches on
+  // every route change since Navbar itself never unmounts (it sits above <Routes>).
   useEffect(() => {
-    const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
+    if (pathname !== '/') return
+    const sections = HOME_SECTION_IDS.map((id) => document.getElementById(id)).filter(
       (el): el is HTMLElement => el !== null,
     )
     if (sections.length === 0) return
@@ -40,7 +46,9 @@ function Navbar() {
     )
     sections.forEach((section) => observer.observe(section))
     return () => observer.disconnect()
-  }, [])
+  }, [pathname])
+
+  const isLinkActive = (href: string) => (href.startsWith('#') ? pathname === '/' && href === `#${active}` : pathname === href)
 
   return (
     <motion.header
@@ -54,7 +62,7 @@ function Navbar() {
       }`}
     >
       <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6 sm:px-8">
-        <a href="#home" className="flex items-center gap-2.5" aria-label="Terra Roasters ג€” home">
+        <HashLink href="#home" className="flex items-center gap-2.5" aria-label="Terra Roasters — home">
           <svg viewBox="0 0 64 64" className="h-7 w-7" aria-hidden="true" focusable="false">
             <g transform="rotate(24 32 32)">
               <ellipse cx="32" cy="32" rx="14" ry="20" fill="#8FA89B" />
@@ -70,16 +78,16 @@ function Navbar() {
           <span className="font-display text-[1.45rem] font-semibold tracking-[0.04em]">
             Terra <span className="text-gold-soft">Roasters</span>
           </span>
-        </a>
+        </HashLink>
 
         <nav
           className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-8 lg:flex"
           aria-label="Primary"
         >
           {navLinks.map((link) => {
-            const isActive = link.href === `#${active}`
+            const isActive = isLinkActive(link.href)
             return (
-              <a
+              <HashLink
                 key={link.href}
                 href={link.href}
                 aria-current={isActive ? 'true' : undefined}
@@ -88,7 +96,7 @@ function Navbar() {
                 }`}
               >
                 {link.label}
-              </a>
+              </HashLink>
             )
           })}
         </nav>
@@ -97,12 +105,12 @@ function Navbar() {
           <div className="hidden md:block">
             <LanguageSwitcher />
           </div>
-          <a
+          <HashLink
             href="#cafe"
             className="hidden rounded-full border border-cta/70 px-5 py-2.5 text-sm font-semibold text-cta transition-colors duration-300 hover:border-cta hover:bg-cta hover:text-espresso-950 sm:inline-flex"
           >
             {t.nav.visitCafe}
-          </a>
+          </HashLink>
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
@@ -129,9 +137,9 @@ function Navbar() {
           >
             <div className="flex flex-col gap-1 px-6 py-5">
               {navLinks.map((link) => {
-                const isActive = link.href === `#${active}`
+                const isActive = isLinkActive(link.href)
                 return (
-                  <a
+                  <HashLink
                     key={link.href}
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
@@ -141,19 +149,19 @@ function Navbar() {
                     }`}
                   >
                     {link.label}
-                  </a>
+                  </HashLink>
                 )
               })}
               <div className="mt-3 flex justify-center md:hidden">
                 <LanguageSwitcher />
               </div>
-              <a
+              <HashLink
                 href="#cafe"
                 onClick={() => setMenuOpen(false)}
                 className="mt-3 rounded-full border border-cta/70 px-5 py-3 text-center text-sm font-semibold text-cta transition-colors hover:bg-cta hover:text-espresso-950 sm:hidden"
               >
                 {t.nav.visitCafe}
-              </a>
+              </HashLink>
             </div>
           </motion.nav>
         )}

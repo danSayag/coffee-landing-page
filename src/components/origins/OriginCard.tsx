@@ -17,7 +17,7 @@ interface OriginCardProps {
 const OriginCard = memo(function OriginCard({ index, text, flavorNotesLabel, compact, footer }: OriginCardProps) {
   return (
     <article
-      className={`relative overflow-hidden rounded-3xl border border-gold/25 bg-[linear-gradient(150deg,rgba(255,255,255,0.72),rgba(230,220,199,0.82))] shadow-[0_30px_70px_-20px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(245,240,232,0.07)] backdrop-blur-xl ${
+      className={`relative flex h-full flex-col overflow-hidden rounded-3xl border border-gold/25 bg-[linear-gradient(150deg,rgba(255,255,255,0.72),rgba(230,220,199,0.82))] shadow-[0_30px_70px_-20px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(245,240,232,0.07)] backdrop-blur-xl ${
         compact ? 'p-6' : 'p-7 xl:p-8'
       }`}
     >
@@ -36,7 +36,7 @@ const OriginCard = memo(function OriginCard({ index, text, flavorNotesLabel, com
         {text.region}
       </p>
 
-      <p className={`mt-3 leading-relaxed text-cream/70 ${compact ? 'text-sm' : 'text-[0.95rem]'}`}>{text.description}</p>
+      <p className={`mt-3 flex-1 leading-relaxed text-cream/70 ${compact ? 'text-sm' : 'text-[0.95rem]'}`}>{text.description}</p>
 
       <div className="mt-5 border-t border-cream/10 pt-4">
         <p className="text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-cream/45">{flavorNotesLabel}</p>

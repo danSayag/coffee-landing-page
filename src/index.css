@@ -6,17 +6,17 @@
   --color-espresso-900: #efe8da;
   --color-espresso-800: #e4dac4;
 
-  /* Secondary accent (was gold) */
-  --color-gold: #8fa89b;
-  --color-gold-bright: #a3bbae;
-  --color-gold-soft: #b8cac0;
+  /* Secondary accent (was gold) — deepened so it reads on the light background */
+  --color-gold: #4f6d5e;
+  --color-gold-bright: #3e5749;
+  --color-gold-soft: #6b8577;
 
   /* Primary text (was cream, light-on-dark) */
   --color-cream: #2b2625;
 
-  /* Call-to-action */
-  --color-cta: #c27d58;
-  --color-cta-bright: #ce9171;
+  /* Call-to-action — deepened so text-espresso-950 stays readable on top */
+  --color-cta: #9c5e3d;
+  --color-cta-bright: #b06f4a;
 
   --font-display: "Cormorant Garamond", "Frank Ruhl Libre", Georgia, serif;
   --font-body: "Manrope", "Assistant", ui-sans-serif, system-ui, sans-serif;

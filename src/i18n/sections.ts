@@ -44,6 +44,7 @@ export interface SectionsText {
     description: string
     meterLabels: { texture: string; intensity: string; clarity: string; time: string; roast: string }
     methods: Record<BrewId, BrewInfo>
+    cta: string
   }
   cafe: {
     eyebrow: string
@@ -58,6 +59,7 @@ export interface SectionsText {
     description: string
     originLabel: string
     cards: { id: string; name: string; desc: string; origin: string; roast: string; notes: string }[]
+    cta: string
   }
   team: {
     eyebrow: string
@@ -66,12 +68,21 @@ export interface SectionsText {
     favOrigin: string
     favBrew: string
     members: { name: string; role: string; philosophy: string; origin: string; brew: string }[]
+    cta: string
   }
   sourcing: {
     heading: string
     description: string
     principles: { title: string; text: string }[]
     path: { farm: string; roastery: string; cafe: string }
+    cta: string
+  }
+  match: {
+    eyebrow: string
+    heading: string
+    description: string
+    steps: { title: string; text: string }[]
+    cta: string
   }
   quiz: {
     heading: string
@@ -83,10 +94,6 @@ export interface SectionsText {
     labels: { roast: string; notes: string; brew: string; cafeBrew: string }
     explore: string
     tryAgain: string
-  }
-  gallery: {
-    heading: string
-    items: { caption: string }[]
   }
   testimonials: {
     eyebrow: string
@@ -111,6 +118,11 @@ export interface SectionsText {
     directions: string
     contact: string
     mapLabel: string
+  }
+  faq: {
+    heading: string
+    description: string
+    items: { q: string; a: string }[]
   }
   finale: {
     heading: string
@@ -199,13 +211,13 @@ const en: SectionsText = {
         title: 'Green Coffee Beans',
         text: 'Unroasted whole beans sourced from distinctive farms and regions around the world, ready for experienced home roasters and professionals.',
         button: 'Discover Green Beans',
-        href: '#coffee',
+        href: '/coffee',
       },
       {
         title: 'Freshly Roasted Beans',
         text: 'Whole beans roasted in small batches and matched to espresso, filter, moka pot, French press or cold brew.',
         button: 'Explore Our Roasts',
-        href: '#coffee',
+        href: '/coffee',
       },
       {
         title: 'Prepared in Our Café',
@@ -258,6 +270,7 @@ const en: SectionsText = {
         time: '≈ 2 minutes',
       },
     },
+    cta: 'Not Sure Which to Choose? Take the Quiz',
   },
   cafe: {
     eyebrow: 'A PLACE TO SLOW DOWN',
@@ -322,6 +335,7 @@ const en: SectionsText = {
         notes: 'Blackcurrant • Raspberry',
       },
     ],
+    cta: 'Shop the Full Collection',
   },
   team: {
     eyebrow: 'PEOPLE, NOT PRODUCTION LINES',
@@ -354,6 +368,7 @@ const en: SectionsText = {
         brew: 'French Press',
       },
     ],
+    cta: 'Visit Us at the Café',
   },
   sourcing: {
     heading: 'Respecting Every Origin',
@@ -378,6 +393,28 @@ const en: SectionsText = {
       },
     ],
     path: { farm: 'Farm', roastery: 'Roastery', cafe: 'Café' },
+    cta: 'Shop the Coffee',
+  },
+  match: {
+    eyebrow: 'YOUR PERFECT CUP',
+    heading: 'How We Match You to Your Perfect Cup',
+    description:
+      "Great coffee starts with knowing what you actually enjoy. Here's how we turn a few quick answers into a personal recommendation.",
+    steps: [
+      {
+        title: 'Tell Us How You Brew',
+        text: 'Espresso machine, filter, moka pot or cold brew — we start with how you make coffee, or how you’d like it prepared for you.',
+      },
+      {
+        title: 'Share Your Flavor Preference',
+        text: 'Floral and bright, chocolate and nutty, or bold and intense — the flavors you love point straight to an origin.',
+      },
+      {
+        title: 'Get Your Personal Match',
+        text: 'We combine your answers with our roast profiles to recommend the exact origin, roast level and brewing method for you.',
+      },
+    ],
+    cta: 'Take the Taste Quiz',
   },
   quiz: {
     heading: 'Find the Coffee That Feels Like Yours',
@@ -404,20 +441,6 @@ const en: SectionsText = {
     labels: { roast: 'Roast', notes: 'Flavor Notes', brew: 'Recommended Brewing', cafeBrew: 'Prepared at our café' },
     explore: 'Explore This Coffee',
     tryAgain: 'Try Again',
-  },
-  gallery: {
-    heading: 'Coffee, As We Experience It',
-    items: [
-      { caption: 'Green coffee, before the fire' },
-      { caption: 'Roasting in motion' },
-      { caption: 'Espresso, extracted slowly' },
-      { caption: 'The pour-over ritual' },
-      { caption: 'Poured by hand' },
-      { caption: 'A quiet corner of the café' },
-      { caption: 'At the farm' },
-      { caption: 'Origin landscapes' },
-      { caption: 'Moments between sips' },
-    ],
   },
   testimonials: {
     eyebrow: 'SHARED OVER COFFEE',
@@ -484,6 +507,36 @@ const en: SectionsText = {
     contact: 'Contact the Café',
     mapLabel: 'Map — replace with your live map embed',
   },
+  faq: {
+    heading: 'Frequently Asked Questions',
+    description: 'Everything you need to know before your first cup — and a few things worth knowing after.',
+    items: [
+      {
+        q: 'How fresh is the coffee when it ships?',
+        a: 'Every bag is roasted to order and shipped within 24–48 hours of roasting, so you always receive coffee at its peak.',
+      },
+      {
+        q: "What's the difference between light, medium and dark roast?",
+        a: 'Roast level changes flavor, not caffeine content. Light roasts keep bright, origin-driven notes; dark roasts bring deeper, roasted sweetness. Our brewing guide can help you choose.',
+      },
+      {
+        q: 'Do you offer a coffee subscription?',
+        a: "Yes — choose your favorite origin, roast and grind, and we'll roast and ship on whatever schedule suits you. Pause, skip or cancel anytime.",
+      },
+      {
+        q: 'Can I visit the roastery or café?',
+        a: 'Absolutely. Our café is open daily, and roastery tours can be booked directly with our team — just get in touch.',
+      },
+      {
+        q: 'Do you have decaf or non-dairy options?',
+        a: 'Yes, we carry a naturally processed decaf and offer oat, almond and soy milk at the café.',
+      },
+      {
+        q: 'How should I store my coffee at home?',
+        a: 'Keep beans in an airtight container, away from light and heat, and use within a few weeks of the roast date for the best flavor.',
+      },
+    ],
+  },
   finale: {
     heading: 'Every Great Story Begins With One Cup.',
     description: 'Discover a new origin, learn how it was roasted or visit us and experience the final cup for yourself.',
@@ -508,7 +561,7 @@ const en: SectionsText = {
         title: 'Discover',
         links: [
           { label: 'Origins', href: '#origins' },
-          { label: 'Coffee Collections', href: '#coffee' },
+          { label: 'Coffee Collections', href: '/coffee' },
           { label: 'Green Coffee Beans', href: '#services' },
           { label: 'Roasted Coffee', href: '#services' },
           { label: 'Brewing Methods', href: '#brewing' },
@@ -520,8 +573,8 @@ const en: SectionsText = {
           { label: 'Our Story', href: '#story' },
           { label: 'Roasting', href: '#roasting' },
           { label: 'Our People', href: '#story' },
-          { label: 'Responsibility', href: '#sourcing' },
-          { label: 'Journal', href: '#gallery' },
+          { label: 'Responsibility', href: '/coffee-origins#sourcing' },
+          { label: 'Origins Story', href: '/coffee-origins' },
         ],
       },
       {
@@ -609,13 +662,13 @@ const he: SectionsText = {
         title: 'פולי קפה ירוקים',
         text: 'פולים שלמים שטרם נקלו, המגיעים מחוות ואזורים ייחודיים ברחבי העולם ומתאימים לקולים ביתיים מנוסים ולאנשי מקצוע.',
         button: 'גלו פולים ירוקים',
-        href: '#coffee',
+        href: '/coffee',
       },
       {
         title: 'פולי קפה קלויים',
         text: 'פולים שלמים הנקלים במנות קטנות ומותאמים לאספרסו, פילטר, מקינטה, פרנץ׳ פרס או קולד ברו.',
         button: 'גלו את הקליות שלנו',
-        href: '#coffee',
+        href: '/coffee',
       },
       {
         title: 'מוכן עבורכם בבית הקפה',
@@ -668,6 +721,7 @@ const he: SectionsText = {
         time: '≈ 2 דקות',
       },
     },
+    cta: 'לא בטוחים מה לבחור? עברו לשאלון',
   },
   cafe: {
     eyebrow: 'מקום לעצור בו לרגע',
@@ -731,6 +785,7 @@ const he: SectionsText = {
         notes: 'דומדמניות • פטל',
       },
     ],
+    cta: 'לצפייה במבחר המלא',
   },
   team: {
     eyebrow: 'אנשים, לא פסי ייצור',
@@ -762,6 +817,7 @@ const he: SectionsText = {
         brew: 'פרנץ׳ פרס',
       },
     ],
+    cta: 'בקרו אותנו בבית הקפה',
   },
   sourcing: {
     heading: 'מכבדים כל מקור',
@@ -786,6 +842,27 @@ const he: SectionsText = {
       },
     ],
     path: { farm: 'חווה', roastery: 'בית הקלייה', cafe: 'בית הקפה' },
+    cta: 'לרכישת הקפה',
+  },
+  match: {
+    eyebrow: 'הכוס המושלמת שלכם',
+    heading: 'איך אנחנו מתאימים לכם את הכוס המושלמת',
+    description: 'קפה טוב מתחיל בהבנה של מה שאתם באמת אוהבים. כך אנחנו הופכים כמה תשובות קצרות להמלצה אישית.',
+    steps: [
+      {
+        title: 'ספרו לנו איך אתם מכינים',
+        text: 'מכונת אספרסו, פילטר, מקינטה או קולד ברו — אנחנו מתחילים מהדרך שבה אתם מכינים קפה, או האופן שבו הייתם רוצים שהוא יוכן עבורכם.',
+      },
+      {
+        title: 'שתפו את טעמי הבחירה שלכם',
+        text: 'פרחוני ובהיר, שוקולד ואגוזי, או נועז ועוצמתי — הטעמים שאתם אוהבים מצביעים ישר על מקור מתאים.',
+      },
+      {
+        title: 'קבלו את ההתאמה האישית שלכם',
+        text: 'אנחנו משלבים את התשובות שלכם עם פרופילי הקלייה שלנו כדי להמליץ על המקור, רמת הקלייה ושיטת ההכנה המדויקים עבורכם.',
+      },
+    ],
+    cta: 'עברו לשאלון הטעימה',
   },
   quiz: {
     heading: 'מצאו את הקפה שמתאים לכם',
@@ -810,20 +887,6 @@ const he: SectionsText = {
     labels: { roast: 'קלייה', notes: 'תווי טעם', brew: 'שיטת הכנה מומלצת', cafeBrew: 'מוכן אצלנו בבית הקפה' },
     explore: 'גלו את הקפה',
     tryAgain: 'נסו שוב',
-  },
-  gallery: {
-    heading: 'קפה, כפי שאנחנו חווים אותו',
-    items: [
-      { caption: 'קפה ירוק, לפני האש' },
-      { caption: 'קלייה בתנועה' },
-      { caption: 'אספרסו, בחליטה איטית' },
-      { caption: 'טקס הפילטר' },
-      { caption: 'נמזג ביד' },
-      { caption: 'פינה שקטה בבית הקפה' },
-      { caption: 'בחווה' },
-      { caption: 'נופי המקור' },
-      { caption: 'רגעים שבין לגימה ללגימה' },
-    ],
   },
   testimonials: {
     eyebrow: 'רגעים שחולקים סביב קפה',
@@ -886,6 +949,36 @@ const he: SectionsText = {
     contact: 'צרו קשר עם בית הקפה',
     mapLabel: 'מפה — החליפו בהטמעת מפה אמיתית',
   },
+  faq: {
+    heading: 'שאלות נפוצות',
+    description: 'כל מה שכדאי לדעת לפני הכוס הראשונה — וכמה דברים שכדאי לדעת גם אחריה.',
+    items: [
+      {
+        q: 'כמה טרי הקפה כשהוא נשלח?',
+        a: 'כל שקית נקלית לפי הזמנה ונשלחת תוך 24–48 שעות מהקלייה, כך שתמיד תקבלו קפה בשיאו.',
+      },
+      {
+        q: 'מה ההבדל בין קלייה בהירה, בינונית וכהה?',
+        a: 'רמת הקלייה משנה את הטעם, לא את כמות הקפאין. קלייה בהירה שומרת על תווים בהירים ומקוריים, וקלייה כהה מביאה מתיקות קלויה ועמוקה יותר. מדריך ההכנה שלנו יעזור לכם לבחור.',
+      },
+      {
+        q: 'האם יש לכם מנוי לקפה?',
+        a: 'כן — בחרו את המקור, הקלייה והטחינה המועדפים עליכם, ואנחנו נקלה ונשלח בקצב שנוח לכם. אפשר להשהות, לדלג או לבטל בכל עת.',
+      },
+      {
+        q: 'אפשר לבקר בבית הקלייה או בבית הקפה?',
+        a: 'בהחלט. בית הקפה שלנו פתוח מדי יום, וניתן לתאם סיורים בבית הקלייה ישירות מול הצוות שלנו.',
+      },
+      {
+        q: 'יש לכם אפשרויות נטולות קפאין או צמחיות?',
+        a: 'כן, יש לנו קפה נטול קפאין בעיבוד טבעי, ובבית הקפה מוגשים גם חלב שיבולת שועל, שקדים וסויה.',
+      },
+      {
+        q: 'איך כדאי לאחסן את הקפה בבית?',
+        a: 'שמרו את הפולים בכלי אטום, הרחק מאור וחום, ונצלו אותם תוך מספר שבועות מתאריך הקלייה לטעם הטוב ביותר.',
+      },
+    ],
+  },
   finale: {
     heading: 'כל סיפור גדול מתחיל בכוס אחת.',
     description: 'גלו מקור חדש, למדו כיצד הוא נקלה או בקרו אצלנו וחוו את הכוס הסופית בעצמכם.',
@@ -908,7 +1001,7 @@ const he: SectionsText = {
         title: 'גלו',
         links: [
           { label: 'מקורות הקפה', href: '#origins' },
-          { label: 'קולקציות קפה', href: '#coffee' },
+          { label: 'קולקציות קפה', href: '/coffee' },
           { label: 'פולי קפה ירוקים', href: '#services' },
           { label: 'קפה קלוי', href: '#services' },
           { label: 'שיטות הכנה', href: '#brewing' },
@@ -920,8 +1013,8 @@ const he: SectionsText = {
           { label: 'הסיפור שלנו', href: '#story' },
           { label: 'תהליך הקלייה', href: '#roasting' },
           { label: 'האנשים שלנו', href: '#story' },
-          { label: 'אחריות', href: '#sourcing' },
-          { label: 'יומן', href: '#gallery' },
+          { label: 'אחריות', href: '/coffee-origins#sourcing' },
+          { label: 'סיפור המקורות', href: '/coffee-origins' },
         ],
       },
       {

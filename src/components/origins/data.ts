@@ -21,7 +21,7 @@ export const ORIGINS: OriginMeta[] = [
     lat: 6.16,
     lon: 38.2,
     side: 'right',
-    art: { sky: ['#3a2417', '#191009'], ridge: '#120b07', accent: '#d9a05b' },
+    art: { sky: ['#f3ddb0', '#e9c98f'], ridge: '#c99a5e', accent: '#d9a05b' },
     similar: ['kenya', 'colombia', 'costarica'],
   },
   {
@@ -29,7 +29,7 @@ export const ORIGINS: OriginMeta[] = [
     lat: 2.54,
     lon: -75.52,
     side: 'left',
-    art: { sky: ['#3b2020', '#180e0c'], ridge: '#110a08', accent: '#d98b7a' },
+    art: { sky: ['#f2d9c9', '#e8c3ac'], ridge: '#c98f74', accent: '#d98b7a' },
     similar: ['ethiopia', 'costarica', 'kenya'],
   },
   {
@@ -37,7 +37,7 @@ export const ORIGINS: OriginMeta[] = [
     lat: -18.51,
     lon: -46.05,
     side: 'right',
-    art: { sky: ['#33210f', '#170f08'], ridge: '#100905', accent: '#c1854a' },
+    art: { sky: ['#f0dcb8', '#e3c495'], ridge: '#b98a52', accent: '#c1854a' },
     similar: ['guatemala', 'costarica', 'colombia'],
   },
   {
@@ -45,7 +45,7 @@ export const ORIGINS: OriginMeta[] = [
     lat: -0.42,
     lon: 36.95,
     side: 'left',
-    art: { sky: ['#3a1d14', '#180d09'], ridge: '#120906', accent: '#d97c5b' },
+    art: { sky: ['#f2d4b8', '#e6bd94'], ridge: '#c17f55', accent: '#d97c5b' },
     similar: ['ethiopia', 'colombia', 'costarica'],
   },
   {
@@ -53,7 +53,7 @@ export const ORIGINS: OriginMeta[] = [
     lat: 14.56,
     lon: -90.73,
     side: 'right',
-    art: { sky: ['#2e2113', '#150f09'], ridge: '#0f0a06', accent: '#caa05e' },
+    art: { sky: ['#eeddb0', '#e0c88e'], ridge: '#b99457', accent: '#caa05e' },
     similar: ['brazil', 'costarica', 'colombia'],
   },
   {
@@ -61,7 +61,7 @@ export const ORIGINS: OriginMeta[] = [
     lat: 9.66,
     lon: -84.02,
     side: 'left',
-    art: { sky: ['#282412', '#131007'], ridge: '#0d0b05', accent: '#d4b36a' },
+    art: { sky: ['#eee0bb', '#e2cc98'], ridge: '#bb9a5f', accent: '#d4b36a' },
     similar: ['guatemala', 'colombia', 'kenya'],
   },
 ]

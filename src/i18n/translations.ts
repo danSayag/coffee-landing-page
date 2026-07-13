@@ -55,6 +55,8 @@ export interface Translation {
     subtitle: string
     explore: string
     selectedBadge: string
+    prev: string
+    next: string
   }
   similar: {
     heading: string
@@ -195,6 +197,8 @@ const en: Translation = {
     subtitle: 'Each origin offers a unique expression of climate, altitude, and craftsmanship.',
     explore: 'Explore This Coffee',
     selectedBadge: 'Selected from the Map',
+    prev: 'Previous coffee',
+    next: 'Next coffee',
   },
   similar: {
     heading: 'Explore a Similar Cup',
@@ -335,6 +339,8 @@ const fr: Translation = {
     subtitle: 'Chaque origine offre une expression unique du climat, de l’altitude et du savoir-faire.',
     explore: 'Découvrir ce café',
     selectedBadge: 'Choisi depuis la carte',
+    prev: 'Café précédent',
+    next: 'Café suivant',
   },
   similar: {
     heading: 'Découvrez une tasse similaire',
@@ -463,6 +469,8 @@ const he: Translation = {
     subtitle: 'כל מקור מבטא באופן ייחודי את האקלים, הגובה והאומנות שמאחורי הכוס.',
     explore: 'גלו את הקפה הזה',
     selectedBadge: 'נבחר מהמפה',
+    prev: 'הקפה הקודם',
+    next: 'הקפה הבא',
   },
   similar: {
     heading: 'גלו כוס דומה',

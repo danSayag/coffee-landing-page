@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Check } from 'lucide-react'
 import HeroBackground from './hero/HeroBackground'
 import CoffeeComposition from './hero/CoffeeComposition'
+import HashLink from './HashLink'
 import { useI18n } from '../i18n'
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
@@ -78,19 +79,19 @@ function Hero() {
           </motion.p>
 
           <motion.div {...fadeUp(1.25)} className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
-            <a
-              href="#coffee"
+            <HashLink
+              href="/coffee"
               className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-cta px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright hover:shadow-[0_16px_44px_-10px_rgba(200,155,91,0.65)] sm:w-auto"
             >
               {t.hero.ctaExplore}
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
-            </a>
-            <a
+            </HashLink>
+            <HashLink
               href="#cafe"
               className="inline-flex w-full items-center justify-center rounded-full border border-cta/70 px-8 py-4 text-sm font-bold tracking-wide text-cta transition-colors duration-300 hover:border-cta hover:bg-cta hover:text-espresso-950 sm:w-auto"
             >
               {t.hero.ctaCafe}
-            </a>
+            </HashLink>
           </motion.div>
 
           <motion.ul

@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
+import HashLink from '../HashLink'
 import { SectionHeading, SteamWisps, reveal, useSections } from './shared'
 
 const GOLD = '#8FA89B'
@@ -91,7 +93,7 @@ function DrinksSection() {
             <motion.article
               key={drink.id}
               {...reveal((index % 3) * 0.1)}
-              className="group relative overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.4),rgba(230,220,199,0.85))] p-6 transition-all duration-500 hover:border-gold/45 hover:shadow-[0_28px_70px_-24px_rgba(200,155,91,0.2)] sm:p-7"
+              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.4),rgba(230,220,199,0.85))] p-6 transition-all duration-500 hover:border-gold/45 hover:shadow-[0_28px_70px_-24px_rgba(200,155,91,0.2)] sm:p-7"
             >
               {/* lighting shift on hover */}
               <div
@@ -107,7 +109,7 @@ function DrinksSection() {
               </div>
 
               <h3 className="mt-4 text-center font-display text-2xl font-medium text-cream">{drink.name}</h3>
-              <p className="mt-2 text-center text-sm leading-relaxed text-cream/60">{drink.desc}</p>
+              <p className="mt-2 flex-1 text-center text-sm leading-relaxed text-cream/60">{drink.desc}</p>
 
               <p className="mt-4 text-center font-display text-sm italic text-gold-soft transition-[letter-spacing] duration-500 group-hover:tracking-wider">
                 {drink.notes}
@@ -125,6 +127,16 @@ function DrinksSection() {
             </motion.article>
           ))}
         </div>
+
+        <motion.div {...reveal(0.3)} className="mt-12 flex justify-center">
+          <HashLink
+            href="/coffee"
+            className="group inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
+          >
+            {s.drinks.cta}
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
+          </HashLink>
+        </motion.div>
       </div>
     </section>
   )

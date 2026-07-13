@@ -96,6 +96,17 @@ function OriginsDesktop({ onSelectOrigin }: OriginsSectionProps) {
     return () => window.removeEventListener('keydown', onKey)
   }, [selected])
 
+  // Opening a story card brings the whole section (and the card) into view,
+  // in case the map was only partly visible when the bean was clicked.
+  useEffect(() => {
+    if (selected < 0 || !wrapRef.current) return
+    gsap.to(window, {
+      scrollTo: { y: wrapRef.current, offsetY: 90 },
+      duration: 1,
+      ease: 'power2.inOut',
+    })
+  }, [selected])
+
   useLayoutEffect(() => {
     const wrap = wrapRef.current
     const mapWrap = mapWrapRef.current
@@ -270,17 +281,26 @@ function OriginsDesktop({ onSelectOrigin }: OriginsSectionProps) {
 
   const handleExplore = useCallback(
     (index: number) => {
-      const id = ORIGINS[index].id
-      onSelectOrigin(id)
+      onSelectOrigin(ORIGINS[index].id)
       setSelected(-1)
-      gsap.to(window, {
-        scrollTo: { y: `#coffee-${id}`, offsetY: Math.max(80, window.innerHeight * 0.5 - 300) },
-        duration: 1.4,
-        ease: 'power2.inOut',
-      })
     },
     [onSelectOrigin],
   )
+
+  // Clicking anywhere outside the open story card (but not a bean marker,
+  // which owns its own toggle) dismisses it.
+  const cardRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (selected < 0) return
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target as Node
+      if (cardRef.current?.contains(target)) return
+      if (target instanceof Element && target.closest('[data-origin-marker]')) return
+      setSelected(-1)
+    }
+    document.addEventListener('pointerdown', handlePointerDown)
+    return () => document.removeEventListener('pointerdown', handlePointerDown)
+  }, [selected])
 
   const hoveredOrigin = hovered >= 0 ? ORIGINS[hovered] : null
   const selectedOrigin = selected >= 0 ? ORIGINS[selected] : null
@@ -350,7 +370,7 @@ function OriginsDesktop({ onSelectOrigin }: OriginsSectionProps) {
                 cardOnLeft ? 'left-2 xl:left-6' : 'right-2 xl:right-6'
               }`}
             >
-              <div className="relative">
+              <div ref={cardRef} className="relative">
                 <button
                   type="button"
                   onClick={() => setSelected(-1)}

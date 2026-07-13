@@ -1,5 +1,6 @@
 ﻿import { motion } from 'framer-motion'
-import { Handshake, Leaf, MapPin, Package } from 'lucide-react'
+import { ArrowRight, Handshake, Leaf, MapPin, Package } from 'lucide-react'
+import HashLink from '../HashLink'
 import { EASE, SectionHeading, reveal, useSections } from './shared'
 
 const GOLD = '#8FA89B'
@@ -88,7 +89,7 @@ function SourcingSection() {
                   <motion.div
                     key={principle.title}
                     {...reveal(index * 0.1)}
-                    className="group rounded-3xl border border-cream/10 bg-espresso-900/40 p-6 transition-colors duration-500 hover:border-gold/40"
+                    className="group flex h-full flex-col rounded-3xl border border-cream/10 bg-espresso-900/40 p-6 transition-colors duration-500 hover:border-gold/40"
                   >
                     <div className="flex items-center gap-3">
                       <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/30 bg-gold/10 text-gold transition-transform duration-500 group-hover:scale-110">
@@ -97,11 +98,21 @@ function SourcingSection() {
                       <span className="font-display text-sm italic text-gold/60">{String(index + 1).padStart(2, '0')}</span>
                     </div>
                     <h3 className="mt-4 font-display text-xl font-medium text-cream">{principle.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-cream/60">{principle.text}</p>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-cream/60">{principle.text}</p>
                   </motion.div>
                 )
               })}
             </div>
+
+            <motion.div {...reveal(0.4)} className="mt-10 flex justify-center lg:justify-start">
+              <HashLink
+                href="/coffee"
+                className="group inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
+              >
+                {s.sourcing.cta}
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
+              </HashLink>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -131,13 +131,7 @@ function OriginsMobile({ onSelectOrigin, reduced }: OriginsMobileProps) {
 
   const handleExplore = useCallback(
     (index: number) => {
-      const id = ORIGINS[index].id
-      onSelectOrigin(id)
-      gsap.to(window, {
-        scrollTo: { y: `#coffee-${id}`, offsetY: 90 },
-        duration: 1.1,
-        ease: 'power2.inOut',
-      })
+      onSelectOrigin(ORIGINS[index].id)
     },
     [onSelectOrigin],
   )

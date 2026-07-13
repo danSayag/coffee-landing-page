@@ -41,12 +41,12 @@ function QuizSection({ onExplore }: QuizSectionProps) {
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-4xl px-6 sm:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <SectionHeading heading={s.quiz.heading} description={s.quiz.description} />
 
         <div
           aria-live="polite"
-          className="relative mx-auto mt-12 min-h-[380px] rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(255,255,255,0.5),rgba(230,220,199,0.82))] p-7 shadow-[0_36px_100px_-30px_rgba(0,0,0,0.75)] sm:p-10"
+          className="relative mx-auto mt-12 max-w-4xl min-h-[380px] rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(255,255,255,0.5),rgba(230,220,199,0.82))] p-7 shadow-[0_36px_100px_-30px_rgba(0,0,0,0.75)] sm:p-10"
         >
           <AnimatePresence mode="wait">
             {!done ? (

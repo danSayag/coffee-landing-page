@@ -37,7 +37,7 @@ interface WorldMapProps {
   children?: ReactNode
 }
 
-function drawMap(canvas: HTMLCanvasElement, landDots: number[]) {
+export function drawMap(canvas: HTMLCanvasElement, landDots: number[]) {
   const ctx = canvas.getContext('2d')
   if (!ctx) return
   const rect = canvas.getBoundingClientRect()
@@ -148,6 +148,7 @@ const WorldMap = memo(function WorldMap({ els, hovered, onHover, onSelect, child
               els.current.markers[index] = el
             }}
             type="button"
+            data-origin-marker="true"
             aria-label={`${text.country} — ${text.profile}`}
             onClick={() => onSelect(index)}
             onMouseEnter={() => onHover?.(index)}
@@ -203,15 +204,6 @@ const WorldMap = memo(function WorldMap({ els, hovered, onHover, onSelect, child
                   <CoffeeBean className="w-full" />
                 </span>
               </span>
-            </span>
-            {/* country label */}
-            <span
-              ref={(el) => {
-                els.current.labels[index] = el
-              }}
-              className="pointer-events-none absolute left-1/2 top-full mt-1.5 -translate-x-1/2 whitespace-nowrap text-[0.6rem] font-bold uppercase tracking-[0.24em] text-gold-soft/90 [text-shadow:0_2px_8px_rgba(0,0,0,0.9)]"
-            >
-              {text.country}
             </span>
           </button>
         )

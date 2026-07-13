@@ -5,6 +5,7 @@ import { gsap } from '../../lib/gsap'
 import { useI18n } from '../../i18n'
 import { getA11ySettings, subscribeA11y } from '../a11y/a11yStore'
 import LanguageSwitcher from '../a11y/LanguageSwitcher'
+import HashLink from '../HashLink'
 import { useMediaQuery } from '../origins/OriginsSection'
 import { reveal, useSections } from './shared'
 
@@ -130,9 +131,9 @@ function LinkColumn({ title, links }: { title: string; links: { label: string; h
       <ul className={`flex flex-col gap-2.5 overflow-hidden pt-4 md:flex ${expanded ? 'flex' : 'hidden'}`}>
         {links.map((link) => (
           <li key={link.label}>
-            <a href={link.href} className="text-sm text-cream/60 transition-colors duration-300 hover:text-gold">
+            <HashLink href={link.href} className="text-sm text-cream/60 transition-colors duration-300 hover:text-gold">
               {link.label}
-            </a>
+            </HashLink>
           </li>
         ))}
       </ul>
@@ -185,7 +186,12 @@ function Footer() {
   }
 
   return (
-    <footer id="footer" ref={footerRef} onMouseMove={handleMove} className="group/footer relative overflow-hidden bg-[#0c0806]">
+    <footer
+      id="footer"
+      ref={footerRef}
+      onMouseMove={handleMove}
+      className="group/footer relative overflow-hidden bg-[linear-gradient(180deg,#F4F0EA_0%,#ECE3D2_45%,#E4DAC4_100%)]"
+    >
       {/* decorative layers */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(1000px_500px_at_50%_0%,rgba(200,155,91,0.06),transparent_65%)]" />
@@ -230,7 +236,7 @@ function Footer() {
         {/* brand + newsletter */}
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
           <motion.div {...reveal()}>
-            <a href="#home" className="flex items-center gap-2.5" aria-label="Terra Roasters — home">
+            <HashLink href="#home" className="flex items-center gap-2.5" aria-label="Terra Roasters — home">
               <svg viewBox="0 0 64 64" className="h-8 w-8" aria-hidden="true" focusable="false">
                 <g transform="rotate(24 32 32)">
                   <ellipse cx="32" cy="32" rx="14" ry="20" fill={GOLD} />
@@ -240,7 +246,7 @@ function Footer() {
               <span className="font-display text-2xl font-semibold tracking-[0.04em] text-cream">
                 Terra <span className="text-gold-soft">Roasters</span>
               </span>
-            </a>
+            </HashLink>
             <p className="mt-5 max-w-md font-display text-xl italic leading-relaxed text-cream/75">{s.footer.statement}</p>
 
             <div className="mt-7 flex items-center gap-3">

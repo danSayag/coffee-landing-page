@@ -1,5 +1,6 @@
 ﻿import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import HashLink from '../HashLink'
 import { BeanShape, SectionHeading, SteamWisps, reveal, useSections } from './shared'
 
 /** Hover visual per card: raw bean / bean roasting / bean becoming a cup. */
@@ -88,7 +89,7 @@ function ServicesSection() {
               <CardVisual kind={KINDS[index]} />
               <h3 className="mt-2 font-display text-2xl font-medium leading-tight text-cream">{card.title}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-cream/60">{card.text}</p>
-              <a
+              <HashLink
                 href={card.href}
                 className="mt-6 inline-flex items-center gap-2 self-start text-sm font-bold text-gold transition-colors duration-300 hover:text-gold-bright"
               >
@@ -97,7 +98,7 @@ function ServicesSection() {
                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5 rtl:rotate-180 rtl:group-hover:-translate-x-1.5"
                   aria-hidden="true"
                 />
-              </a>
+              </HashLink>
             </motion.article>
           ))}
         </div>

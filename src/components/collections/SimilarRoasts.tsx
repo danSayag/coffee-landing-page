@@ -65,9 +65,9 @@ function SimilarRoasts({ selectedId }: SimilarRoastsProps) {
                   viewport={{ once: true, margin: '-60px' }}
                   exit={{ opacity: 0, scale: 0.94, transition: { duration: 0.3 } }}
                   transition={{ duration: 0.75, ease: EASE, delay: index * 0.1 }}
-                  className="group relative overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.45),rgba(230,220,199,0.85))] shadow-[0_24px_60px_-24px_rgba(0,0,0,0.7)] backdrop-blur-sm transition-colors duration-500 hover:border-gold/40"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.45),rgba(230,220,199,0.85))] shadow-[0_24px_60px_-24px_rgba(0,0,0,0.7)] backdrop-blur-sm transition-colors duration-500 hover:border-gold/40"
                 >
-                  <div className="relative h-36 overflow-hidden">
+                  <div className="relative h-36 shrink-0 overflow-hidden">
                     <div className="h-full w-full transition-transform duration-700 group-hover:scale-[1.06]">
                       <OriginArt origin={origin} index={ORIGIN_INDEX[origin.id]} className="h-full w-full" />
                     </div>
@@ -76,9 +76,9 @@ function SimilarRoasts({ selectedId }: SimilarRoastsProps) {
                       {text.country}
                     </p>
                   </div>
-                  <div className="p-6">
+                  <div className="flex flex-1 flex-col p-6">
                     <h3 className="font-display text-xl font-medium text-cream">{text.coffeeName}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-cream/60">{text.blurb}</p>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-cream/60">{text.blurb}</p>
                     <p className="mt-4 font-display text-sm italic text-gold-soft/90">
                       {text.notes.map((note, noteIndex) => (
                         <Fragment key={note}>

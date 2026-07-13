@@ -1,4 +1,5 @@
 ﻿import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import { SectionHeading, reveal, useSections } from './shared'
 
 const GOLD = '#8FA89B'
@@ -14,8 +15,8 @@ function Portrait({ variant }: { variant: number }) {
     <svg viewBox="0 0 180 200" preserveAspectRatio="xMidYMid slice" className="h-full w-full" aria-hidden="true">
       <defs>
         <linearGradient id={`portrait-bg-${variant}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#332216" />
-          <stop offset="100%" stopColor="#170f0a" />
+          <stop offset="0%" stopColor="#f1e2c4" />
+          <stop offset="100%" stopColor="#e4cd9c" />
         </linearGradient>
       </defs>
       <rect width="180" height="200" fill={`url(#portrait-bg-${variant})`} />
@@ -52,11 +53,11 @@ function TeamSection() {
             <motion.article
               key={member.name}
               {...reveal(index * 0.12)}
-              className={`group relative overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(165deg,rgba(255,255,255,0.42),rgba(230,220,199,0.85))] transition-all duration-500 hover:border-gold/45 ${
+              className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(165deg,rgba(255,255,255,0.42),rgba(230,220,199,0.85))] transition-all duration-500 hover:border-gold/45 ${
                 index === 1 ? 'md:-translate-y-5' : ''
               }`}
             >
-              <div className="relative h-60 overflow-hidden">
+              <div className="relative h-60 shrink-0 overflow-hidden">
                 <div className="h-[112%] w-full transition-transform duration-[1400ms] ease-out group-hover:-translate-y-3">
                   <Portrait variant={index} />
                 </div>
@@ -67,9 +68,9 @@ function TeamSection() {
                 </p>
               </div>
 
-              <div className="p-6">
+              <div className="flex flex-1 flex-col p-6">
                 {/* handwritten-feel quote */}
-                <p className="relative font-display text-lg italic leading-snug text-gold-soft">
+                <p className="relative flex-1 font-display text-lg italic leading-snug text-gold-soft">
                   <span aria-hidden="true" className="text-gold/60">ג€</span>
                   {member.philosophy}
                   <span aria-hidden="true" className="text-gold/60">ג€</span>
@@ -92,6 +93,16 @@ function TeamSection() {
             </motion.article>
           ))}
         </div>
+
+        <motion.div {...reveal(0.3)} className="mt-12 flex justify-center">
+          <a
+            href="#cafe"
+            className="group inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
+          >
+            {s.team.cta}
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
+          </a>
+        </motion.div>
       </div>
     </section>
   )
