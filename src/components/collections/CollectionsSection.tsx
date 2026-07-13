@@ -193,10 +193,10 @@ function CollectionsSection({ selection, onExplore }: CollectionsSectionProps) {
                 <motion.div
                   key={origin.id}
                   animate={{
-                    x: `${off * 56 * mirror}%`,
+                    x: `${Math.sign(off) * [0, 52, 90][depth] * mirror}%`,
                     y: depth * 14,
-                    scale: 1 - depth * 0.11,
-                    opacity: hidden ? 0 : isActiveCard ? 1 : depth === 1 ? 0.55 : 0.28,
+                    scale: 1 - depth * 0.12,
+                    opacity: hidden ? 0 : isActiveCard ? 1 : depth === 1 ? 0.5 : 0.14,
                   }}
                   transition={reduce ? { duration: 0 } : { duration: 0.65, ease: EASE }}
                   style={{ zIndex: 30 - depth * 10, pointerEvents: hidden ? 'none' : 'auto' }}
