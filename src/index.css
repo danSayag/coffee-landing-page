@@ -1,13 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-espresso-950: #15110f;
-  --color-espresso-900: #1b1410;
-  --color-espresso-800: #2e221a;
-  --color-gold: #c89b5b;
-  --color-gold-bright: #dcae6e;
-  --color-gold-soft: #dcc8a1;
-  --color-cream: #f5f0e8;
+  /* Background family (was near-black espresso, now warm light cream) */
+  --color-espresso-950: #f4f0ea;
+  --color-espresso-900: #efe8da;
+  --color-espresso-800: #e4dac4;
+
+  /* Secondary accent (was gold) */
+  --color-gold: #8fa89b;
+  --color-gold-bright: #a3bbae;
+  --color-gold-soft: #b8cac0;
+
+  /* Primary text (was cream, light-on-dark) */
+  --color-cream: #2b2625;
+
+  /* Call-to-action */
+  --color-cta: #c27d58;
+  --color-cta-bright: #ce9171;
 
   --font-display: "Cormorant Garamond", "Frank Ruhl Libre", Georgia, serif;
   --font-body: "Manrope", "Assistant", ui-sans-serif, system-ui, sans-serif;
@@ -207,17 +216,19 @@
 
 /* High contrast: brighten the palette and deepen the background */
 :root.a11y-contrast {
-  --color-espresso-950: #000000;
-  --color-espresso-900: #0a0705;
-  --color-espresso-800: #221610;
-  --color-gold: #ffc46f;
-  --color-gold-bright: #ffd28a;
-  --color-gold-soft: #ffe3b8;
-  --color-cream: #ffffff;
+  --color-espresso-950: #ffffff;
+  --color-espresso-900: #f0f0f0;
+  --color-espresso-800: #e0e0e0;
+  --color-gold: #4f6d5e;
+  --color-gold-bright: #3e5749;
+  --color-gold-soft: #6b8577;
+  --color-cream: #000000;
+  --color-cta: #a85c36;
+  --color-cta-bright: #8f4a28;
 }
 
 .a11y-contrast body {
-  background-color: #000000;
+  background-color: #ffffff;
 }
 
 /* Underline all links */

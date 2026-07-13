@@ -8,7 +8,7 @@ import LanguageSwitcher from '../a11y/LanguageSwitcher'
 import { useMediaQuery } from '../origins/OriginsSection'
 import { reveal, useSections } from './shared'
 
-const GOLD = '#c89b5b'
+const GOLD = '#8FA89B'
 
 function iconProps(props: SVGProps<SVGSVGElement>): SVGProps<SVGSVGElement> {
   return {
@@ -92,7 +92,7 @@ function NewsletterForm() {
         />
         <button
           type="submit"
-          className="shrink-0 whitespace-nowrap bg-gold px-6 text-sm font-bold text-espresso-950 transition-colors duration-300 hover:bg-gold-bright"
+          className="shrink-0 whitespace-nowrap bg-cta px-6 text-sm font-bold text-espresso-950 transition-colors duration-300 hover:bg-cta-bright"
         >
           {s.footer.newsletter.submit}
         </button>
@@ -234,7 +234,7 @@ function Footer() {
               <svg viewBox="0 0 64 64" className="h-8 w-8" aria-hidden="true" focusable="false">
                 <g transform="rotate(24 32 32)">
                   <ellipse cx="32" cy="32" rx="14" ry="20" fill={GOLD} />
-                  <path d="M32 13 C 22 25, 42 40, 32 51" stroke="#15110f" strokeWidth="3.5" strokeLinecap="round" fill="none" />
+                  <path d="M32 13 C 22 25, 42 40, 32 51" stroke="#2B2625" strokeWidth="3.5" strokeLinecap="round" fill="none" />
                 </g>
               </svg>
               <span className="font-display text-2xl font-semibold tracking-[0.04em] text-cream">

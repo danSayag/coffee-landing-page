@@ -19,7 +19,7 @@ function SimilarRoasts({ selectedId }: SimilarRoastsProps) {
   return (
     <section id="similar" className="relative overflow-hidden pb-28 pt-4 lg:pb-36">
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#1b1410_0%,#15110f_55%,#110d0b_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#ECE3D2_0%,#F4F0EA_55%,#F4F0EA_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(820px_540px_at_14%_70%,rgba(200,155,91,0.06),transparent_62%)]" />
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>
@@ -65,7 +65,7 @@ function SimilarRoasts({ selectedId }: SimilarRoastsProps) {
                   viewport={{ once: true, margin: '-60px' }}
                   exit={{ opacity: 0, scale: 0.94, transition: { duration: 0.3 } }}
                   transition={{ duration: 0.75, ease: EASE, delay: index * 0.1 }}
-                  className="group relative overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(160deg,rgba(46,34,26,0.45),rgba(21,17,15,0.85))] shadow-[0_24px_60px_-24px_rgba(0,0,0,0.7)] backdrop-blur-sm transition-colors duration-500 hover:border-gold/40"
+                  className="group relative overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.45),rgba(230,220,199,0.85))] shadow-[0_24px_60px_-24px_rgba(0,0,0,0.7)] backdrop-blur-sm transition-colors duration-500 hover:border-gold/40"
                 >
                   <div className="relative h-36 overflow-hidden">
                     <div className="h-full w-full transition-transform duration-700 group-hover:scale-[1.06]">

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { Accessibility, Car, Clock, Dog, Mail, MapPin, Phone, Sofa, Sun, Wifi } from 'lucide-react'
 import { SectionHeading, reveal, useSections } from './shared'
 
-const GOLD = '#c89b5b'
+const GOLD = '#8FA89B'
 const FEATURE_ICONS = [Sofa, Sun, Accessibility, Wifi, Car, Dog]
 
 /**
@@ -12,7 +12,7 @@ const FEATURE_ICONS = [Sofa, Sun, Accessibility, Wifi, Car, Dog]
  */
 function MapPlaceholder({ label }: { label: string }) {
   return (
-    <div className="relative h-full min-h-[320px] w-full overflow-hidden rounded-[2rem] border border-gold/15 bg-[#150f0b]">
+    <div className="relative h-full min-h-[320px] w-full overflow-hidden rounded-[2rem] border border-gold/15 bg-[#F4F0EA]">
       <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice" className="h-full w-full" aria-hidden="true">
         {/* topographic-style lines */}
         {Array.from({ length: 9 }, (_, i) => (
@@ -48,7 +48,7 @@ function VisitSection() {
   return (
     <section id="contact" className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#15110f_0%,#1a130e_50%,#120d0a_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#ECE3D2_50%,#F4F0EA_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(880px_560px_at_20%_20%,rgba(200,155,91,0.07),transparent_60%)]" />
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>
@@ -59,7 +59,7 @@ function VisitSection() {
         <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.1fr] lg:gap-8">
           <motion.div
             {...reveal(0.05)}
-            className="rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(46,34,26,0.5),rgba(17,13,11,0.82))] p-8 sm:p-9"
+            className="rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(255,255,255,0.5),rgba(230,220,199,0.82))] p-8 sm:p-9"
           >
             {/* PLACEHOLDER business info — replace address/hours/phone/email before launch */}
             <div className="grid grid-cols-1 gap-7 sm:grid-cols-2">
@@ -123,13 +123,13 @@ function VisitSection() {
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center rounded-full bg-gold px-7 py-3.5 text-sm font-bold text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-bright"
+                className="inline-flex items-center justify-center rounded-full bg-cta px-7 py-3.5 text-sm font-bold text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
               >
                 {s.visit.directions}
               </a>
               <a
                 href={`mailto:${s.visit.email}`}
-                className="inline-flex items-center justify-center rounded-full border border-gold/60 px-7 py-3.5 text-sm font-bold text-gold transition-colors duration-300 hover:bg-gold hover:text-espresso-950"
+                className="inline-flex items-center justify-center rounded-full border border-cta/60 px-7 py-3.5 text-sm font-bold text-cta transition-colors duration-300 hover:bg-cta hover:text-espresso-950"
               >
                 {s.visit.contact}
               </a>

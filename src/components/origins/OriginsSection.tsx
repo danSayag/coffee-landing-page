@@ -367,7 +367,7 @@ function OriginsDesktop({ onSelectOrigin }: OriginsSectionProps) {
                     <button
                       type="button"
                       onClick={() => handleExplore(selected)}
-                      className="group mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold px-6 py-3.5 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_10px_30px_-10px_rgba(200,155,91,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-bright"
+                      className="group mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-cta px-6 py-3.5 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_10px_30px_-10px_rgba(200,155,91,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
                     >
                       {t.collections.explore}
                       <ArrowRight

@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion'
+﻿import { motion } from 'framer-motion'
 import { SectionHeading, reveal, useSections } from './shared'
 
-const GOLD = '#c89b5b'
+const GOLD = '#8FA89B'
 
-/** Abstract editorial portrait — silhouette with warm rim light. */
+/** Abstract editorial portrait ג€” silhouette with warm rim light. */
 function Portrait({ variant }: { variant: number }) {
   const hair = [
     'M 60 58 Q 58 30 90 26 Q 124 24 122 56 Q 121 44 104 40 Q 74 36 68 58 Z',
@@ -39,7 +39,7 @@ function TeamSection() {
   return (
     <section id="story" className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#110d0b_0%,#17110d_55%,#15110f_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#EFE7D8_55%,#F4F0EA_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(800px_520px_at_80%_70%,rgba(200,155,91,0.06),transparent_60%)]" />
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>
@@ -52,7 +52,7 @@ function TeamSection() {
             <motion.article
               key={member.name}
               {...reveal(index * 0.12)}
-              className={`group relative overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(165deg,rgba(46,34,26,0.42),rgba(17,13,11,0.85))] transition-all duration-500 hover:border-gold/45 ${
+              className={`group relative overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(165deg,rgba(255,255,255,0.42),rgba(230,220,199,0.85))] transition-all duration-500 hover:border-gold/45 ${
                 index === 1 ? 'md:-translate-y-5' : ''
               }`}
             >
@@ -70,9 +70,9 @@ function TeamSection() {
               <div className="p-6">
                 {/* handwritten-feel quote */}
                 <p className="relative font-display text-lg italic leading-snug text-gold-soft">
-                  <span aria-hidden="true" className="text-gold/60">“</span>
+                  <span aria-hidden="true" className="text-gold/60">ג€</span>
                   {member.philosophy}
-                  <span aria-hidden="true" className="text-gold/60">”</span>
+                  <span aria-hidden="true" className="text-gold/60">ג€</span>
                 </p>
                 <svg viewBox="0 0 120 8" className="mt-2 w-24 opacity-50" aria-hidden="true">
                   <path d="M2 6 C 30 1, 70 1, 118 5" fill="none" stroke={GOLD} strokeWidth="1.6" strokeLinecap="round" />

@@ -52,7 +52,7 @@ function drawMap(canvas: HTMLCanvasElement, landDots: number[]) {
   const h = rect.height
 
   // Faint graticule
-  ctx.strokeStyle = 'rgba(245, 240, 232, 0.035)'
+  ctx.strokeStyle = 'rgba(43, 38, 37, 0.06)'
   ctx.lineWidth = 1
   ctx.beginPath()
   for (let lon = -150; lon <= 150; lon += 30) {
@@ -131,7 +131,7 @@ const WorldMap = memo(function WorldMap({ els, hovered, onHover, onSelect, child
   }, [])
 
   return (
-    <div className="relative h-full w-full overflow-hidden rounded-[2rem] border border-gold/15 bg-[linear-gradient(160deg,rgba(46,34,26,0.42),rgba(17,13,11,0.75))] shadow-[0_40px_120px_-30px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(245,240,232,0.06)] backdrop-blur-sm">
+    <div className="relative h-full w-full overflow-hidden rounded-[2rem] border border-gold/15 bg-[linear-gradient(160deg,rgba(255,255,255,0.42),rgba(230,220,199,0.75))] shadow-[0_40px_120px_-30px_rgba(0,0,0,0.8),inset_0_1px_0_rgba(245,240,232,0.06)] backdrop-blur-sm">
       {/* Ambient light inside the frame */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_90%_at_50%_40%,rgba(200,155,91,0.08),transparent_70%)]" />
 
@@ -220,7 +220,7 @@ const WorldMap = memo(function WorldMap({ els, hovered, onHover, onSelect, child
       {children}
 
       {/* Frame vignette */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[2rem] bg-[radial-gradient(120%_120%_at_50%_50%,transparent_62%,rgba(8,5,3,0.5)_100%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[2rem] bg-[radial-gradient(120%_120%_at_50%_50%,transparent_62%,rgba(43,38,37,0.06)_100%)]" />
     </div>
   )
 })

@@ -1,11 +1,11 @@
-import { motion } from 'framer-motion'
+﻿import { motion } from 'framer-motion'
 import { Handshake, Leaf, MapPin, Package } from 'lucide-react'
 import { EASE, SectionHeading, reveal, useSections } from './shared'
 
-const GOLD = '#c89b5b'
+const GOLD = '#8FA89B'
 const ICONS = [Handshake, MapPin, Leaf, Package]
 
-/** Thin animated journey: farm → roastery → café. */
+/** Thin animated journey: farm ג†’ roastery ג†’ cafֳ©. */
 function JourneyPath() {
   const s = useSections()
   const stops = [
@@ -34,7 +34,7 @@ function JourneyPath() {
             cx="40"
             cy={stop.y}
             r="6"
-            fill="#15110f"
+            fill="#2B2625"
             stroke={GOLD}
             strokeWidth="1.8"
             initial={{ scale: 0, opacity: 0 }}
@@ -67,7 +67,7 @@ function SourcingSection() {
   return (
     <section id="sourcing" className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#15110f_0%,#131009_50%,#140f0c_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#F1EBDF_50%,#F1EBDF_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(760px_520px_at_12%_25%,rgba(200,155,91,0.06),transparent_62%)]" />
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>

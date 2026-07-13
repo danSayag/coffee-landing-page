@@ -14,7 +14,7 @@ const BREW_META: Record<BrewId, { texture: number; intensity: number; clarity: n
   cappuccino: { texture: 5, intensity: 3, clarity: 2 },
 }
 
-const GOLD = '#c89b5b'
+const GOLD = '#8FA89B'
 const line = { fill: 'none', stroke: GOLD, strokeWidth: 2, strokeLinecap: 'round' as const, strokeOpacity: 0.85 }
 const dark = { fill: '#20150e', stroke: GOLD, strokeWidth: 1.6, strokeOpacity: 0.6 }
 
@@ -94,7 +94,7 @@ function BrewingSection() {
   return (
     <section id="brewing" className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#15110f_0%,#110d0b_60%,#15110f_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#F1EBDF_60%,#F4F0EA_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(800px_540px_at_15%_75%,rgba(200,155,91,0.06),transparent_62%)]" />
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>
@@ -133,7 +133,7 @@ function BrewingSection() {
         {/* thin liquid path under the selector */}
         <div aria-hidden="true" className="mx-auto mt-1 h-px max-w-2xl bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 
-        <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 items-center gap-10 rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(46,34,26,0.45),rgba(17,13,11,0.8))] p-8 sm:grid-cols-[220px_1fr] sm:p-10">
+        <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 items-center gap-10 rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(255,255,255,0.45),rgba(230,220,199,0.8))] p-8 sm:grid-cols-[220px_1fr] sm:p-10">
           <div className="relative mx-auto h-48 w-48">
             <div aria-hidden="true" className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(200,155,91,0.12),transparent_66%)] blur-lg" />
             <AnimatePresence mode="wait">

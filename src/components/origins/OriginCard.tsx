@@ -17,7 +17,7 @@ interface OriginCardProps {
 const OriginCard = memo(function OriginCard({ index, text, flavorNotesLabel, compact, footer }: OriginCardProps) {
   return (
     <article
-      className={`relative overflow-hidden rounded-3xl border border-gold/25 bg-[linear-gradient(150deg,rgba(46,34,26,0.72),rgba(21,17,15,0.82))] shadow-[0_30px_70px_-20px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(245,240,232,0.07)] backdrop-blur-xl ${
+      className={`relative overflow-hidden rounded-3xl border border-gold/25 bg-[linear-gradient(150deg,rgba(255,255,255,0.72),rgba(230,220,199,0.82))] shadow-[0_30px_70px_-20px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(245,240,232,0.07)] backdrop-blur-xl ${
         compact ? 'p-6' : 'p-7 xl:p-8'
       }`}
     >

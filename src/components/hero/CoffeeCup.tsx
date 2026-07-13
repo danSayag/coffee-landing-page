@@ -1,4 +1,4 @@
-import { memo } from 'react'
+﻿import { memo } from 'react'
 
 interface CoffeeCupProps {
   className?: string
@@ -57,7 +57,7 @@ const CoffeeCup = memo(function CoffeeCup({ className }: CoffeeCupProps) {
       <ellipse cx="240" cy="404" rx="168" ry="22" fill="#000000" opacity="0.5" filter="url(#tr-blur-lg)" />
 
       <ellipse cx="240" cy="378" rx="158" ry="34" fill="url(#tr-saucer)" />
-      <ellipse cx="240" cy="378" rx="158" ry="34" fill="none" stroke="#c89b5b" strokeOpacity="0.3" strokeWidth="1.5" />
+      <ellipse cx="240" cy="378" rx="158" ry="34" fill="none" stroke="#8FA89B" strokeOpacity="0.3" strokeWidth="1.5" />
       <ellipse cx="240" cy="373" rx="118" ry="22" fill="#c3b493" opacity="0.65" />
       <ellipse cx="240" cy="371" rx="92" ry="16" fill="#000000" opacity="0.28" filter="url(#tr-blur-md)" />
 
@@ -100,11 +100,11 @@ const CoffeeCup = memo(function CoffeeCup({ className }: CoffeeCupProps) {
       </g>
 
       <ellipse cx="240" cy="170" rx="100" ry="30" fill="url(#tr-cup-rim)" />
-      <ellipse cx="240" cy="170" rx="100" ry="30" fill="none" stroke="#c89b5b" strokeOpacity="0.5" strokeWidth="1.8" />
+      <ellipse cx="240" cy="170" rx="100" ry="30" fill="none" stroke="#8FA89B" strokeOpacity="0.5" strokeWidth="1.8" />
       <ellipse cx="240" cy="171" rx="89" ry="25" fill="url(#tr-cup-wall)" />
       <ellipse cx="240" cy="173" rx="81" ry="21" fill="url(#tr-coffee)" />
 
-      <g fill="none" stroke="#c89b5b" filter="url(#tr-blur-sm)">
+      <g fill="none" stroke="#8FA89B" filter="url(#tr-blur-sm)">
         <ellipse cx="243" cy="173" rx="58" ry="13" strokeOpacity="0.28" strokeWidth="3" />
         <ellipse cx="236" cy="174" rx="36" ry="8" strokeOpacity="0.34" strokeWidth="2.5" />
         <ellipse cx="242" cy="173" rx="16" ry="3.5" strokeOpacity="0.4" strokeWidth="2" />

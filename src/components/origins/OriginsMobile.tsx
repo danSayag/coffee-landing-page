@@ -206,7 +206,7 @@ function OriginsMobile({ onSelectOrigin, reduced }: OriginsMobileProps) {
                 <button
                   type="button"
                   onClick={() => handleExplore(index)}
-                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full border border-gold/40 px-6 py-3 text-sm font-bold text-gold transition-colors duration-300 hover:bg-gold hover:text-espresso-950"
+                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full border border-cta/40 px-6 py-3 text-sm font-bold text-cta transition-colors duration-300 hover:bg-cta hover:text-espresso-950"
                 >
                   {t.collections.explore}
                   <ArrowRight className="h-4 w-4 rtl:rotate-180" aria-hidden="true" />

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+﻿import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { BeanShape, SectionHeading, SteamWisps, reveal, useSections } from './shared'
 
@@ -47,9 +47,9 @@ function CardVisual({ kind }: { kind: 'green' | 'roasted' | 'cafe' }) {
             className="absolute inset-0 h-full w-full opacity-0 transition-all duration-700 group-hover:opacity-100"
             aria-hidden="true"
           >
-            <path d="M 18 34 L 74 34 L 68 68 Q 66 74 58 74 L 34 74 Q 26 74 24 68 Z" fill="#20150e" stroke="#c89b5b" strokeOpacity="0.7" strokeWidth="1.6" />
-            <path d="M 74 40 Q 90 42 86 52 Q 83 60 68 58" fill="none" stroke="#c89b5b" strokeOpacity="0.7" strokeWidth="1.6" />
-            <ellipse cx="46" cy="34" rx="28" ry="5" fill="#5e3d24" stroke="#c89b5b" strokeOpacity="0.5" strokeWidth="1.2" />
+            <path d="M 18 34 L 74 34 L 68 68 Q 66 74 58 74 L 34 74 Q 26 74 24 68 Z" fill="#20150e" stroke="#8FA89B" strokeOpacity="0.7" strokeWidth="1.6" />
+            <path d="M 74 40 Q 90 42 86 52 Q 83 60 68 58" fill="none" stroke="#8FA89B" strokeOpacity="0.7" strokeWidth="1.6" />
+            <ellipse cx="46" cy="34" rx="28" ry="5" fill="#5e3d24" stroke="#8FA89B" strokeOpacity="0.5" strokeWidth="1.2" />
           </svg>
           <SteamWisps className="absolute -top-5 left-1/2 w-10 -translate-x-1/2 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
         </div>
@@ -66,7 +66,7 @@ function ServicesSection() {
   return (
     <section id="services" className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#140f0c_0%,#1b1410_55%,#15110f_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F1EBDF_0%,#ECE3D2_55%,#F4F0EA_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(860px_540px_at_85%_20%,rgba(200,155,91,0.07),transparent_60%)]" />
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>
@@ -79,7 +79,7 @@ function ServicesSection() {
             <motion.article
               key={card.title}
               {...reveal(index * 0.12)}
-              className={`group relative flex flex-col overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(165deg,rgba(46,34,26,0.45),rgba(17,13,11,0.85))] p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-[0_30px_80px_-24px_rgba(200,155,91,0.22)] ${
+              className={`group relative flex flex-col overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(165deg,rgba(255,255,255,0.45),rgba(230,220,199,0.85))] p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-[0_30px_80px_-24px_rgba(200,155,91,0.22)] ${
                 index === 1 ? 'md:translate-y-6' : ''
               }`}
             >

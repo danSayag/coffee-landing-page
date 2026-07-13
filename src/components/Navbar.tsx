@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useI18n } from '../i18n'
@@ -54,13 +54,13 @@ function Navbar() {
       }`}
     >
       <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6 sm:px-8">
-        <a href="#home" className="flex items-center gap-2.5" aria-label="Terra Roasters — home">
+        <a href="#home" className="flex items-center gap-2.5" aria-label="Terra Roasters ג€” home">
           <svg viewBox="0 0 64 64" className="h-7 w-7" aria-hidden="true" focusable="false">
             <g transform="rotate(24 32 32)">
-              <ellipse cx="32" cy="32" rx="14" ry="20" fill="#c89b5b" />
+              <ellipse cx="32" cy="32" rx="14" ry="20" fill="#8FA89B" />
               <path
                 d="M32 13 C 22 25, 42 40, 32 51"
-                stroke="#15110f"
+                stroke="#2B2625"
                 strokeWidth="3.5"
                 strokeLinecap="round"
                 fill="none"
@@ -99,7 +99,7 @@ function Navbar() {
           </div>
           <a
             href="#cafe"
-            className="hidden rounded-full border border-gold/70 px-5 py-2.5 text-sm font-semibold text-gold transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-espresso-950 sm:inline-flex"
+            className="hidden rounded-full border border-cta/70 px-5 py-2.5 text-sm font-semibold text-cta transition-colors duration-300 hover:border-cta hover:bg-cta hover:text-espresso-950 sm:inline-flex"
           >
             {t.nav.visitCafe}
           </a>
@@ -150,7 +150,7 @@ function Navbar() {
               <a
                 href="#cafe"
                 onClick={() => setMenuOpen(false)}
-                className="mt-3 rounded-full border border-gold/70 px-5 py-3 text-center text-sm font-semibold text-gold transition-colors hover:bg-gold hover:text-espresso-950 sm:hidden"
+                className="mt-3 rounded-full border border-cta/70 px-5 py-3 text-center text-sm font-semibold text-cta transition-colors hover:bg-cta hover:text-espresso-950 sm:hidden"
               >
                 {t.nav.visitCafe}
               </a>

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { SectionHeading, SteamWisps, reveal, useSections } from './shared'
 
-const GOLD = '#c89b5b'
+const GOLD = '#8FA89B'
 
 /** Stylized drink illustration — glass/cup shape varies per drink. */
 function DrinkArt({ kind }: { kind: string }) {
@@ -78,7 +78,7 @@ function DrinksSection() {
   return (
     <section id="drinks" className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#140f0c_0%,#15110f_50%,#110d0b_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F1EBDF_0%,#F4F0EA_50%,#F4F0EA_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(880px_560px_at_25%_15%,rgba(200,155,91,0.07),transparent_60%)]" />
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>
@@ -91,7 +91,7 @@ function DrinksSection() {
             <motion.article
               key={drink.id}
               {...reveal((index % 3) * 0.1)}
-              className="group relative overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(160deg,rgba(46,34,26,0.4),rgba(17,13,11,0.85))] p-6 transition-all duration-500 hover:border-gold/45 hover:shadow-[0_28px_70px_-24px_rgba(200,155,91,0.2)] sm:p-7"
+              className="group relative overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.4),rgba(230,220,199,0.85))] p-6 transition-all duration-500 hover:border-gold/45 hover:shadow-[0_28px_70px_-24px_rgba(200,155,91,0.2)] sm:p-7"
             >
               {/* lighting shift on hover */}
               <div

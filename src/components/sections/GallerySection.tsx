@@ -4,7 +4,7 @@ import { ORIGINS } from '../origins/data'
 import OriginArt from '../collections/OriginArt'
 import { EASE, SectionHeading, useSections } from './shared'
 
-const GOLD = '#c89b5b'
+const GOLD = '#8FA89B'
 
 /** Compact illustrated "moments" — coffee textures, brewing, café life. */
 function MomentArt({ kind }: { kind: string }) {
@@ -142,7 +142,7 @@ function GallerySection() {
   return (
     <section id="gallery" className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#15110f_0%,#110d0b_55%,#140f0c_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#F4F0EA_55%,#F1EBDF_100%)]" />
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>
 

@@ -8,9 +8,9 @@ function HeroBackground() {
 
   return (
     <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(160deg,#1b1410_0%,#15110f_55%,#110d0b_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(160deg,#ECE3D2_0%,#F4F0EA_55%,#F4F0EA_100%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(1100px_720px_at_78%_30%,rgba(200,155,91,0.08),transparent_62%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(820px_620px_at_6%_88%,rgba(46,34,26,0.65),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(820px_620px_at_6%_88%,rgba(143,168,155,0.10),transparent_60%)]" />
 
       <motion.div
         animate={reduceMotion ? undefined : { opacity: [0.45, 0.8, 0.45], scale: [1, 1.07, 1] }}
@@ -25,7 +25,7 @@ function HeroBackground() {
       <Particles />
 
       <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-      <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_38%,transparent_52%,rgba(8,5,3,0.62)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_38%,transparent_52%,rgba(43,38,37,0.06)_100%)]" />
     </div>
   )
 }

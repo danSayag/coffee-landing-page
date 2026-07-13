@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion'
+﻿import { motion } from 'framer-motion'
 import CoffeeBean from '../hero/CoffeeBean'
 import { useStopAnimations } from '../a11y/useStopAnimations'
 import { EASE, SteamWisps, reveal, useSections } from './shared'
 
-const GOLD = '#c89b5b'
+const GOLD = '#8FA89B'
 
 /** Large cream ceramic cup under a warm spotlight. */
 function FinalCup() {
@@ -40,11 +40,11 @@ function FinalCtaSection({ onExplore }: FinalCtaSectionProps) {
   return (
     <section id="finale" className="relative overflow-hidden py-28 lg:py-36">
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#120d0a_0%,#0d0906_60%,#0a0705_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#F1EBDF_60%,#F4F0EA_100%)]" />
         {/* warm spotlight */}
         <div className="absolute left-1/2 top-0 h-[130%] w-[60rem] max-w-full -translate-x-1/2 bg-[radial-gradient(50%_45%_at_50%_38%,rgba(232,200,143,0.14),transparent_70%)]" />
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-        <div className="absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_50%,transparent_55%,rgba(5,3,2,0.7)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_50%,transparent_55%,rgba(43,38,37,0.06)_100%)]" />
       </div>
 
       {/* floating beans */}
@@ -100,13 +100,13 @@ function FinalCtaSection({ onExplore }: FinalCtaSectionProps) {
           <button
             type="button"
             onClick={onExplore}
-            className="inline-flex items-center justify-center rounded-full bg-gold px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-bright"
+            className="inline-flex items-center justify-center rounded-full bg-cta px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
           >
             {s.finale.explore}
           </button>
           <a
             href="#contact"
-            className="inline-flex items-center justify-center rounded-full border border-gold/70 px-8 py-4 text-sm font-bold tracking-wide text-gold transition-colors duration-300 hover:bg-gold hover:text-espresso-950"
+            className="inline-flex items-center justify-center rounded-full border border-cta/70 px-8 py-4 text-sm font-bold tracking-wide text-cta transition-colors duration-300 hover:bg-cta hover:text-espresso-950"
           >
             {s.finale.visit}
           </a>

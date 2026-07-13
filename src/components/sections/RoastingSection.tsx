@@ -1,11 +1,11 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+﻿import { useLayoutEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from '../../lib/gsap'
 import type { RoastId } from '../../i18n/sections'
 import { useMediaQuery } from '../origins/OriginsSection'
 import { EASE, Meter, SectionHeading, SteamWisps, reveal, useSections } from './shared'
 
-// Bean color through the roast: green → yellow → cinnamon → medium → deep brown
+// Bean color through the roast: green ג†’ yellow ג†’ cinnamon ג†’ medium ג†’ deep brown
 const ROAST_COLORS = ['#94a06b', '#c2a75f', '#a9744a', '#7a4b2c', '#432815']
 
 const ROAST_META: Record<RoastId, { bean: string; seam: string; acidity: number; sweetness: number; body: number; curve: string }> = {
@@ -35,7 +35,7 @@ const ROAST_META: Record<RoastId, { bean: string; seam: string; acidity: number;
   },
 }
 
-/** Handcrafted roasting drum — thin gold linework over dark metal. */
+/** Handcrafted roasting drum ג€” thin gold linework over dark metal. */
 function RoasterIllustration({
   refs,
 }: {
@@ -65,11 +65,11 @@ function RoasterIllustration({
       </defs>
 
       {/* hopper funnel */}
-      <path d="M 172 40 L 248 40 L 226 96 L 194 96 Z" fill="#1d140d" stroke="#c89b5b" strokeOpacity="0.5" strokeWidth="1.4" />
-      <path d="M 194 96 L 226 96 L 222 122 L 198 122 Z" fill="#160f0a" stroke="#c89b5b" strokeOpacity="0.35" strokeWidth="1.2" />
+      <path d="M 172 40 L 248 40 L 226 96 L 194 96 Z" fill="#1d140d" stroke="#8FA89B" strokeOpacity="0.5" strokeWidth="1.4" />
+      <path d="M 194 96 L 226 96 L 222 122 L 198 122 Z" fill="#160f0a" stroke="#8FA89B" strokeOpacity="0.35" strokeWidth="1.2" />
 
       {/* flue pipe */}
-      <path d="M 318 150 L 352 150 L 352 60" fill="none" stroke="#c89b5b" strokeOpacity="0.4" strokeWidth="10" strokeLinecap="round" />
+      <path d="M 318 150 L 352 150 L 352 60" fill="none" stroke="#8FA89B" strokeOpacity="0.4" strokeWidth="10" strokeLinecap="round" />
 
       {/* smoke from flue */}
       <g ref={refs.smoke} opacity="0">
@@ -77,8 +77,8 @@ function RoasterIllustration({
       </g>
 
       {/* drum body */}
-      <circle cx="210" cy="248" r="118" fill="url(#roaster-metal)" stroke="#c89b5b" strokeOpacity="0.55" strokeWidth="1.6" />
-      <circle cx="210" cy="248" r="100" fill="none" stroke="#c89b5b" strokeOpacity="0.22" strokeWidth="1" />
+      <circle cx="210" cy="248" r="118" fill="url(#roaster-metal)" stroke="#8FA89B" strokeOpacity="0.55" strokeWidth="1.6" />
+      <circle cx="210" cy="248" r="100" fill="none" stroke="#8FA89B" strokeOpacity="0.22" strokeWidth="1" />
 
       {/* heat glow inside */}
       <circle ref={refs.glow} cx="210" cy="252" r="88" fill="url(#roaster-heat)" opacity="0" />
@@ -92,13 +92,13 @@ function RoasterIllustration({
             y1="162"
             x2="210"
             y2="334"
-            stroke="#c89b5b"
+            stroke="#8FA89B"
             strokeOpacity="0.3"
             strokeWidth="2"
             transform={`rotate(${angle} 210 248)`}
           />
         ))}
-        <circle cx="210" cy="248" r="10" fill="#0f0a06" stroke="#c89b5b" strokeOpacity="0.6" strokeWidth="1.4" />
+        <circle cx="210" cy="248" r="10" fill="#0f0a06" stroke="#8FA89B" strokeOpacity="0.6" strokeWidth="1.4" />
       </g>
 
       {/* the bean transforming inside the drum */}
@@ -116,21 +116,21 @@ function RoasterIllustration({
       </g>
 
       {/* drum window rim */}
-      <circle cx="210" cy="248" r="62" fill="none" stroke="#c89b5b" strokeOpacity="0.5" strokeWidth="1.6" />
+      <circle cx="210" cy="248" r="62" fill="none" stroke="#8FA89B" strokeOpacity="0.5" strokeWidth="1.6" />
 
       {/* control dial + details */}
-      <circle cx="96" cy="300" r="16" fill="#160f0a" stroke="#c89b5b" strokeOpacity="0.55" strokeWidth="1.4" />
-      <line x1="96" y1="300" x2="104" y2="290" stroke="#c89b5b" strokeOpacity="0.8" strokeWidth="1.6" strokeLinecap="round" />
-      <circle cx="96" cy="342" r="6" fill="none" stroke="#c89b5b" strokeOpacity="0.4" strokeWidth="1.2" />
+      <circle cx="96" cy="300" r="16" fill="#160f0a" stroke="#8FA89B" strokeOpacity="0.55" strokeWidth="1.4" />
+      <line x1="96" y1="300" x2="104" y2="290" stroke="#8FA89B" strokeOpacity="0.8" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="96" cy="342" r="6" fill="none" stroke="#8FA89B" strokeOpacity="0.4" strokeWidth="1.2" />
 
       {/* exit chute + tray */}
-      <path d="M 268 340 L 316 388 L 296 402 L 258 360 Z" fill="#1d140d" stroke="#c89b5b" strokeOpacity="0.4" strokeWidth="1.3" />
-      <ellipse cx="322" cy="416" rx="52" ry="12" fill="#120c08" stroke="#c89b5b" strokeOpacity="0.35" strokeWidth="1.2" />
+      <path d="M 268 340 L 316 388 L 296 402 L 258 360 Z" fill="#1d140d" stroke="#8FA89B" strokeOpacity="0.4" strokeWidth="1.3" />
+      <ellipse cx="322" cy="416" rx="52" ry="12" fill="#120c08" stroke="#8FA89B" strokeOpacity="0.35" strokeWidth="1.2" />
 
       {/* legs */}
-      <line x1="140" y1="342" x2="118" y2="428" stroke="#c89b5b" strokeOpacity="0.45" strokeWidth="3" strokeLinecap="round" />
-      <line x1="280" y1="342" x2="302" y2="428" stroke="#c89b5b" strokeOpacity="0.45" strokeWidth="3" strokeLinecap="round" />
-      <line x1="100" y1="428" x2="320" y2="428" stroke="#c89b5b" strokeOpacity="0.25" strokeWidth="2" />
+      <line x1="140" y1="342" x2="118" y2="428" stroke="#8FA89B" strokeOpacity="0.45" strokeWidth="3" strokeLinecap="round" />
+      <line x1="280" y1="342" x2="302" y2="428" stroke="#8FA89B" strokeOpacity="0.45" strokeWidth="3" strokeLinecap="round" />
+      <line x1="100" y1="428" x2="320" y2="428" stroke="#8FA89B" strokeOpacity="0.25" strokeWidth="2" />
 
       {/* embers */}
       {[0, 1, 2, 3, 4].map((i) => (
@@ -178,7 +178,7 @@ function RoastSelector() {
   const info = s.roasting.roasts[roast]
 
   return (
-    <motion.div {...reveal(0.1)} className="mx-auto mt-16 max-w-5xl rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(46,34,26,0.5),rgba(17,13,11,0.8))] p-7 shadow-[0_36px_100px_-30px_rgba(0,0,0,0.75)] sm:p-9">
+    <motion.div {...reveal(0.1)} className="mx-auto mt-16 max-w-5xl rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(255,255,255,0.5),rgba(230,220,199,0.8))] p-7 shadow-[0_36px_100px_-30px_rgba(0,0,0,0.75)] sm:p-9">
       <p className="text-center text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-gold">{s.roasting.selectorTitle}</p>
 
       <div role="tablist" aria-label={s.roasting.selectorTitle} className="mt-5 flex flex-wrap justify-center gap-2.5">
@@ -222,7 +222,7 @@ function RoastSelector() {
               key={roast}
               d={meta.curve}
               fill="none"
-              stroke="#c89b5b"
+              stroke="#8FA89B"
               strokeWidth="2"
               strokeLinecap="round"
               initial={{ pathLength: 0 }}
@@ -237,7 +237,7 @@ function RoastSelector() {
           <p className="font-display text-2xl font-medium italic leading-snug text-cream">{info.desc}</p>
           <p className="mt-3 text-sm leading-relaxed text-cream/60">{info.brew}</p>
           <p className="mt-5 text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-cream/45">{s.roasting.meterLabels.notes}</p>
-          <p className="mt-1.5 font-display text-lg italic text-gold-soft">{info.notes.join(' • ')}</p>
+          <p className="mt-1.5 font-display text-lg italic text-gold-soft">{info.notes.join(' ג€¢ ')}</p>
         </div>
 
         {/* meters */}
@@ -365,7 +365,7 @@ function RoastingSection() {
           className="border-gold/30 ltr:border-l-2 ltr:pl-5 rtl:border-r-2 rtl:pr-5"
         >
           <p className="font-display text-sm italic text-gold">
-            {stage.num} — <span className="not-italic font-body text-[0.72rem] font-bold uppercase tracking-[0.24em]">{stage.title}</span>
+            {stage.num} ג€” <span className="not-italic font-body text-[0.72rem] font-bold uppercase tracking-[0.24em]">{stage.title}</span>
           </p>
           <p className="mt-1 text-[0.85rem] leading-snug text-cream/65 lg:leading-normal">{stage.text}</p>
         </div>
@@ -377,7 +377,7 @@ function RoastingSection() {
     <div className="rounded-2xl border border-cream/10 bg-espresso-900/50 p-4 lg:p-[clamp(0.75rem,2vh,1.25rem)]">
       <div className="flex items-baseline justify-between">
         <span className="text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-cream/45">{s.roasting.curveLabels.temperature}</span>
-        <span className="text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-cream/45">{s.roasting.curveLabels.time} →</span>
+        <span className="text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-cream/45">{s.roasting.curveLabels.time} ג†’</span>
       </div>
       <svg viewBox="0 0 220 66" className="mt-2 w-full" aria-hidden="true">
         <line x1="8" y1="58" x2="212" y2="58" stroke="#f5f0e8" strokeOpacity="0.12" />
@@ -386,7 +386,7 @@ function RoastingSection() {
           ref={curveRef}
           d="M 8 58 C 60 53, 105 34, 145 22 C 172 13, 196 11, 212 10"
           fill="none"
-          stroke="#c89b5b"
+          stroke="#8FA89B"
           strokeWidth="2"
           strokeLinecap="round"
         />
@@ -404,7 +404,7 @@ function RoastingSection() {
   )
 
   return (
-    <section id="roasting" className="relative bg-[linear-gradient(180deg,#110d0b_0%,#15110f_50%,#140f0c_100%)]">
+    <section id="roasting" className="relative bg-[linear-gradient(180deg,#F4F0EA_0%,#F4F0EA_50%,#F1EBDF_100%)]">
       <div className="bg-noise pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-soft-light" aria-hidden="true" />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_600px_at_20%_30%,rgba(200,155,91,0.06),transparent_60%)]" />
 

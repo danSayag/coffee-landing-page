@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useStopAnimations } from '../a11y/useStopAnimations'
 import { EASE, SectionHeading, SteamWisps, reveal, useSections } from './shared'
 
-const GOLD = '#c89b5b'
+const GOLD = '#8FA89B'
 
 /** Large illustrated café interior — window light, counter, barista, lamps. */
 function CafeScene() {
@@ -124,7 +124,7 @@ function CafeSection() {
   return (
     <section id="cafe" className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#15110f_0%,#1b1410_45%,#140f0c_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#ECE3D2_45%,#F1EBDF_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(1000px_640px_at_70%_30%,rgba(200,155,91,0.08),transparent_62%)]" />
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>
@@ -135,13 +135,13 @@ function CafeSection() {
           <motion.div {...reveal(0.2)} className="flex flex-wrap gap-3 lg:justify-end">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center rounded-full bg-gold px-7 py-3.5 text-sm font-bold text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-bright"
+              className="inline-flex items-center justify-center rounded-full bg-cta px-7 py-3.5 text-sm font-bold text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
             >
               {s.cafe.visit}
             </a>
             <a
               href="#drinks"
-              className="inline-flex items-center justify-center rounded-full border border-gold/60 px-7 py-3.5 text-sm font-bold text-gold transition-colors duration-300 hover:bg-gold hover:text-espresso-950"
+              className="inline-flex items-center justify-center rounded-full border border-cta/60 px-7 py-3.5 text-sm font-bold text-cta transition-colors duration-300 hover:bg-cta hover:text-espresso-950"
             >
               {s.cafe.menu}
             </a>
@@ -177,7 +177,7 @@ function CafeSection() {
                 {label}
               </motion.p>
             ))}
-            <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[2rem] bg-[radial-gradient(120%_120%_at_50%_50%,transparent_65%,rgba(8,5,3,0.5)_100%)]" />
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[2rem] bg-[radial-gradient(120%_120%_at_50%_50%,transparent_65%,rgba(43,38,37,0.06)_100%)]" />
           </motion.figure>
 
           <div className="grid grid-cols-2 gap-5 lg:grid-cols-1 lg:gap-6">

@@ -36,7 +36,7 @@ function QuizSection({ onExplore }: QuizSectionProps) {
   return (
     <section id="quiz" className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#140f0c_0%,#1a130e_50%,#15110f_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F1EBDF_0%,#ECE3D2_50%,#F4F0EA_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(900px_560px_at_50%_0%,rgba(200,155,91,0.08),transparent_62%)]" />
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>
@@ -46,7 +46,7 @@ function QuizSection({ onExplore }: QuizSectionProps) {
 
         <div
           aria-live="polite"
-          className="relative mx-auto mt-12 min-h-[380px] rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(46,34,26,0.5),rgba(17,13,11,0.82))] p-7 shadow-[0_36px_100px_-30px_rgba(0,0,0,0.75)] sm:p-10"
+          className="relative mx-auto mt-12 min-h-[380px] rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(255,255,255,0.5),rgba(230,220,199,0.82))] p-7 shadow-[0_36px_100px_-30px_rgba(0,0,0,0.75)] sm:p-10"
         >
           <AnimatePresence mode="wait">
             {!done ? (
@@ -131,7 +131,7 @@ function QuizSection({ onExplore }: QuizSectionProps) {
                       <button
                         type="button"
                         onClick={() => onExplore(resultId)}
-                        className="group inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-bold text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-bright"
+                        className="group inline-flex items-center gap-2 rounded-full bg-cta px-7 py-3.5 text-sm font-bold text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
                       >
                         {s.quiz.explore}
                         <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
@@ -139,7 +139,7 @@ function QuizSection({ onExplore }: QuizSectionProps) {
                       <button
                         type="button"
                         onClick={reset}
-                        className="inline-flex items-center gap-2 rounded-full border border-gold/50 px-7 py-3.5 text-sm font-bold text-gold transition-colors duration-300 hover:bg-gold hover:text-espresso-950"
+                        className="inline-flex items-center gap-2 rounded-full border border-cta/50 px-7 py-3.5 text-sm font-bold text-cta transition-colors duration-300 hover:bg-cta hover:text-espresso-950"
                       >
                         <RotateCcw className="h-4 w-4" aria-hidden="true" />
                         {s.quiz.tryAgain}

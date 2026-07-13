@@ -43,7 +43,7 @@ function CollectionCard({ origin, index, highlighted, fromGlobe, onExplore }: Co
       <motion.div
         animate={{ y: highlighted ? -10 : 0 }}
         transition={{ duration: 0.7, ease: EASE }}
-        className={`relative flex h-full flex-col overflow-hidden rounded-3xl border bg-[linear-gradient(165deg,rgba(46,34,26,0.5),rgba(21,17,15,0.85))] backdrop-blur-sm transition-[border-color,box-shadow] duration-700 ${
+        className={`relative flex h-full flex-col overflow-hidden rounded-3xl border bg-[linear-gradient(165deg,rgba(255,255,255,0.5),rgba(230,220,199,0.85))] backdrop-blur-sm transition-[border-color,box-shadow] duration-700 ${
           highlighted
             ? 'border-gold shadow-[0_0_0_1px_rgba(200,155,91,0.9),0_30px_80px_-20px_rgba(200,155,91,0.28)]'
             : 'border-cream/10 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.7)] hover:border-gold/40'
@@ -97,7 +97,7 @@ function CollectionCard({ origin, index, highlighted, fromGlobe, onExplore }: Co
           <button
             type="button"
             onClick={() => onExplore(origin.id)}
-            className="mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full border border-gold/50 px-6 py-3 text-[0.8rem] font-bold tracking-wide text-gold transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-espresso-950 hover:shadow-[0_12px_32px_-10px_rgba(200,155,91,0.55)]"
+            className="mt-6 inline-flex items-center justify-center gap-2 self-start rounded-full border border-cta/50 px-6 py-3 text-[0.8rem] font-bold tracking-wide text-cta transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta hover:text-espresso-950 hover:shadow-[0_12px_32px_-10px_rgba(200,155,91,0.55)]"
           >
             {t.collections.explore}
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 rtl:-scale-x-100" aria-hidden="true" />
@@ -123,7 +123,7 @@ function CollectionsSection({ selection, onExplore }: CollectionsSectionProps) {
   return (
     <section id="coffee" className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#140f0c_0%,#15110f_40%,#1b1410_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F1EBDF_0%,#F4F0EA_40%,#ECE3D2_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(900px_600px_at_80%_10%,rgba(200,155,91,0.07),transparent_60%)]" />
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>

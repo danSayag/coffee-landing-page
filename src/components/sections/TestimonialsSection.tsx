@@ -33,7 +33,7 @@ function TestimonialsSection() {
   return (
     <section id="testimonials" className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#140f0c_0%,#17110d_50%,#15110f_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F1EBDF_0%,#EFE7D8_50%,#F4F0EA_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(820px_540px_at_85%_80%,rgba(200,155,91,0.06),transparent_62%)]" />
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>
@@ -56,7 +56,7 @@ function TestimonialsSection() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.35 } }}
                   transition={{ duration: 0.7, ease: EASE, delay: i * 0.08 }}
-                  className="relative flex flex-col rounded-3xl border border-cream/10 bg-[linear-gradient(160deg,rgba(46,34,26,0.42),rgba(17,13,11,0.85))] p-7"
+                  className="relative flex flex-col rounded-3xl border border-cream/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.42),rgba(230,220,199,0.85))] p-7"
                 >
                   <Quote className="h-6 w-6 text-gold/40 rtl:-scale-x-100" aria-hidden="true" />
                   <p className="mt-4 flex-1 font-display text-lg italic leading-relaxed text-cream/90">{item.quote}</p>

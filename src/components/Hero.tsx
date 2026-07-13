@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+﻿import { Fragment } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Check } from 'lucide-react'
 import HeroBackground from './hero/HeroBackground'
@@ -56,7 +56,7 @@ function Hero() {
                       <motion.path
                         d="M4 9 C 38 3, 102 3, 136 7"
                         fill="none"
-                        stroke="#c89b5b"
+                        stroke="#8FA89B"
                         strokeWidth="2"
                         strokeLinecap="round"
                         initial={{ pathLength: 0, opacity: 0 }}
@@ -80,14 +80,14 @@ function Hero() {
           <motion.div {...fadeUp(1.25)} className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
             <a
               href="#coffee"
-              className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gold px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-bright hover:shadow-[0_16px_44px_-10px_rgba(200,155,91,0.65)] sm:w-auto"
+              className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-cta px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright hover:shadow-[0_16px_44px_-10px_rgba(200,155,91,0.65)] sm:w-auto"
             >
               {t.hero.ctaExplore}
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
             </a>
             <a
               href="#cafe"
-              className="inline-flex w-full items-center justify-center rounded-full border border-gold/70 px-8 py-4 text-sm font-bold tracking-wide text-gold transition-colors duration-300 hover:border-gold hover:bg-gold hover:text-espresso-950 sm:w-auto"
+              className="inline-flex w-full items-center justify-center rounded-full border border-cta/70 px-8 py-4 text-sm font-bold tracking-wide text-cta transition-colors duration-300 hover:border-cta hover:bg-cta hover:text-espresso-950 sm:w-auto"
             >
               {t.hero.ctaCafe}
             </a>

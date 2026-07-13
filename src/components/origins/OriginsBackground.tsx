@@ -9,10 +9,10 @@ import Particles from '../hero/Particles'
 const OriginsBackground = memo(function OriginsBackground() {
   return (
     <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,#110d0b_0%,#15110f_30%,#1b1410_68%,#140f0c_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#F4F0EA_30%,#ECE3D2_68%,#F1EBDF_100%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(1000px_700px_at_50%_58%,rgba(200,155,91,0.10),transparent_62%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(700px_520px_at_12%_16%,rgba(46,34,26,0.6),transparent_60%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(760px_560px_at_88%_82%,rgba(46,34,26,0.55),transparent_62%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(700px_520px_at_12%_16%,rgba(143,168,155,0.10),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(760px_560px_at_88%_82%,rgba(194,125,88,0.08),transparent_62%)]" />
 
       <div data-parallax="slow" className="absolute inset-0">
         <CoffeeBean className="absolute left-[6%] top-[12%] w-40 -rotate-[32deg] opacity-[0.04] blur-[2px]" />
@@ -31,7 +31,7 @@ const OriginsBackground = memo(function OriginsBackground() {
       <Particles />
 
       <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-      <div className="absolute inset-0 bg-[radial-gradient(120%_95%_at_50%_45%,transparent_50%,rgba(8,5,3,0.68)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(120%_95%_at_50%_45%,transparent_50%,rgba(43,38,37,0.06)_100%)]" />
     </div>
   )
 })
