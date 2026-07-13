@@ -31,7 +31,6 @@ export interface CoffeeOriginsContent {
     flavorNotes: string
     roast: string
   }
-  motion: { pause: string; play: string }
   globeLabel: string
   mapLabel: string
   /** template with {country} token */
@@ -55,7 +54,6 @@ const en: CoffeeOriginsContent = {
     flavorNotes: 'Flavour Notes',
     roast: 'Roast',
   },
-  motion: { pause: 'Pause animation', play: 'Resume animation' },
   globeLabel: 'Interactive 3D globe showing coffee-growing regions',
   mapLabel: 'Flat map showing coffee-growing regions',
   activeAnnouncement: 'Currently viewing {country}',
@@ -135,7 +133,6 @@ const he: CoffeeOriginsContent = {
     flavorNotes: 'תווי טעם',
     roast: 'קלייה',
   },
-  motion: { pause: 'השהו אנימציה', play: 'המשך אנימציה' },
   globeLabel: 'כדור תלת־ממדי אינטראקטיבי המציג את אזורי גידול הקפה',
   mapLabel: 'מפה שטוחה המציגה את אזורי גידול הקפה',
   activeAnnouncement: 'מוצג כעת: {country}',
@@ -198,6 +195,83 @@ const he: CoffeeOriginsContent = {
   ],
 }
 
-const fr: CoffeeOriginsContent = en
+const fr: CoffeeOriginsContent = {
+  hero: {
+    label: 'DE LA FERME À LA TASSE',
+    heading: 'Découvrez où naît votre café',
+    supporting: 'Explorez les fermes, les régions et les personnes derrière chaque café de notre collection.',
+    ctaPrimary: 'Explorer les origines',
+    ctaSecondary: 'Voir tous les cafés',
+    scrollHint: 'Faites défiler pour explorer',
+  },
+  labels: {
+    elevation: 'Altitude',
+    variety: 'Variété',
+    process: 'Traitement',
+    flavorNotes: 'Notes aromatiques',
+    roast: 'Torréfaction',
+  },
+  globeLabel: 'Globe 3D interactif montrant les régions productrices de café',
+  mapLabel: 'Carte plate montrant les régions productrices de café',
+  activeAnnouncement: 'Affichage actuel : {country}',
+  items: [
+    {
+      id: 'ethiopia',
+      country: 'ÉTHIOPIE',
+      region: 'Yirgacheffe',
+      title: 'Le berceau du café',
+      story:
+        'Floral, lumineux et complexe. Ce café est cultivé par de petits producteurs sur les hauts plateaux du sud de l’Éthiopie.',
+      elevation: '1 900–2 200 m',
+      variety: 'Heirloom',
+      process: 'Lavé',
+      flavorNotes: ['Jasmin', 'Bergamote', 'Pêche'],
+      roast: 'Claire',
+      cta: 'Explorer le café d’Éthiopie',
+    },
+    {
+      id: 'colombia',
+      country: 'COLOMBIE',
+      region: 'Huila',
+      title: 'Un paysage façonné par les volcans',
+      story:
+        'Un sol volcanique riche et des pluies régulières sur les montagnes du Huila donnent une tasse équilibrée et vibrante, cultivée par des générations de petites fermes familiales.',
+      elevation: '1 700–2 000 m',
+      variety: 'Caturra, Castillo',
+      process: 'Lavé',
+      flavorNotes: ['Pomme rouge', 'Caramel', 'Agrumes'],
+      roast: 'Moyenne',
+      cta: 'Explorer le café de Colombie',
+    },
+    {
+      id: 'brazil',
+      country: 'BRÉSIL',
+      region: 'Minas Gerais',
+      title: 'Là où le café est devenu un art national',
+      story:
+        'Les collines vallonnées et le soleil constant du Minas Gerais donnent une tasse douce et noisetée — le socle de l’héritage caféier du Brésil.',
+      elevation: '900–1 200 m',
+      variety: 'Bourbon, Mundo Novo',
+      process: 'Nature',
+      flavorNotes: ['Chocolat au lait', 'Noisette', 'Sucre brun'],
+      roast: 'Moyenne-foncée',
+      cta: 'Explorer le café du Brésil',
+    },
+    {
+      id: 'guatemala',
+      country: 'GUATEMALA',
+      region: 'Antigua',
+      title: 'Le café à l’ombre des volcans',
+      story:
+        'Entouré de trois volcans, le sol riche en minéraux d’Antigua et ses nuits fraîches donnent à ce café un corps ample et une douceur discrètement complexe.',
+      elevation: '1 500–1 800 m',
+      variety: 'Bourbon, Caturra',
+      process: 'Lavé',
+      flavorNotes: ['Cacao', 'Prune rouge', 'Amande grillée'],
+      roast: 'Moyenne',
+      cta: 'Explorer le café du Guatemala',
+    },
+  ],
+}
 
 export const coffeeOriginsContent: Record<Lang, CoffeeOriginsContent> = { en, fr, he }

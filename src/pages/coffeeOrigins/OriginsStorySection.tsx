@@ -9,7 +9,6 @@ import { COFFEE_ORIGIN_ORDER, type CoffeeOriginId } from './data'
 import { coffeeOriginsContent } from './content'
 import OriginContent from './OriginContent'
 import FlatWorldMap from './FlatWorldMap'
-import MotionControl from './MotionControl'
 
 const CoffeeGlobe = lazy(() => import('./CoffeeGlobe'))
 
@@ -19,12 +18,10 @@ function OriginsStorySection() {
   const navigate = useNavigate()
   const osReduced = useStopAnimations()
   const isDesktop = useMediaQuery('(min-width: 1024px)')
-  const [manualPause, setManualPause] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const stepRefs = useRef<(HTMLDivElement | null)[]>([])
 
-  const reducedMotion = osReduced || manualPause
-  const useGlobe = isDesktop && !reducedMotion
+  const useGlobe = isDesktop && !osReduced
   const activeId = COFFEE_ORIGIN_ORDER[activeIndex]
 
   const countryLabels = useMemo(
@@ -66,20 +63,10 @@ function OriginsStorySection() {
           <div className={`relative w-full overflow-hidden rounded-[2rem] ${useGlobe ? 'flex h-full items-center' : ''}`}>
             {useGlobe ? (
               <Suspense fallback={<FlatWorldMap activeId={activeId} countryLabels={countryLabels} ariaLabel={content.globeLabel} />}>
-                <CoffeeGlobe activeId={activeId} countryLabels={countryLabels} paused={reducedMotion} ariaLabel={content.globeLabel} />
+                <CoffeeGlobe activeId={activeId} countryLabels={countryLabels} paused={osReduced} ariaLabel={content.globeLabel} />
               </Suspense>
             ) : (
               <FlatWorldMap activeId={activeId} countryLabels={countryLabels} ariaLabel={content.mapLabel} />
-            )}
-
-            {!osReduced && (
-              <MotionControl
-                paused={manualPause}
-                onToggle={() => setManualPause((value) => !value)}
-                pauseLabel={content.motion.pause}
-                playLabel={content.motion.play}
-                className="absolute bottom-4 z-20 ltr:right-4 rtl:left-4"
-              />
             )}
           </div>
           <p aria-live="polite" className="sr-only">

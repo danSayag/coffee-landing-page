@@ -24,7 +24,7 @@ function Hero() {
       <HeroBackground />
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-16 px-6 pb-20 pt-32 sm:px-8 lg:grid-cols-2 lg:gap-10 lg:py-0 lg:pt-20">
-        <div className="text-center lg:text-left">
+        <div className="text-center lg:ltr:text-left lg:rtl:text-right">
           <motion.p
             {...fadeUp(0.35)}
             className="flex items-center justify-center gap-4 text-[0.7rem] font-semibold uppercase tracking-[0.35em] text-gold lg:justify-start"

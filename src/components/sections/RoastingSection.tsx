@@ -178,7 +178,7 @@ function RoastSelector() {
   const info = s.roasting.roasts[roast]
 
   return (
-    <motion.div {...reveal(0.1)} className="mx-auto mt-16 max-w-5xl rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(255,255,255,0.5),rgba(230,220,199,0.8))] p-7 shadow-[0_36px_100px_-30px_rgba(0,0,0,0.75)] sm:p-9">
+    <motion.div {...reveal(0.1)} className="mt-16 rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(255,255,255,0.5),rgba(230,220,199,0.8))] p-7 shadow-[0_36px_100px_-30px_rgba(0,0,0,0.75)] sm:p-9">
       <p className="text-center text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-gold">{s.roasting.selectorTitle}</p>
 
       <div role="tablist" aria-label={s.roasting.selectorTitle} className="mt-5 flex flex-wrap justify-center gap-2.5">
@@ -410,19 +410,21 @@ function RoastingSection() {
 
       {sticky ? (
         <div ref={trackRef} className="relative h-[270vh]">
-          <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden px-6 py-6 sm:px-10 lg:py-[clamp(1rem,3vh,2rem)]">
-            <SectionHeading eyebrow={s.roasting.eyebrow} heading={s.roasting.heading} description={s.roasting.description} />
-            <div className="mx-auto mt-6 grid w-full max-w-6xl grid-cols-[1fr_1.15fr] items-center gap-8 lg:mt-[clamp(0.75rem,2.5vh,2rem)] lg:gap-12">
-              {illustration}
-              <div>
-                {curvePanel}
-                <div className="mt-4 lg:mt-[clamp(0.5rem,1.5vh,1.25rem)]">{narrative}</div>
+          <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden py-6 lg:py-[clamp(1rem,3vh,2rem)]">
+            <div className="mx-auto w-full max-w-7xl px-6 sm:px-8">
+              <SectionHeading eyebrow={s.roasting.eyebrow} heading={s.roasting.heading} description={s.roasting.description} />
+              <div className="mt-6 grid grid-cols-[1fr_1.15fr] items-center gap-8 lg:mt-[clamp(0.75rem,2.5vh,2rem)] lg:gap-12">
+                {illustration}
+                <div>
+                  {curvePanel}
+                  <div className="mt-4 lg:mt-[clamp(0.5rem,1.5vh,1.25rem)]">{narrative}</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       ) : (
-        <div className="relative px-6 py-20">
+        <div className="relative mx-auto max-w-7xl px-6 py-20 sm:px-8">
           <SectionHeading eyebrow={s.roasting.eyebrow} heading={s.roasting.heading} description={s.roasting.description} />
           <motion.div {...reveal(0.1)} className="mx-auto mt-10 max-w-md">
             {illustration}
@@ -436,7 +438,7 @@ function RoastingSection() {
         </div>
       )}
 
-      <div className="relative px-6 pb-24 lg:pb-28">
+      <div className="relative mx-auto max-w-7xl px-6 pb-24 sm:px-8 lg:pb-28">
         <RoastSelector />
       </div>
     </section>

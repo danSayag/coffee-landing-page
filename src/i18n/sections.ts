@@ -2,8 +2,7 @@ import type { Lang, OriginId } from './translations'
 
 // ---------------------------------------------------------------------------
 // Content for every section after "Explore a Similar Cup".
-// English and Hebrew are fully written; French is structurally prepared and
-// currently falls back to English until real French copy is provided.
+// English, French and Hebrew are fully written.
 // ---------------------------------------------------------------------------
 
 export type RoastId = 'light' | 'medium' | 'dark'
@@ -1042,7 +1041,456 @@ const he: SectionsText = {
 }
 
 // French: structurally prepared — falls back to English until translated.
-const fr: SectionsText = en
+const fr: SectionsText = {
+  roasting: {
+    eyebrow: 'LE SAVOIR-FAIRE DERRIÈRE LE GOÛT',
+    heading: 'De l’origine à la torréfaction',
+    description:
+      'Chaque origine réagit différemment à la chaleur. Nous développons un profil de torréfaction unique pour chaque café, révélant la douceur, les arômes et le caractère déjà présents dans le grain.',
+    stages: [
+      {
+        num: '01',
+        title: 'Sélection',
+        text: 'La densité, l’altitude, la méthode de traitement et l’humidité de chaque grain façonnent le profil de torréfaction que nous créons.',
+      },
+      {
+        num: '02',
+        title: 'Développement',
+        text: 'Température, flux d’air et durée sont soigneusement équilibrés pour révéler la douceur sans masquer l’identité de l’origine.',
+      },
+      {
+        num: '03',
+        title: 'Premier crack',
+        text: 'Le grain se dilate, ses arômes s’intensifient et son caractère naturel commence à émerger.',
+      },
+      {
+        num: '04',
+        title: 'Expression',
+        text: 'La torréfaction s’achève lorsque l’acidité, la douceur, le corps et les arômes atteignent leur équilibre idéal.',
+      },
+    ],
+    selectorTitle: 'Choisissez votre torréfaction',
+    roasts: {
+      light: {
+        name: 'Torréfaction claire',
+        desc: 'Florale, agrumes, délicate comme un thé et lumineuse.',
+        brew: 'Idéale pour V60, Chemex et café filtre.',
+        notes: ['Jasmin', 'Agrumes', 'Thé blanc'],
+      },
+      medium: {
+        name: 'Torréfaction moyenne',
+        desc: 'Équilibrée, caramélisée, douce et ronde.',
+        brew: 'Idéale pour espresso, AeroPress et cafetière moka.',
+        notes: ['Caramel', 'Fruits rouges', 'Cacao'],
+      },
+      dark: {
+        name: 'Torréfaction foncée',
+        desc: 'Cacao profond, noix grillées, mélasse et corps ample.',
+        brew: 'Idéale pour les boissons lactées et la French press.',
+        notes: ['Cacao noir', 'Noix grillées', 'Mélasse'],
+      },
+    },
+    meterLabels: { acidity: 'Acidité', sweetness: 'Douceur', body: 'Corps', brew: 'Préparation recommandée', notes: 'Notes aromatiques' },
+    curveLabels: { temperature: 'Température', airflow: 'Flux d’air', development: 'Développement', time: 'Temps' },
+  },
+  services: {
+    heading: 'Le café, à votre façon',
+    description:
+      'Partez du grain vert, choisissez une torréfaction adaptée à votre méthode de préparation, ou laissez nos baristas préparer la tasse finale pour vous.',
+    cards: [
+      {
+        title: 'Café vert en grains',
+        text: 'Des grains non torréfiés issus de fermes et de régions remarquables du monde entier, prêts pour les torréfacteurs amateurs expérimentés et les professionnels.',
+        button: 'Découvrir le café vert',
+        href: '/coffee',
+      },
+      {
+        title: 'Grains fraîchement torréfiés',
+        text: 'Des grains entiers torréfiés en petits lots et adaptés à l’espresso, au filtre, à la moka, à la French press ou au cold brew.',
+        button: 'Explorer nos torréfactions',
+        href: '/coffee',
+      },
+      {
+        title: 'Préparé dans notre café',
+        text: 'Choisissez une origine et laissez nos baristas la préparer en espresso, cappuccino, flat white, V60, latte ou cold brew.',
+        button: 'Voir la carte du café',
+        href: '#drinks',
+      },
+    ],
+  },
+  brewing: {
+    heading: 'Un grain. Mille expressions.',
+    description:
+      'La méthode de préparation transforme la texture, les arômes, la clarté et l’intensité. Découvrez comment chaque préparation révèle une facette différente du café.',
+    meterLabels: { texture: 'Texture', intensity: 'Intensité', clarity: 'Clarté', time: 'Temps de préparation', roast: 'Torréfaction recommandée' },
+    methods: {
+      espresso: {
+        name: 'Espresso',
+        desc: 'Concentré, aromatique et corsé, avec une crema riche et une finale intense.',
+        roast: 'Torréfaction moyenne–foncée',
+        time: '≈ 30 secondes',
+      },
+      v60: {
+        name: 'V60',
+        desc: 'Net, lumineux et aromatique, laissant s’exprimer les délicates notes fruitées et florales.',
+        roast: 'Torréfaction claire',
+        time: '≈ 3 minutes',
+      },
+      frenchpress: {
+        name: 'French Press',
+        desc: 'Riche et texturé, avec un corps ample et une expression profonde de chocolat et d’épices.',
+        roast: 'Torréfaction foncée',
+        time: '≈ 4 minutes',
+      },
+      moka: {
+        name: 'Cafetière moka',
+        desc: 'Intense et sirupeux, avec une douceur torréfiée et une chaleur familière.',
+        roast: 'Torréfaction moyenne',
+        time: '≈ 5 minutes',
+      },
+      coldbrew: {
+        name: 'Cold Brew',
+        desc: 'Doux, rafraîchissant, naturellement sucré et faible en acidité perçue.',
+        roast: 'Torréfaction moyenne',
+        time: '≈ 14 heures',
+      },
+      cappuccino: {
+        name: 'Cappuccino',
+        desc: 'Un espresso adouci par une mousse de lait veloutée — réconfortant, doux et parfaitement équilibré.',
+        roast: 'Torréfaction moyenne–foncée',
+        time: '≈ 2 minutes',
+      },
+    },
+    cta: 'Vous hésitez ? Faites le quiz',
+  },
+  cafe: {
+    eyebrow: 'UN LIEU POUR RALENTIR',
+    heading: 'Plus que du café.',
+    description:
+      'Un espace chaleureux où un café préparé avec soin, des conversations paisibles et des détails pensés font partie du rituel.',
+    labels: ['Torréfié chaque jour', 'Baristas passionnés', 'Salle et terrasse', 'Boissons de saison'],
+    visit: 'Visiter notre café',
+    menu: 'Voir la carte',
+  },
+  drinks: {
+    heading: 'Créé pour l’instant présent',
+    description: 'Des classiques familiers et des créations de saison, préparés avec des cafés choisis spécialement pour chaque recette.',
+    originLabel: 'Origine recommandée',
+    cards: [
+      {
+        id: 'espresso',
+        name: 'Espresso',
+        desc: 'L’expression courte et intense d’une origine unique, extraite avec soin.',
+        origin: 'Cerrado brésilien',
+        roast: 'Torréfaction moyenne-foncée',
+        notes: 'Chocolat noir • Noisette',
+      },
+      {
+        id: 'flatwhite',
+        name: 'Flat White',
+        desc: 'Une micro-mousse soyeuse versée sur un double shot pour une texture veloutée.',
+        origin: 'Antigua guatémaltèque',
+        roast: 'Torréfaction moyenne',
+        notes: 'Cacao • Épices douces',
+      },
+      {
+        id: 'cappuccino',
+        name: 'Cappuccino',
+        desc: 'L’équilibre classique entre espresso, lait chauffé et mousse aérienne.',
+        origin: 'Pink Bourbon colombien',
+        roast: 'Torréfaction moyenne',
+        notes: 'Caramel • Fruits tropicaux',
+      },
+      {
+        id: 'v60',
+        name: 'V60',
+        desc: 'Une extraction lente et précise qui garde chaque note délicate bien nette.',
+        origin: 'Yirgacheffe éthiopien',
+        roast: 'Torréfaction claire',
+        notes: 'Jasmin • Agrumes',
+      },
+      {
+        id: 'coldbrew',
+        name: 'Cold Brew',
+        desc: 'Infusé quatorze heures, servi froid — doux et naturellement sucré.',
+        origin: 'Tarrazú costaricien',
+        roast: 'Torréfaction moyenne',
+        notes: 'Sucre brun • Agrumes',
+      },
+      {
+        id: 'seasonal',
+        name: 'Création de saison',
+        desc: 'Une création changeante de nos baristas, inspirée par la saison.',
+        origin: 'Kenya AA',
+        roast: 'Torréfaction moyenne-claire',
+        notes: 'Cassis • Framboise',
+      },
+    ],
+    cta: 'Découvrir toute la collection',
+  },
+  team: {
+    eyebrow: 'DES PERSONNES, PAS DES CHAÎNES DE PRODUCTION',
+    heading: 'Façonné par des esprits curieux',
+    description:
+      'Nos torréfacteurs et baristas goûtent, testent, ajustent et remettent en question chaque décision jusqu’à ce que chaque café exprime honnêtement son origine.',
+    favOrigin: 'Origine préférée',
+    favBrew: 'Préparation préférée',
+    members: [
+      // PLACEHOLDER people — replace names, roles and quotes with your real team.
+      {
+        name: 'Dana Rivera',
+        role: 'Cheffe torréfactrice',
+        philosophy: 'Une torréfaction doit révéler la ferme, pas la remplacer.',
+        origin: 'Éthiopie',
+        brew: 'V60',
+      },
+      {
+        name: 'Omer Katz',
+        role: 'Barista principal',
+        philosophy: 'Chaque tasse est une petite conversation entre le producteur et l’invité.',
+        origin: 'Kenya',
+        brew: 'Espresso',
+      },
+      {
+        name: 'Maya Chen',
+        role: 'Acheteuse de café vert',
+        philosophy: 'Je cherche des cafés dont on peut goûter le terroir.',
+        origin: 'Guatemala',
+        brew: 'French Press',
+      },
+    ],
+    cta: 'Rendez-nous visite au café',
+  },
+  sourcing: {
+    heading: 'Respecter chaque origine',
+    description:
+      'Un meilleur café commence par des relations plus solides. Nous œuvrons pour un approvisionnement transparent, une torréfaction responsable et des partenariats durables avec celles et ceux qui cultivent chaque récolte.',
+    principles: [
+      {
+        title: 'Des relations durables',
+        text: 'Nous privilégions des partenariats constants plutôt que des achats anonymes et ponctuels.',
+      },
+      {
+        title: 'Des origines traçables',
+        text: 'Chaque café est relié à un pays, une région, un producteur ou une coopérative identifiés.',
+      },
+      {
+        title: 'Une torréfaction réfléchie',
+        text: 'La torréfaction en petits lots réduit le gaspillage tout en préservant la qualité.',
+      },
+      {
+        title: 'Des emballages à moindre impact',
+        text: 'Nous améliorons sans cesse nos matériaux et réduisons les emballages superflus.',
+      },
+    ],
+    path: { farm: 'Ferme', roastery: 'Atelier', cafe: 'Café' },
+    cta: 'Découvrir nos cafés',
+  },
+  match: {
+    eyebrow: 'VOTRE TASSE IDÉALE',
+    heading: 'Comment nous trouvons votre tasse idéale',
+    description:
+      'Un bon café commence par savoir ce que vous aimez vraiment. Voici comment quelques réponses rapides deviennent une recommandation personnelle.',
+    steps: [
+      {
+        title: 'Dites-nous comment vous préparez votre café',
+        text: 'Machine espresso, filtre, moka ou cold brew — nous partons de votre façon de faire le café, ou de la façon dont vous aimeriez qu’il soit préparé pour vous.',
+      },
+      {
+        title: 'Partagez vos goûts',
+        text: 'Floral et lumineux, chocolaté et noiseté, ou corsé et intense — les saveurs que vous aimez mènent tout droit à une origine.',
+      },
+      {
+        title: 'Recevez votre recommandation personnelle',
+        text: 'Nous combinons vos réponses avec nos profils de torréfaction pour vous recommander l’origine, le niveau de torréfaction et la méthode de préparation qui vous correspondent.',
+      },
+    ],
+    cta: 'Faire le quiz des saveurs',
+  },
+  quiz: {
+    heading: 'Trouvez le café qui vous ressemble',
+    description:
+      'Répondez à trois questions rapides et découvrez l’origine, la torréfaction et la méthode de préparation qui correspondent le mieux à vos goûts.',
+    stepLabel: 'Question {n} sur 3',
+    questions: [
+      {
+        q: 'Comment préparez-vous votre café habituellement ?',
+        options: ['Machine espresso', 'Filtre', 'Cafetière moka', 'French press', 'Cold brew', 'Préparé au café'],
+      },
+      {
+        q: 'Quelles saveurs vous attirent le plus ?',
+        options: ['Florales et agrumes', 'Fruitées et lumineuses', 'Chocolat et caramel', 'Noiseté et doux', 'Sombres et intenses'],
+      },
+      {
+        q: 'Quelle intensité recherchez-vous ?',
+        options: ['Délicate', 'Équilibrée', 'Corsée', 'Intense'],
+      },
+    ],
+    resultKicker: 'Votre café',
+    explanation:
+      'Entre votre amour des saveurs {flavor} et votre rituel {method}, cette tasse semble avoir été torréfiée rien que pour vous.',
+    labels: { roast: 'Torréfaction', notes: 'Notes aromatiques', brew: 'Préparation recommandée', cafeBrew: 'Préparé dans notre café' },
+    explore: 'Découvrir ce café',
+    tryAgain: 'Recommencer',
+  },
+  testimonials: {
+    eyebrow: 'PARTAGÉ AUTOUR D’UN CAFÉ',
+    heading: 'Ce que nos invités retiennent',
+    favorite: 'Café préféré',
+    types: { guest: 'Client du café', homeBrewer: 'Barista maison', homeRoaster: 'Torréfacteur maison' },
+    prev: 'Témoignage précédent',
+    next: 'Témoignage suivant',
+    items: [
+      // PLACEHOLDER testimonials — replace with real guest quotes.
+      {
+        name: 'Maya L.',
+        quote:
+          'Je suis venue pour le café filtre éthiopien et je suis restée parce que le barista m’a expliqué exactement pourquoi il était si différent de mon café habituel.',
+        coffee: 'Yirgacheffe éthiopien',
+        type: 'guest',
+      },
+      {
+        name: 'Daniel K.',
+        quote: 'Leurs dates de torréfaction sont toujours fraîches, et le Cerrado donne l’espresso le plus indulgent que j’aie préparé chez moi.',
+        coffee: 'Cerrado brésilien',
+        type: 'homeBrewer',
+      },
+      {
+        name: 'Noa B.',
+        quote: 'Les grains verts du Kenya sont arrivés avec de vraies notes sur la densité et l’humidité. Mon premier crack a enfin eu du sens.',
+        coffee: 'Kenya AA',
+        type: 'homeRoaster',
+      },
+      {
+        name: 'Tomer S.',
+        quote: 'J’ai demandé quelque chose de floral et ils m’ont fait découvrir trois origines avant que je choisisse. Sans précipitation, sans vente forcée.',
+        coffee: 'Pink Bourbon colombien',
+        type: 'guest',
+      },
+      {
+        name: 'Sarah M.',
+        quote: 'Le cold brew Tarrazú m’a accompagnée tout l’été. Si doux que j’ai complètement arrêté d’ajouter du lait.',
+        coffee: 'Tarrazú costaricien',
+        type: 'homeBrewer',
+      },
+      {
+        name: 'Avi R.',
+        quote: 'Le flat white Antigua est mon rituel tranquille avant le travail. La même place près de la fenêtre, la même tasse soignée.',
+        coffee: 'Antigua guatémaltèque',
+        type: 'guest',
+      },
+    ],
+  },
+  visit: {
+    heading: 'Venez vivre l’histoire',
+    description:
+      'Goûtez une origine, comparez les méthodes de préparation ou installez-vous simplement avec une tasse préparée exactement comme vous l’aimez.',
+    addressLabel: 'Nous trouver',
+    hoursLabel: 'Horaires d’ouverture',
+    contactLabel: 'Contact',
+    // PLACEHOLDER business info — replace before launch.
+    address: ['12 rue de la Torréfaction', 'Quartier de la Vieille Ville', 'Votre ville'],
+    hours: ['Dimanche – Jeudi · 7h30 – 19h00', 'Vendredi · 7h30 – 14h00', 'Samedi · Fermé'],
+    phone: '+000-00-000-0000',
+    email: 'hello@terraroasters.example',
+    features: ['Salle intérieure', 'Terrasse extérieure', 'Accessible en fauteuil roulant', 'Wi-Fi gratuit', 'Parking à proximité', 'Chiens bienvenus'],
+    directions: 'Itinéraire',
+    contact: 'Contacter le café',
+    mapLabel: 'Carte — à remplacer par votre carte interactive',
+  },
+  faq: {
+    heading: 'Questions fréquentes',
+    description: 'Tout ce qu’il faut savoir avant votre première tasse — et quelques choses utiles pour après.',
+    items: [
+      {
+        q: 'Quelle est la fraîcheur du café à l’expédition ?',
+        a: 'Chaque sachet est torréfié à la commande et expédié dans les 24 à 48 heures suivant la torréfaction, pour que vous receviez toujours un café à son apogée.',
+      },
+      {
+        q: 'Quelle est la différence entre torréfaction claire, moyenne et foncée ?',
+        a: 'Le niveau de torréfaction change le goût, pas la teneur en caféine. Les torréfactions claires gardent des notes vives marquées par l’origine ; les foncées apportent une douceur torréfiée plus profonde. Notre guide de préparation peut vous aider à choisir.',
+      },
+      {
+        q: 'Proposez-vous un abonnement café ?',
+        a: 'Oui — choisissez votre origine, votre torréfaction et votre mouture préférées, et nous torréfions et expédions au rythme qui vous convient. Pause, saut ou annulation à tout moment.',
+      },
+      {
+        q: 'Peut-on visiter l’atelier ou le café ?',
+        a: 'Bien sûr. Notre café est ouvert tous les jours, et les visites de l’atelier de torréfaction se réservent directement auprès de notre équipe — contactez-nous.',
+      },
+      {
+        q: 'Avez-vous du décaféiné ou des laits végétaux ?',
+        a: 'Oui, nous proposons un décaféiné de traitement naturel ainsi que du lait d’avoine, d’amande et de soja au café.',
+      },
+      {
+        q: 'Comment conserver mon café à la maison ?',
+        a: 'Gardez les grains dans un récipient hermétique, à l’abri de la lumière et de la chaleur, et consommez-les dans les semaines qui suivent la date de torréfaction pour un goût optimal.',
+      },
+    ],
+  },
+  finale: {
+    heading: 'Chaque grande histoire commence par une tasse.',
+    description: 'Découvrez une nouvelle origine, apprenez comment elle a été torréfiée ou rendez-nous visite et goûtez la tasse finale par vous-même.',
+    explore: 'Découvrir nos cafés',
+    visit: 'Visiter notre café',
+  },
+  footer: {
+    statement:
+      'Le café parcourt des milliers de kilomètres avant d’atteindre votre tasse. Nous faisons de chaque étape une découverte.',
+    newsletter: {
+      heading: 'Histoires de l’atelier',
+      description:
+        'Recevez les nouvelles origines, les actualités du café, des guides de préparation et des histoires des fermes derrière nos cafés.',
+      placeholder: 'Votre adresse e-mail',
+      submit: 'Rejoindre le journal',
+      success: 'Bienvenue dans le journal Terra.',
+      error: 'Veuillez saisir une adresse e-mail valide.',
+      emailLabel: 'Adresse e-mail',
+    },
+    columns: [
+      {
+        title: 'Découvrir',
+        links: [
+          { label: 'Origines', href: '#origins' },
+          { label: 'Collections de café', href: '/coffee' },
+          { label: 'Café vert en grains', href: '#services' },
+          { label: 'Café torréfié', href: '#services' },
+          { label: 'Méthodes de préparation', href: '#brewing' },
+        ],
+      },
+      {
+        title: 'Terra',
+        links: [
+          { label: 'Notre histoire', href: '#story' },
+          { label: 'La torréfaction', href: '#roasting' },
+          { label: 'Notre équipe', href: '#story' },
+          { label: 'Responsabilité', href: '/coffee-origins#sourcing' },
+          { label: 'L’histoire des origines', href: '/coffee-origins' },
+        ],
+      },
+      {
+        title: 'Café',
+        links: [
+          { label: 'Nous rendre visite', href: '#contact' },
+          { label: 'Carte du café', href: '#drinks' },
+          { label: 'Horaires d’ouverture', href: '#contact' },
+          { label: 'Accessibilité', href: '#footer' },
+          { label: 'Contact', href: '#contact' },
+        ],
+      },
+    ],
+    followUs: 'Suivez Terra Roasters',
+    legal: [
+      { label: 'Confidentialité', href: '#' },
+      { label: 'Conditions', href: '#' },
+      { label: 'Déclaration d’accessibilité', href: '#' },
+      { label: 'Préférences de cookies', href: '#' },
+    ],
+    closing: 'Créé avec curiosité. Torréfié avec précision.',
+    copyright: '© 2026 Terra Roasters. Tous droits réservés.',
+    backToTop: 'Retour en haut',
+  },
+}
 
 export const sectionsText: Record<Lang, SectionsText> = { en, fr, he }
 

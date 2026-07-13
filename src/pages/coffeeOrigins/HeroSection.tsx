@@ -120,7 +120,7 @@ function HeroSection({ content }: HeroSectionProps) {
         </div>
       )}
 
-      <div className="relative z-10 mx-auto max-w-4xl px-6 text-center sm:px-8">
+      <div className="relative z-10 mx-auto max-w-4xl px-6 pb-20 pt-32 text-center sm:px-8 lg:py-0 lg:pt-20">
         <motion.p {...fadeUp(0.1)} className="text-[0.72rem] font-semibold uppercase tracking-[0.35em] text-[#cfe0d6]">
           {content.label}
         </motion.p>
@@ -165,10 +165,9 @@ function HeroSection({ content }: HeroSectionProps) {
           <motion.span
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-            className="flex flex-col items-center gap-1.5"
+            className="flex flex-col items-center"
           >
-            <span className="text-[0.6rem] font-semibold uppercase tracking-[0.28em]">{content.scrollHint}</span>
-            <ChevronDown className="h-4 w-4" aria-hidden="true" />
+            <ChevronDown className="h-6 w-6" aria-hidden="true" />
           </motion.span>
         </motion.button>
       )}
