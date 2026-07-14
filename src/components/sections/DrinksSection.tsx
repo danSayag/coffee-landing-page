@@ -57,7 +57,7 @@ function DrinkCard({ drink, index, originLabel }: DrinkCardProps) {
       </div>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <div className="mt-4 rounded-xl border border-cream/12 bg-cream/4 px-4 py-3 text-center">
+        <div className="mt-4 rounded-xl px-4 py-3 text-center">
           <p className="text-sm leading-relaxed text-cream/60">{drink.desc}</p>
           <p className="mt-1.5 font-display text-xs italic text-gold-soft transition-[letter-spacing] duration-500 group-hover:tracking-wider">
             {drink.notes}
@@ -65,11 +65,11 @@ function DrinkCard({ drink, index, originLabel }: DrinkCardProps) {
         </div>
 
         <div className="mt-5 flex flex-1 items-stretch gap-2.5 border-t border-cream/10 pt-4 text-[0.68rem]">
-          <span className="flex-1 rounded-xl border border-cream/12 px-3 py-2 text-center">
+          <span className="flex-1 rounded-xl px-3 py-2 text-center">
             <span className="block font-semibold uppercase tracking-[0.18em] text-cream/40">{originLabel}</span>
             <span className="mt-0.5 block text-cream/75">{drink.origin}</span>
           </span>
-          <span className="flex-1 rounded-xl border border-gold/30 bg-gold/10 px-3 py-2 text-center font-bold uppercase tracking-[0.14em] text-gold">
+          <span className="flex-1 rounded-xl px-3 py-2 text-center font-bold uppercase tracking-[0.14em] text-gold">
             {drink.roast}
           </span>
         </div>

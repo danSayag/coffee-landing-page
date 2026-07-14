@@ -159,8 +159,8 @@ function RoastingSection() {
   )
 
   const illustration = (
-    <div className={`relative mx-auto w-full ${sticky ? 'max-w-[260px] lg:max-w-[300px]' : 'max-w-md'}`}>
-      <div aria-hidden="true" className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(200,155,91,0.1),transparent_65%)] blur-2xl" />
+    <div className={`relative mx-auto w-full ${sticky ? 'max-w-[320px] lg:max-w-[380px]' : 'max-w-lg'}`}>
+      <div aria-hidden="true" className="absolute inset-0 -z-10 rounded-full bg-[radial-gradient(circle,rgba(200,155,91,0.06),transparent_65%)] blur-2xl" />
       <RoasterIllustration refs={svgRefs} />
       <SteamWisps className="pointer-events-none absolute -top-6 left-[24%] w-14 opacity-70" />
     </div>
