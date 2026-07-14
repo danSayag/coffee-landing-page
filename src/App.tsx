@@ -9,6 +9,7 @@ import { I18nProvider } from './i18n'
 import HomePage from './pages/HomePage'
 import CoffeePage from './pages/CoffeePage'
 import CoffeeOriginsPage from './pages/coffeeOrigins/CoffeeOriginsPage'
+import QuizPage from './pages/QuizPage'
 
 function App() {
   const a11y = useSyncExternalStore(subscribeA11y, getA11ySettings)
@@ -22,6 +23,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/coffee" element={<CoffeePage />} />
             <Route path="/coffee-origins" element={<CoffeeOriginsPage />} />
+            <Route path="/quiz" element={<QuizPage />} />
           </Routes>
           <Footer />
         </BrowserRouter>

@@ -20,9 +20,9 @@ function Navbar() {
   const navLinks = [
     { label: t.nav.home, href: '#home' },
     { label: t.nav.origins, href: '#origins' },
-    { label: t.nav.coffee, href: '/coffee-origins' },
     { label: t.nav.cafe, href: '#cafe' },
-    { label: t.nav.story, href: '#story' },
+    { label: t.nav.quiz, href: '/quiz' },
+    { label: t.nav.coffee, href: '/coffee-origins' },
     { label: t.nav.contact, href: '#contact' },
   ]
 

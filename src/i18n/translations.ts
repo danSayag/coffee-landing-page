@@ -27,7 +27,7 @@ export interface Translation {
     origins: string
     coffee: string
     cafe: string
-    story: string
+    quiz: string
     contact: string
     visitCafe: string
   }
@@ -82,7 +82,7 @@ const en: Translation = {
     origins: 'Origins',
     coffee: 'Our Coffee',
     cafe: 'Café',
-    story: 'Story',
+    quiz: 'Quiz',
     contact: 'Contact',
     visitCafe: 'Visit Our Café',
   },
@@ -224,7 +224,7 @@ const fr: Translation = {
     origins: 'Origines',
     coffee: 'Nos Cafés',
     cafe: 'Café',
-    story: 'Histoire',
+    quiz: 'Quiz',
     contact: 'Contact',
     visitCafe: 'Visiter notre café',
   },
@@ -366,7 +366,7 @@ const he: Translation = {
     origins: 'מקורות',
     coffee: 'הקפה שלנו',
     cafe: 'בית הקפה',
-    story: 'הסיפור',
+    quiz: 'שאלון',
     contact: 'צרו קשר',
     visitCafe: 'בקרו בבית הקפה',
   },

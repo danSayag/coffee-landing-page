@@ -6,7 +6,6 @@ import OriginsSection from '../components/origins/OriginsSection'
 import RoastingSection from '../components/sections/RoastingSection'
 import BrewingSection from '../components/sections/BrewingSection'
 import MatchSection from '../components/sections/MatchSection'
-import QuizSection from '../components/sections/QuizSection'
 import DrinksSection from '../components/sections/DrinksSection'
 import ServicesSection from '../components/sections/ServicesSection'
 import CafeSection from '../components/sections/CafeSection'
@@ -38,13 +37,6 @@ function HomePage() {
     [navigate],
   )
 
-  const handleQuizExplore = useCallback(
-    (id: OriginId) => {
-      navigate('/coffee', { state: { selectedOrigin: id, fromGlobe: false } })
-    },
-    [navigate],
-  )
-
   const handleFinalExplore = useCallback(() => {
     navigate('/coffee')
   }, [navigate])
@@ -61,7 +53,6 @@ function HomePage() {
 
       {/* Personalize: find your cup */}
       <MatchSection />
-      <QuizSection onExplore={handleQuizExplore} />
 
       {/* Choose: what to drink, how to buy it */}
       <DrinksSection />
