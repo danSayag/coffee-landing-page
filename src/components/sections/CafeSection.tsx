@@ -2,116 +2,9 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useStopAnimations } from '../a11y/useStopAnimations'
 import { EASE, SectionHeading, SteamWisps, reveal, useSections } from './shared'
-
-const GOLD = '#8FA89B'
-
-/** Large illustrated café interior — window light, counter, barista, lamps. */
-function CafeScene() {
-  return (
-    <svg viewBox="0 0 900 560" preserveAspectRatio="xMidYMid slice" className="h-full w-full" aria-hidden="true">
-      <defs>
-        <linearGradient id="cafe-sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#3a2a1c" />
-          <stop offset="100%" stopColor="#1a120c" />
-        </linearGradient>
-        <linearGradient id="cafe-light" x1="0" y1="0" x2="0.35" y2="1">
-          <stop offset="0%" stopColor="#e8c88f" stopOpacity="0.34" />
-          <stop offset="100%" stopColor="#e8c88f" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient id="cafe-floor" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#241812" />
-          <stop offset="100%" stopColor="#120c08" />
-        </linearGradient>
-      </defs>
-
-      <rect width="900" height="560" fill="url(#cafe-sky)" />
-
-      {/* window */}
-      <rect x="60" y="60" width="300" height="330" rx="8" fill="#0e0a07" stroke={GOLD} strokeOpacity="0.4" strokeWidth="2" />
-      <line x1="210" y1="60" x2="210" y2="390" stroke={GOLD} strokeOpacity="0.3" strokeWidth="2" />
-      <line x1="60" y1="225" x2="360" y2="225" stroke={GOLD} strokeOpacity="0.3" strokeWidth="2" />
-      <circle cx="150" cy="150" r="44" fill="#e8c88f" opacity="0.14" />
-      {/* light shaft */}
-      <path d="M 70 70 L 350 70 L 560 560 L 200 560 Z" fill="url(#cafe-light)" />
-
-      {/* hanging lamps */}
-      {[520, 650, 780].map((x) => (
-        <g key={x}>
-          <line x1={x} y1="0" x2={x} y2="96" stroke={GOLD} strokeOpacity="0.45" strokeWidth="1.6" />
-          <path d={`M ${x - 26} 96 Q ${x} 76 ${x + 26} 96 L ${x + 18} 116 L ${x - 18} 116 Z`} fill="#20150e" stroke={GOLD} strokeOpacity="0.55" strokeWidth="1.6" />
-          <circle cx={x} cy="124" r="6" fill="#e8c88f" opacity="0.85" />
-          <circle cx={x} cy="128" r="20" fill="#e8c88f" opacity="0.12" />
-        </g>
-      ))}
-
-      {/* floor */}
-      <rect y="440" width="900" height="120" fill="url(#cafe-floor)" />
-
-      {/* counter */}
-      <rect x="430" y="330" width="430" height="112" rx="10" fill="#2a1c12" stroke={GOLD} strokeOpacity="0.4" strokeWidth="1.6" />
-      <line x1="430" y1="356" x2="860" y2="356" stroke={GOLD} strokeOpacity="0.2" strokeWidth="1" />
-      {/* espresso machine */}
-      <rect x="470" y="272" width="120" height="58" rx="8" fill="#1b120c" stroke={GOLD} strokeOpacity="0.55" strokeWidth="1.6" />
-      <circle cx="530" cy="292" r="8" fill="none" stroke={GOLD} strokeOpacity="0.6" strokeWidth="1.4" />
-      <rect x="500" y="318" width="18" height="12" fill="#0f0a06" stroke={GOLD} strokeOpacity="0.4" strokeWidth="1" />
-
-      {/* barista silhouette */}
-      <g>
-        <circle cx="680" cy="228" r="22" fill="#0f0a06" stroke={GOLD} strokeOpacity="0.35" strokeWidth="1.4" />
-        <path d="M 645 330 Q 648 262 680 258 Q 712 262 715 330 Z" fill="#0f0a06" stroke={GOLD} strokeOpacity="0.3" strokeWidth="1.4" />
-        <path d="M 652 290 Q 630 300 622 316" fill="none" stroke={GOLD} strokeOpacity="0.35" strokeWidth="1.6" strokeLinecap="round" />
-      </g>
-      {/* pouring kettle + cup */}
-      <path d="M 606 300 L 626 300 L 622 316 L 610 316 Z" fill="#1b120c" stroke={GOLD} strokeOpacity="0.5" strokeWidth="1.3" />
-      <line x1="612" y1="318" x2="612" y2="326" stroke={GOLD} strokeOpacity="0.7" strokeWidth="1.2" strokeDasharray="2 3" />
-      <path d="M 602 328 L 624 328 L 621 340 L 605 340 Z" fill="#20150e" stroke={GOLD} strokeOpacity="0.5" strokeWidth="1.2" />
-
-      {/* guest at table */}
-      <g>
-        <circle cx="150" cy="440" r="16" fill="#0f0a06" stroke={GOLD} strokeOpacity="0.3" strokeWidth="1.2" />
-        <path d="M 126 505 Q 128 462 150 460 Q 172 462 174 505 Z" fill="#0f0a06" stroke={GOLD} strokeOpacity="0.25" strokeWidth="1.2" />
-        <rect x="190" y="470" width="110" height="8" rx="3" fill="#2a1c12" stroke={GOLD} strokeOpacity="0.35" strokeWidth="1" />
-        <line x1="242" y1="478" x2="242" y2="540" stroke={GOLD} strokeOpacity="0.25" strokeWidth="2" />
-        <path d="M 214 456 L 234 456 L 231 470 L 217 470 Z" fill="#20150e" stroke={GOLD} strokeOpacity="0.5" strokeWidth="1.2" />
-      </g>
-
-      {/* plants */}
-      <path d="M 852 300 Q 838 260 856 236 M 852 300 Q 866 268 850 240 M 852 300 Q 852 264 862 252" fill="none" stroke={GOLD} strokeOpacity="0.35" strokeWidth="1.6" strokeLinecap="round" />
-      <path d="M 838 300 L 868 300 L 862 330 L 844 330 Z" fill="#20150e" stroke={GOLD} strokeOpacity="0.45" strokeWidth="1.4" />
-
-      <rect width="900" height="560" fill="none" />
-    </svg>
-  )
-}
-
-/** Small panel: pour-over close-up. */
-function DetailPour() {
-  return (
-    <svg viewBox="0 0 300 220" preserveAspectRatio="xMidYMid slice" className="h-full w-full" aria-hidden="true">
-      <rect width="300" height="220" fill="#1c130d" />
-      <circle cx="230" cy="40" r="70" fill="#e8c88f" opacity="0.08" />
-      <path d="M 100 50 L 200 50 L 158 116 L 142 116 Z" fill="#20150e" stroke={GOLD} strokeOpacity="0.6" strokeWidth="1.8" />
-      <line x1="150" y1="116" x2="150" y2="138" stroke={GOLD} strokeOpacity="0.8" strokeWidth="1.6" strokeDasharray="3 5" />
-      <path d="M 112 142 L 188 142 L 182 178 Q 181 186 172 186 L 128 186 Q 119 186 118 178 Z" fill="#20150e" stroke={GOLD} strokeOpacity="0.6" strokeWidth="1.8" />
-      <rect x="122" y="158" width="56" height="20" fill="#5e3d24" opacity="0.5" />
-    </svg>
-  )
-}
-
-/** Small panel: cup by the window. */
-function DetailCup() {
-  return (
-    <svg viewBox="0 0 300 220" preserveAspectRatio="xMidYMid slice" className="h-full w-full" aria-hidden="true">
-      <rect width="300" height="220" fill="#191009" />
-      <rect x="180" y="20" width="120" height="200" fill="#e8c88f" opacity="0.07" />
-      <ellipse cx="150" cy="188" rx="80" ry="10" fill="#000" opacity="0.4" />
-      <path d="M 96 110 L 204 110 L 192 176 Q 190 186 178 186 L 122 186 Q 110 186 108 176 Z" fill="#22150d" stroke={GOLD} strokeOpacity="0.65" strokeWidth="2" />
-      <path d="M 204 120 Q 230 124 224 144 Q 219 158 196 154" fill="none" stroke={GOLD} strokeOpacity="0.6" strokeWidth="2" />
-      <ellipse cx="150" cy="110" rx="54" ry="9" fill="#5e3d24" stroke={GOLD} strokeOpacity="0.45" strokeWidth="1.2" />
-      <path d="M 128 108 Q 150 96 172 108" fill="none" stroke="#e9dcc3" strokeOpacity="0.6" strokeWidth="1.6" />
-    </svg>
-  )
-}
+import cafeShopImg from '../../assets/coffee shop pic.png'
+import dripCoffeeImg from '../../assets/drip coffee.png'
+import capuchinoImg from '../../assets/capuchino.png'
 
 function CafeSection() {
   const s = useSections()
@@ -158,7 +51,7 @@ function CafeSection() {
             className="relative h-[340px] overflow-hidden rounded-[2rem] border border-gold/15 sm:h-[440px] lg:h-[520px]"
           >
             <motion.div style={reduce ? undefined : { y: yMain }} className="absolute -inset-y-10 inset-x-0">
-              <CafeScene />
+              <img src={cafeShopImg} alt="" className="h-full w-full object-cover" aria-hidden="true" />
             </motion.div>
             <SteamWisps className="absolute left-[63%] top-[38%] w-10 opacity-80" />
 
@@ -181,7 +74,7 @@ function CafeSection() {
           </motion.figure>
 
           <div className="grid grid-cols-2 gap-5 lg:grid-cols-1 lg:gap-6">
-            {[DetailPour, DetailCup].map((Panel, i) => (
+            {[dripCoffeeImg, capuchinoImg].map((src, i) => (
               <motion.figure
                 key={i}
                 initial={{ clipPath: 'inset(16% 10% 16% 10% round 24px)', opacity: 0.4 }}
@@ -191,7 +84,7 @@ function CafeSection() {
                 className="relative h-[160px] overflow-hidden rounded-3xl border border-gold/15 sm:h-[210px] lg:h-[248px]"
               >
                 <motion.div style={reduce ? undefined : { y: ySide }} className="absolute -inset-y-12 inset-x-0">
-                  <Panel />
+                  <img src={src} alt="" className="h-full w-full object-cover" aria-hidden="true" />
                 </motion.div>
                 <motion.p
                   initial={{ opacity: 0 }}
