@@ -65,6 +65,7 @@ interface GlobeGroupProps {
 function GlobeGroup({ activeId, countryLabels, paused }: GlobeGroupProps) {
   const groupRef = useRef<THREE.Group>(null)
   const sphereRef = useRef<THREE.Mesh>(null)
+  const accumulatorRef = useRef(0)
 
   const targetQuat = useMemo(() => {
     const point = COFFEE_ORIGIN_POINTS.find((p) => p.id === activeId) ?? COFFEE_ORIGIN_POINTS[0]
@@ -73,12 +74,21 @@ function GlobeGroup({ activeId, countryLabels, paused }: GlobeGroupProps) {
     return new THREE.Quaternion().setFromUnitVectors(v, facingCamera)
   }, [activeId])
 
+  // Fixed 60fps timestep: the rotation only steps forward in 1/60s increments,
+  // so it looks identical (and equally smooth) regardless of the display's
+  // actual refresh rate (90/120/144Hz monitors no longer speed up the chase).
+  const STEP = 1 / 60
+
   useFrame((_, delta) => {
     const group = groupRef.current
     if (!group || paused) return
+    accumulatorRef.current += delta
     // Smooth, non-jumpy rotation toward the active origin; scroll transitions always win
     // over any other motion, so there is no separate idle spin fighting this slerp.
-    group.quaternion.slerp(targetQuat, Math.min(1, delta * 1.4))
+    while (accumulatorRef.current >= STEP) {
+      group.quaternion.slerp(targetQuat, Math.min(1, STEP * 1.4))
+      accumulatorRef.current -= STEP
+    }
   })
 
   return (
