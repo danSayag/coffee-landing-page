@@ -1,10 +1,11 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef, type MouseEvent } from 'react'
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion'
+import HashLink from '../HashLink'
 import { useStopAnimations } from '../a11y/useStopAnimations'
 import { EASE, SectionHeading, SteamWisps, reveal, useSections } from './shared'
-import cafeShopImg from '../../assets/coffee shop pic.png'
-import dripCoffeeImg from '../../assets/drip coffee.png'
-import capuchinoImg from '../../assets/capuchino.png'
+import cafeShopImg from '../../assets/coffee shop/coffee shop pic.png'
+import dripCoffeeImg from '../../assets/drinks/drip coffee.png'
+import capuchinoImg from '../../assets/drinks/capuchino.png'
 
 function CafeSection() {
   const s = useSections()
@@ -13,6 +14,30 @@ function CafeSection() {
   const { scrollYProgress } = useScroll({ target: wrapRef, offset: ['start end', 'end start'] })
   const yMain = useTransform(scrollYProgress, [0, 1], [30, -30])
   const ySide = useTransform(scrollYProgress, [0, 1], [60, -40])
+
+  // Cursor "walk-through" parallax on the main café photo: the image pans
+  // and tilts slightly toward the pointer, as if you were stepping into the room.
+  const pointerX = useMotionValue(0)
+  const pointerY = useMotionValue(0)
+  const hoverSpring = { stiffness: 150, damping: 20, mass: 0.4 }
+  const springX = useSpring(pointerX, hoverSpring)
+  const springY = useSpring(pointerY, hoverSpring)
+  const hoverImgX = useTransform(springX, [-0.5, 0.5], [18, -18])
+  const hoverImgY = useTransform(springY, [-0.5, 0.5], [12, -12])
+  const hoverRotateX = useTransform(springY, [-0.5, 0.5], [4, -4])
+  const hoverRotateY = useTransform(springX, [-0.5, 0.5], [-4, 4])
+
+  const handleCafePointerMove = (event: MouseEvent<HTMLElement>) => {
+    if (reduce) return
+    const rect = event.currentTarget.getBoundingClientRect()
+    pointerX.set((event.clientX - rect.left) / rect.width - 0.5)
+    pointerY.set((event.clientY - rect.top) / rect.height - 0.5)
+  }
+
+  const handleCafePointerLeave = () => {
+    pointerX.set(0)
+    pointerY.set(0)
+  }
 
   return (
     <section id="cafe" className="relative overflow-hidden py-24 lg:py-32">
@@ -26,12 +51,12 @@ function CafeSection() {
         <div className="grid grid-cols-1 items-end gap-10 lg:grid-cols-[1.1fr_1fr]">
           <SectionHeading align="start" eyebrow={s.cafe.eyebrow} heading={s.cafe.heading} description={s.cafe.description} />
           <motion.div {...reveal(0.2)} className="flex flex-wrap gap-3 lg:justify-end">
-            <a
-              href="#contact"
+            <HashLink
+              href="/contact"
               className="inline-flex items-center justify-center rounded-full bg-cta px-7 py-3.5 text-sm font-bold text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
             >
               {s.cafe.visit}
-            </a>
+            </HashLink>
             <a
               href="#drinks"
               className="inline-flex items-center justify-center rounded-full border border-cta/60 px-7 py-3.5 text-sm font-bold text-cta transition-colors duration-300 hover:bg-cta hover:text-espresso-950"
@@ -48,10 +73,19 @@ function CafeSection() {
             whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 32px)', opacity: 1 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={reduce ? { duration: 0 } : { duration: 1.2, ease: EASE }}
-            className="relative h-[340px] overflow-hidden rounded-[2rem] border border-gold/15 sm:h-[440px] lg:h-[520px]"
+            onMouseMove={handleCafePointerMove}
+            onMouseLeave={handleCafePointerLeave}
+            className="relative h-[340px] overflow-hidden rounded-[2rem] border border-gold/15 perspective-[1000px] sm:h-[440px] lg:h-[520px]"
           >
             <motion.div style={reduce ? undefined : { y: yMain }} className="absolute -inset-y-10 inset-x-0">
-              <img src={cafeShopImg} alt="" className="h-full w-full object-cover" aria-hidden="true" />
+              <motion.div
+                style={reduce ? undefined : { x: hoverImgX, y: hoverImgY, rotateX: hoverRotateX, rotateY: hoverRotateY }}
+                whileHover={reduce ? undefined : { scale: 1.08 }}
+                transition={{ duration: 0.5, ease: EASE }}
+                className="h-full w-full"
+              >
+                <img src={cafeShopImg} alt="" className="h-full w-full object-cover" aria-hidden="true" />
+              </motion.div>
             </motion.div>
             <SteamWisps className="absolute left-[63%] top-[38%] w-10 opacity-80" />
 

@@ -4,11 +4,12 @@ import { ArrowRight } from 'lucide-react'
 import type { BrewId } from '../../i18n/sections'
 import HashLink from '../HashLink'
 import { EASE, Meter, SectionHeading, SteamWisps, reveal, useSections } from './shared'
-import espressoImg from '../../assets/espresso.webp'
-import v60Img from '../../assets/v60.png'
-import coldbrewImg from '../../assets/cold-brew-iced-coffee.webp'
-import cappuccinoImg from '../../assets/cappuccino.webp'
-import mokaImg from '../../assets/moka pot.png'
+import espressoImg from '../../assets/drinks/espresso.webp'
+import v60Img from '../../assets/drinks/v60.png'
+import coldbrewImg from '../../assets/drinks/cold-brew-iced-coffee.webp'
+import cappuccinoImg from '../../assets/drinks/cappuccino.webp'
+import mokaImg from '../../assets/drinks/moka pot.png'
+import frenchpressImg from '../../assets/drinks/french press.png'
 
 const BREW_ORDER: BrewId[] = ['espresso', 'v60', 'frenchpress', 'moka', 'coldbrew', 'cappuccino']
 
@@ -27,6 +28,7 @@ const BREW_IMAGES: Partial<Record<BrewId, string>> = {
   coldbrew: coldbrewImg,
   cappuccino: cappuccinoImg,
   moka: mokaImg,
+  frenchpress: frenchpressImg,
 }
 
 const GOLD = '#8FA89B'
@@ -39,17 +41,6 @@ function BrewIllustration({ id }: { id: BrewId }) {
     return <img src={img} alt="" className="h-full w-full object-contain" aria-hidden="true" />
   }
   switch (id) {
-    case 'frenchpress':
-      return (
-        <svg viewBox="0 0 160 160" className="h-full w-full" aria-hidden="true">
-          <path d="M 50 48 L 110 48 L 110 132 Q 110 138 102 138 L 58 138 Q 50 138 50 132 Z" {...dark} />
-          <rect x="58" y="92" width="44" height="40" fill="#5e3d24" opacity="0.6" />
-          <line x1="80" y1="24" x2="80" y2="86" {...line} />
-          <circle cx="80" cy="20" r="7" {...dark} />
-          <line x1="56" y1="86" x2="104" y2="86" {...line} strokeOpacity="0.6" />
-          <path d="M 110 60 Q 128 64 124 78 Q 121 90 110 88" {...line} strokeOpacity="0.5" />
-        </svg>
-      )
     case 'moka':
       return (
         <svg viewBox="0 0 160 160" className="h-full w-full" aria-hidden="true">
@@ -113,8 +104,8 @@ function BrewingSection() {
         {/* thin liquid path under the selector */}
         <div aria-hidden="true" className="mx-auto mt-1 h-px max-w-2xl bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 
-        <div className="mx-auto mt-12 grid max-w-4xl grid-cols-1 items-center gap-10 rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(255,255,255,0.45),rgba(230,220,199,0.8))] p-8 sm:grid-cols-[220px_1fr] sm:p-10">
-          <div className="relative mx-auto h-48 w-48">
+        <div className="mx-auto mt-12 grid min-h-[420px] max-w-4xl grid-cols-1 items-center gap-10 rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(255,255,255,0.45),rgba(230,220,199,0.8))] p-8 sm:grid-cols-[220px_1fr] sm:p-10">
+          <div className="relative mx-auto h-48 w-48 shrink-0">
             <div aria-hidden="true" className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(200,155,91,0.12),transparent_66%)] blur-lg" />
             <AnimatePresence mode="wait">
               <motion.div
@@ -167,7 +158,7 @@ function BrewingSection() {
 
         <motion.div {...reveal(0.2)} className="mt-12 flex justify-center">
           <HashLink
-            href="/quiz"
+            href="/quiz#quiz"
             className="group inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
           >
             {s.brewing.cta}

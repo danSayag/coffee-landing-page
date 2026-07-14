@@ -1,8 +1,8 @@
 import { type CSSProperties, type ReactNode } from 'react'
 import { motion, useTransform } from 'framer-motion'
 import CoffeeBean from './CoffeeBean'
-import CoffeeCup from './CoffeeCup'
 import Steam from './Steam'
+import heroCupImg from '../../assets/hero cup cutout.webp'
 import { useMouseParallax, type ParallaxSprings } from './useMouseParallax'
 import { useStopAnimations } from '../a11y/useStopAnimations'
 
@@ -91,7 +91,7 @@ function CoffeeComposition() {
           className="relative w-[76%]"
         >
           <Steam className="absolute left-1/2 top-[-24%] w-[34%] -translate-x-1/2" />
-          <CoffeeCup className="w-full" />
+          <img src={heroCupImg} alt="" className="w-full" draggable={false} />
         </motion.div>
       </ParallaxLayer>
 

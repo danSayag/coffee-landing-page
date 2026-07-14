@@ -215,10 +215,6 @@ function Footer() {
             background: 'radial-gradient(300px circle at var(--glow-x, 50%) var(--glow-y, 20%), rgba(200,155,91,0.07), transparent 70%)',
           }}
         />
-        {/* oversized brand text */}
-        <p className="absolute -bottom-7 left-1/2 -translate-x-1/2 select-none font-display text-[22vw] font-semibold leading-none tracking-[0.08em] text-cream/[0.025] lg:text-[17rem]">
-          TERRA
-        </p>
       </div>
 
       {/* top divider with traveling bean */}
@@ -284,15 +280,21 @@ function Footer() {
         </motion.nav>
 
         {/* bottom bar */}
-        <div className="mt-12 flex flex-col items-center gap-6 border-t border-cream/10 pt-7 lg:flex-row lg:justify-between">
-          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+        <div className="mt-12 flex flex-col items-center gap-6 border-t border-cream/10 pt-7 lg:grid lg:grid-cols-3 lg:items-center lg:gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 lg:justify-self-start">
             {s.footer.legal.map((item) => (
               <a key={item.label} href={item.href} className="text-[0.72rem] text-cream/45 transition-colors hover:text-gold">
                 {item.label}
               </a>
             ))}
           </div>
-          <div className="flex items-center gap-4">
+
+          <div className="text-center">
+            <p className="font-display text-sm italic text-gold-soft/80">{s.footer.closing}</p>
+            <p className="mt-2 text-[0.72rem] text-cream/40">{s.footer.copyright}</p>
+          </div>
+
+          <div className="flex items-center gap-4 lg:justify-self-end">
             <LanguageSwitcher />
             <button
               type="button"
@@ -303,11 +305,6 @@ function Footer() {
               <ArrowUp className="h-4.5 w-4.5" aria-hidden="true" />
             </button>
           </div>
-        </div>
-
-        <div className="mt-8 text-center">
-          <p className="font-display text-sm italic text-gold-soft/80">{s.footer.closing}</p>
-          <p className="mt-2 text-[0.72rem] text-cream/40">{s.footer.copyright}</p>
         </div>
       </div>
     </footer>

@@ -66,13 +66,6 @@ export function drawMap(canvas: HTMLCanvasElement, landDots: number[]) {
     ctx.lineTo(w, y)
   }
   ctx.stroke()
-  // Equator, slightly stronger
-  ctx.strokeStyle = 'rgba(200, 155, 91, 0.07)'
-  ctx.beginPath()
-  const eq = (MAP_LAT_MAX / (MAP_LAT_MAX - MAP_LAT_MIN)) * h
-  ctx.moveTo(0, eq)
-  ctx.lineTo(w, eq)
-  ctx.stroke()
 
   // Land dots in three brightness buckets (single fill per bucket = fast)
   const raw = landDots

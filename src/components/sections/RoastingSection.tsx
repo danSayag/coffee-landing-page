@@ -2,142 +2,34 @@
 import { motion } from 'framer-motion'
 import { gsap } from '../../lib/gsap'
 import { useMediaQuery } from '../origins/OriginsSection'
-import { ROAST_COLORS } from './roastMeta'
 import { SectionHeading, SteamWisps, reveal, useSections } from './shared'
+import greenBeanImg from '../../assets/beans/coffee bean green.webp'
+import brownBeanImg from '../../assets/beans/brown coffee bean.webp'
+import drumImg from '../../assets/drum cutout.webp'
 
-/** Handcrafted roasting drum ג€” thin gold linework over dark metal. */
+/** Vintage roasting machine photo with animated beans flying in and out. */
 function RoasterIllustration({
   refs,
 }: {
   refs: {
     flyingBean: React.RefObject<SVGGElement | null>
-    drum: React.RefObject<SVGGElement | null>
-    glow: React.RefObject<SVGCircleElement | null>
-    drumBean: React.RefObject<SVGEllipseElement | null>
-    drumBeanSeam: React.RefObject<SVGPathElement | null>
-    smoke: React.RefObject<SVGGElement | null>
     outBean: React.RefObject<SVGGElement | null>
   }
 }) {
   return (
     <svg viewBox="0 0 420 460" className="h-auto w-full" aria-hidden="true" focusable="false">
-      <defs>
-        <radialGradient id="roaster-metal" cx="38%" cy="32%" r="90%">
-          <stop offset="0%" stopColor="#3a2b1f" />
-          <stop offset="60%" stopColor="#241a12" />
-          <stop offset="100%" stopColor="#150e09" />
-        </radialGradient>
-        <radialGradient id="roaster-heat" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#e8964a" stopOpacity="0.85" />
-          <stop offset="55%" stopColor="#c86a2e" stopOpacity="0.35" />
-          <stop offset="100%" stopColor="#c86a2e" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-
-      {/* hopper funnel */}
-      <path d="M 172 40 L 248 40 L 226 96 L 194 96 Z" fill="#1d140d" stroke="#8FA89B" strokeOpacity="0.5" strokeWidth="1.4" />
-      <path d="M 194 96 L 226 96 L 222 122 L 198 122 Z" fill="#160f0a" stroke="#8FA89B" strokeOpacity="0.35" strokeWidth="1.2" />
-
-      {/* flue pipe */}
-      <path d="M 318 150 L 352 150 L 352 60" fill="none" stroke="#8FA89B" strokeOpacity="0.4" strokeWidth="10" strokeLinecap="round" />
-
-      {/* smoke from flue */}
-      <g ref={refs.smoke} opacity="0">
-        <SmokePath x={352} />
-      </g>
-
-      {/* drum body */}
-      <circle cx="210" cy="248" r="118" fill="url(#roaster-metal)" stroke="#8FA89B" strokeOpacity="0.55" strokeWidth="1.6" />
-      <circle cx="210" cy="248" r="100" fill="none" stroke="#8FA89B" strokeOpacity="0.22" strokeWidth="1" />
-
-      {/* heat glow inside */}
-      <circle ref={refs.glow} cx="210" cy="252" r="88" fill="url(#roaster-heat)" opacity="0" />
-
-      {/* rotating paddles */}
-      <g ref={refs.drum} style={{ transformOrigin: '210px 248px' }}>
-        {[0, 60, 120].map((angle) => (
-          <line
-            key={angle}
-            x1="210"
-            y1="162"
-            x2="210"
-            y2="334"
-            stroke="#8FA89B"
-            strokeOpacity="0.3"
-            strokeWidth="2"
-            transform={`rotate(${angle} 210 248)`}
-          />
-        ))}
-        <circle cx="210" cy="248" r="10" fill="#0f0a06" stroke="#8FA89B" strokeOpacity="0.6" strokeWidth="1.4" />
-      </g>
-
-      {/* the bean transforming inside the drum */}
-      <g style={{ transformOrigin: '210px 258px' }}>
-        <ellipse ref={refs.drumBean} cx="210" cy="258" rx="26" ry="36" fill={ROAST_COLORS[0]} opacity="0" />
-        <path
-          ref={refs.drumBeanSeam}
-          d="M210 224 C 196 244, 224 270, 210 292"
-          stroke="#241610"
-          strokeWidth="5"
-          strokeLinecap="round"
-          fill="none"
-          opacity="0"
-        />
-      </g>
-
-      {/* drum window rim */}
-      <circle cx="210" cy="248" r="62" fill="none" stroke="#8FA89B" strokeOpacity="0.5" strokeWidth="1.6" />
-
-      {/* control dial + details */}
-      <circle cx="96" cy="300" r="16" fill="#160f0a" stroke="#8FA89B" strokeOpacity="0.55" strokeWidth="1.4" />
-      <line x1="96" y1="300" x2="104" y2="290" stroke="#8FA89B" strokeOpacity="0.8" strokeWidth="1.6" strokeLinecap="round" />
-      <circle cx="96" cy="342" r="6" fill="none" stroke="#8FA89B" strokeOpacity="0.4" strokeWidth="1.2" />
-
-      {/* exit chute + tray */}
-      <path d="M 268 340 L 316 388 L 296 402 L 258 360 Z" fill="#1d140d" stroke="#8FA89B" strokeOpacity="0.4" strokeWidth="1.3" />
-      <ellipse cx="322" cy="416" rx="52" ry="12" fill="#120c08" stroke="#8FA89B" strokeOpacity="0.35" strokeWidth="1.2" />
-
-      {/* legs */}
-      <line x1="140" y1="342" x2="118" y2="428" stroke="#8FA89B" strokeOpacity="0.45" strokeWidth="3" strokeLinecap="round" />
-      <line x1="280" y1="342" x2="302" y2="428" stroke="#8FA89B" strokeOpacity="0.45" strokeWidth="3" strokeLinecap="round" />
-      <line x1="100" y1="428" x2="320" y2="428" stroke="#8FA89B" strokeOpacity="0.25" strokeWidth="2" />
-
-      {/* embers */}
-      {[0, 1, 2, 3, 4].map((i) => (
-        <circle key={i} className="ember" cx={188 + i * 12} cy={300} r={1.6} fill="#e8964a" style={{ animationDelay: `${i * 0.7}s` }} />
-      ))}
+      <image href={drumImg} x="0" y="0" width="420" height="460" preserveAspectRatio="xMidYMid meet" />
 
       {/* incoming green bean */}
       <g ref={refs.flyingBean} opacity="0">
-        <ellipse cx="0" cy="0" rx="15" ry="21" fill={ROAST_COLORS[0]} />
-        <path d="M0 -19 C -8 -8, 8 8, 0 20" stroke="#5d6844" strokeWidth="3.4" strokeLinecap="round" fill="none" />
+        <image href={greenBeanImg} x="-29" y="-29" width="58" height="58" preserveAspectRatio="xMidYMid meet" />
       </g>
 
       {/* finished roasted bean */}
       <g ref={refs.outBean} opacity="0">
-        <ellipse cx="0" cy="0" rx="14" ry="19" fill={ROAST_COLORS[4]} />
-        <path d="M0 -17 C -7 -7, 7 7, 0 18" stroke="#1e1007" strokeWidth="3.2" strokeLinecap="round" fill="none" />
+        <image href={brownBeanImg} x="-27" y="-27" width="54" height="54" preserveAspectRatio="xMidYMid meet" />
       </g>
     </svg>
-  )
-}
-
-function SmokePath({ x }: { x: number }) {
-  return (
-    <>
-      {[0, 1].map((i) => (
-        <path
-          key={i}
-          d={`M ${x + i * 6 - 3} 56 C ${x - 10} 36, ${x + 10} 24, ${x - 4} 4`}
-          fill="none"
-          stroke="#dcc8a1"
-          strokeWidth="2"
-          strokeLinecap="round"
-          className="steam-wisp"
-          style={{ animationDelay: `${i * 1.1}s`, opacity: 0.3 }}
-        />
-      ))}
-    </>
   )
 }
 
@@ -155,11 +47,6 @@ function RoastingSection() {
   const devRef = useRef<HTMLDivElement>(null)
   const svgRefs = {
     flyingBean: useRef<SVGGElement>(null),
-    drum: useRef<SVGGElement>(null),
-    glow: useRef<SVGCircleElement>(null),
-    drumBean: useRef<SVGEllipseElement>(null),
-    drumBeanSeam: useRef<SVGPathElement>(null),
-    smoke: useRef<SVGGElement>(null),
     outBean: useRef<SVGGElement>(null),
   }
 
@@ -187,23 +74,10 @@ function RoastingSection() {
       tl.to(svgRefs.flyingBean.current, { y: 30, rotation: 160, duration: 14, ease: 'power1.inOut' }, 2)
       tl.to(svgRefs.flyingBean.current, { y: 80, scale: 0.55, opacity: 0, duration: 6, ease: 'power2.in' }, 16)
 
-      // drum spins, heat builds
-      tl.to(svgRefs.drum.current, { rotation: 660, duration: 76, svgOrigin: '210 248' }, 20)
-      tl.to(svgRefs.glow.current, { opacity: 0.95, duration: 18, ease: 'power2.inOut' }, 22)
-
-      // the bean transforms through five roast colors
-      tl.to([svgRefs.drumBean.current, svgRefs.drumBeanSeam.current], { opacity: 1, duration: 4 }, 23)
-      ROAST_COLORS.slice(1).forEach((color, i) => {
-        tl.to(svgRefs.drumBean.current, { attr: { fill: color }, duration: 10 }, 30 + i * 13)
-      })
-
       // indicators
       if (tempRef.current) tl.fromTo(tempRef.current, { width: '12%' }, { width: '92%', duration: 52, ease: 'power1.inOut' }, 26)
       if (airRef.current) tl.fromTo(airRef.current, { width: '35%' }, { width: '70%', duration: 52, ease: 'sine.inOut' }, 26)
       if (devRef.current) tl.fromTo(devRef.current, { width: '0%' }, { width: '85%', duration: 34, ease: 'power1.in' }, 52)
-
-      // smoke appears late in the roast
-      tl.to(svgRefs.smoke.current, { opacity: 0.7, duration: 12 }, 60)
 
       // stage narration
       const windows = [22, 42, 62, 80]
@@ -218,7 +92,6 @@ function RoastingSection() {
       gsap.set(svgRefs.outBean.current, { x: 285, y: 372 })
       tl.to(svgRefs.outBean.current, { opacity: 1, duration: 3 }, 88)
       tl.to(svgRefs.outBean.current, { x: 322, y: 408, rotation: 120, duration: 8, ease: 'power1.in' }, 89)
-      tl.to(svgRefs.glow.current, { opacity: 0.35, duration: 8 }, 90)
 
       tl.set({}, {}, 100)
     }, trackRef)
@@ -255,7 +128,7 @@ function RoastingSection() {
           className="border-gold/30 ltr:border-l-2 ltr:pl-5 rtl:border-r-2 rtl:pr-5"
         >
           <p className="font-display text-sm italic text-gold">
-            {stage.num} ג€” <span className="not-italic font-body text-[0.72rem] font-bold uppercase tracking-[0.24em]">{stage.title}</span>
+            {stage.num} — <span className="not-italic font-body text-[0.72rem] font-bold uppercase tracking-[0.24em]">{stage.title}</span>
           </p>
           <p className="mt-1 text-[0.85rem] leading-snug text-cream/65 lg:leading-normal">{stage.text}</p>
         </div>

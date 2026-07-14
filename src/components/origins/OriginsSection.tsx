@@ -144,7 +144,11 @@ function OriginsDesktop({ onSelectOrigin }: OriginsSectionProps) {
       const buildAndPlay = () => {
         playedRef.current = true
         const wrapRect = wrap.getBoundingClientRect()
+        // Measure the map at its natural transform — the intro offset (scale/y)
+        // would otherwise shift every computed landing point off its marker.
+        gsap.set(mapWrap, { scale: 1, y: 0 })
         const mapRect = mapWrap.getBoundingClientRect()
+        gsap.set(mapWrap, { scale: 0.95, y: 60 })
         const w = wrapRect.width
         const h = wrapRect.height
 

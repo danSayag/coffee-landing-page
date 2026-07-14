@@ -29,8 +29,8 @@ function FaqSection() {
               <motion.div
                 key={item.q}
                 {...reveal((index % 6) * 0.06)}
-                className={`overflow-hidden rounded-2xl border transition-colors duration-500 ${
-                  isOpen ? 'border-gold/40 bg-[linear-gradient(160deg,rgba(255,255,255,0.45),rgba(230,220,199,0.85))]' : 'border-cream/10 bg-espresso-900/30'
+                className={`overflow-hidden border-t transition-colors duration-500 ${
+                  isOpen ? 'border-gold/40' : 'border-cream/10'
                 }`}
               >
                 <button

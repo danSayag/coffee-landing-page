@@ -1,25 +1,13 @@
 ﻿import { motion } from 'framer-motion'
 import CoffeeBean from '../hero/CoffeeBean'
+import HashLink from '../HashLink'
 import { useStopAnimations } from '../a11y/useStopAnimations'
 import { EASE, SteamWisps, reveal, useSections } from './shared'
-
-const GOLD = '#8FA89B'
+import finalCupImg from '../../assets/footer cup cutout.webp'
 
 /** Large cream ceramic cup under a warm spotlight. */
 function FinalCup() {
-  return (
-    <svg viewBox="0 0 320 260" className="h-auto w-full" aria-hidden="true">
-      <ellipse cx="160" cy="238" rx="120" ry="14" fill="#000" opacity="0.45" />
-      <path d="M 70 96 L 250 96 L 232 208 Q 228 228 204 228 L 116 228 Q 92 228 88 208 Z" fill="#e9dcc3" stroke={GOLD} strokeOpacity="0.35" strokeWidth="1.6" />
-      <path d="M 250 112 Q 296 120 286 156 Q 278 184 240 176" fill="none" stroke="#e9dcc3" strokeWidth="10" strokeLinecap="round" />
-      <ellipse cx="160" cy="96" rx="90" ry="15" fill="#f5f0e8" />
-      <ellipse cx="160" cy="97" rx="76" ry="11" fill="#5e3d24" />
-      <ellipse cx="160" cy="97" rx="76" ry="11" fill="none" stroke="#8a5c36" strokeOpacity="0.8" strokeWidth="1.4" />
-      <path d="M 120 94 Q 160 84 200 94" fill="none" stroke="#e9dcc3" strokeOpacity="0.5" strokeWidth="1.6" />
-      {/* saucer */}
-      <ellipse cx="160" cy="232" rx="104" ry="11" fill="#e0d3bc" stroke={GOLD} strokeOpacity="0.3" strokeWidth="1.2" />
-    </svg>
-  )
+  return <img src={finalCupImg} alt="" className="h-auto w-full" aria-hidden="true" draggable={false} />
 }
 
 const FLOAT_BEANS = [
@@ -107,12 +95,12 @@ function FinalCtaSection({ onExplore }: FinalCtaSectionProps) {
             >
               {s.finale.explore}
             </button>
-            <a
-              href="#contact"
+            <HashLink
+              href="/contact"
               className="inline-flex items-center justify-center rounded-full border border-cta/70 px-8 py-4 text-sm font-bold tracking-wide text-cta transition-colors duration-300 hover:bg-cta hover:text-espresso-950"
             >
               {s.finale.visit}
-            </a>
+            </HashLink>
           </motion.div>
         </div>
       </div>

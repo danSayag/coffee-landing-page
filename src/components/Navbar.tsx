@@ -23,7 +23,7 @@ function Navbar() {
     { label: t.nav.cafe, href: '#cafe' },
     { label: t.nav.quiz, href: '/quiz' },
     { label: t.nav.coffee, href: '/coffee-origins' },
-    { label: t.nav.contact, href: '#contact' },
+    { label: t.nav.contact, href: '/contact' },
   ]
 
   useMotionValueEvent(scrollY, 'change', (latest) => setScrolled(latest > 24))

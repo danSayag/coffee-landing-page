@@ -1,9 +1,9 @@
 ﻿import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { SectionHeading, reveal, useSections } from './shared'
-import danaImg from '../../assets/Dana Rivera.png'
-import omerImg from '../../assets/Omer Katz.png'
-import mayaImg from '../../assets/Maya Chen.png'
+import danaImg from '../../assets/staff/Dana Rivera.png'
+import omerImg from '../../assets/staff/Omer Katz.png'
+import mayaImg from '../../assets/staff/Maya Chen.png'
 
 const MEMBER_IMAGES: Record<string, string> = {
   'Dana Rivera': danaImg,
@@ -54,9 +54,7 @@ function TeamSection() {
               <div className="flex flex-1 flex-col p-6">
                 {/* handwritten-feel quote */}
                 <p className="relative flex-1 font-display text-lg italic leading-snug text-gold-soft">
-                  <span aria-hidden="true" className="text-gold/60">ג€</span>
                   {member.philosophy}
-                  <span aria-hidden="true" className="text-gold/60">ג€</span>
                 </p>
                 <svg viewBox="0 0 120 8" className="mt-2 w-24 opacity-50" aria-hidden="true">
                   <path d="M2 6 C 30 1, 70 1, 118 5" fill="none" stroke={GOLD} strokeWidth="1.6" strokeLinecap="round" />

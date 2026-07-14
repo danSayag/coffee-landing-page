@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight, RotateCcw } from 'lucide-react'
+import { ArrowLeft, ArrowRight, RotateCcw } from 'lucide-react'
 import { useI18n } from '../../i18n'
 import type { OriginId } from '../../i18n/translations'
 import { scoreQuiz } from '../../i18n/sections'
@@ -16,23 +16,39 @@ interface QuizSectionProps {
 function QuizSection({ onExplore }: QuizSectionProps) {
   const { t } = useI18n()
   const s = useSections()
-  const [answers, setAnswers] = useState<number[]>([])
-  const step = answers.length
+  const [answers, setAnswers] = useState<(number | undefined)[]>([])
+  const [step, setStep] = useState(0)
   const done = step >= 3
 
   const pick = (optionIndex: number) => {
     if (done) return
-    setAnswers((current) => [...current, optionIndex])
+    setAnswers((current) => {
+      const next = [...current]
+      next[step] = optionIndex
+      return next
+    })
+    setStep((current) => current + 1)
   }
-  const reset = () => setAnswers([])
+  const back = () => setStep((current) => Math.max(0, current - 1))
+  const forward = () => {
+    if (answers[step] !== undefined) setStep((current) => current + 1)
+  }
+  const reset = () => {
+    setAnswers([])
+    setStep(0)
+  }
 
-  const resultId = done ? scoreQuiz(answers) : null
+  const resultId = done ? scoreQuiz(answers as number[]) : null
   const result = resultId ? t.origins.items[resultId] : null
   const roastMeta = resultId ? ROAST_META[ORIGINS[ORIGIN_INDEX[resultId]].roastLevel] : null
   const brewAnswer = answers[0]
   const brewLabel =
-    brewAnswer === 5 ? s.quiz.labels.cafeBrew : (s.quiz.questions[0]?.options[brewAnswer] ?? '')
-  const flavorLabel = done ? s.quiz.questions[1].options[answers[1]] : ''
+    brewAnswer === undefined
+      ? ''
+      : brewAnswer === 5
+        ? s.quiz.labels.cafeBrew
+        : (s.quiz.questions[0]?.options[brewAnswer] ?? '')
+  const flavorLabel = done && answers[1] !== undefined ? s.quiz.questions[1].options[answers[1]] : ''
   const explanation = s.quiz.explanation.replace('{flavor}', flavorLabel.toLowerCase()).replace('{method}', brewLabel)
 
   return (
@@ -81,7 +97,12 @@ function QuizSection({ onExplore }: QuizSectionProps) {
                       key={option}
                       type="button"
                       onClick={() => pick(optionIndex)}
-                      className="group rounded-2xl border border-cream/12 bg-espresso-900/40 px-5 py-4 text-sm font-medium text-cream/75 transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/60 hover:bg-gold/10 hover:text-cream ltr:text-left rtl:text-right"
+                      aria-pressed={answers[step] === optionIndex}
+                      className={`group rounded-2xl border px-5 py-4 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/60 hover:bg-gold/10 hover:text-cream ltr:text-left rtl:text-right ${
+                        answers[step] === optionIndex
+                          ? 'border-gold/70 bg-gold/15 text-cream'
+                          : 'border-cream/12 bg-espresso-900/40 text-cream/75'
+                      }`}
                     >
                       <span className="me-3 font-display italic text-gold/60 transition-colors group-hover:text-gold">
                         {String.fromCharCode(65 + optionIndex)}
@@ -89,6 +110,28 @@ function QuizSection({ onExplore }: QuizSectionProps) {
                       {option}
                     </button>
                   ))}
+                </div>
+
+                {/* step navigation */}
+                <div className="mt-7 flex items-center justify-between">
+                  <button
+                    type="button"
+                    onClick={back}
+                    disabled={step === 0}
+                    className="inline-flex items-center gap-2 rounded-full border border-cream/15 px-5 py-2.5 text-sm font-semibold text-cream/70 transition-all duration-300 hover:border-gold/60 hover:text-cream disabled:pointer-events-none disabled:opacity-30"
+                  >
+                    <ArrowLeft className="h-4 w-4 rtl:rotate-180" aria-hidden="true" />
+                    {s.quiz.back}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={forward}
+                    disabled={answers[step] === undefined}
+                    className="inline-flex items-center gap-2 rounded-full border border-gold/40 px-5 py-2.5 text-sm font-semibold text-gold transition-all duration-300 hover:bg-gold hover:text-espresso-950 disabled:pointer-events-none disabled:opacity-30"
+                  >
+                    {s.quiz.next}
+                    <ArrowRight className="h-4 w-4 rtl:rotate-180" aria-hidden="true" />
+                  </button>
                 </div>
               </motion.div>
             ) : (
@@ -153,6 +196,14 @@ function QuizSection({ onExplore }: QuizSectionProps) {
                       >
                         <RotateCcw className="h-4 w-4" aria-hidden="true" />
                         {s.quiz.tryAgain}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={back}
+                        className="inline-flex items-center gap-2 rounded-full border border-cream/20 px-7 py-3.5 text-sm font-bold text-cream/70 transition-colors duration-300 hover:border-gold/60 hover:text-cream"
+                      >
+                        <ArrowLeft className="h-4 w-4 rtl:rotate-180" aria-hidden="true" />
+                        {s.quiz.back}
                       </button>
                     </div>
                   </div>

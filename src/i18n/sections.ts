@@ -85,6 +85,8 @@ export interface SectionsText {
     labels: { roast: string; notes: string; brew: string; cafeBrew: string }
     explore: string
     tryAgain: string
+    back: string
+    next: string
   }
   testimonials: {
     eyebrow: string
@@ -109,6 +111,21 @@ export interface SectionsText {
     directions: string
     contact: string
     mapLabel: string
+  }
+  contactPage: {
+    heading: string
+    description: string
+    form: {
+      nameLabel: string
+      namePlaceholder: string
+      emailLabel: string
+      emailPlaceholder: string
+      messageLabel: string
+      messagePlaceholder: string
+      submit: string
+      success: string
+      error: string
+    }
   }
   faq: {
     heading: string
@@ -419,6 +436,8 @@ const en: SectionsText = {
     labels: { roast: 'Roast', notes: 'Flavor Notes', brew: 'Recommended Brewing', cafeBrew: 'Prepared at our café' },
     explore: 'Explore This Coffee',
     tryAgain: 'Try Again',
+    back: 'Back',
+    next: 'Next',
   },
   testimonials: {
     eyebrow: 'SHARED OVER COFFEE',
@@ -483,7 +502,22 @@ const en: SectionsText = {
     features: ['Indoor seating', 'Outdoor terrace', 'Wheelchair accessible', 'Free Wi-Fi', 'Nearby parking', 'Dog friendly'],
     directions: 'Get Directions',
     contact: 'Contact the Café',
-    mapLabel: 'Map — replace with your live map embed',
+    mapLabel: 'Café location map',
+  },
+  contactPage: {
+    heading: 'Get in Touch',
+    description: 'A question about an origin, a wholesale enquiry or just a hello — write to us and our team will get back to you within one business day.',
+    form: {
+      nameLabel: 'Your Name',
+      namePlaceholder: 'Full name',
+      emailLabel: 'Email',
+      emailPlaceholder: 'you@example.com',
+      messageLabel: 'Message',
+      messagePlaceholder: 'How can we help?',
+      submit: 'Send Message',
+      success: 'Thank you! Your message is on its way — we will reply shortly.',
+      error: 'Please fill in a valid name, email and message.',
+    },
   },
   faq: {
     heading: 'Frequently Asked Questions',
@@ -558,11 +592,11 @@ const en: SectionsText = {
       {
         title: 'Café',
         links: [
-          { label: 'Visit Us', href: '#contact' },
+          { label: 'Visit Us', href: '/contact' },
           { label: 'Café Menu', href: '#drinks' },
-          { label: 'Opening Hours', href: '#contact' },
+          { label: 'Opening Hours', href: '/contact' },
           { label: 'Accessibility', href: '#footer' },
-          { label: 'Contact', href: '#contact' },
+          { label: 'Contact', href: '/contact' },
         ],
       },
     ],
@@ -852,6 +886,8 @@ const he: SectionsText = {
     labels: { roast: 'קלייה', notes: 'תווי טעם', brew: 'שיטת הכנה מומלצת', cafeBrew: 'מוכן אצלנו בבית הקפה' },
     explore: 'גלו את הקפה',
     tryAgain: 'נסו שוב',
+    back: 'חזרה',
+    next: 'הבא',
   },
   testimonials: {
     eyebrow: 'רגעים שחולקים סביב קפה',
@@ -912,7 +948,22 @@ const he: SectionsText = {
     features: ['ישיבה בפנים', 'מרפסת חיצונית', 'נגיש לכיסאות גלגלים', 'Wi-Fi חינם', 'חניה בקרבת מקום', 'ידידותי לכלבים'],
     directions: 'קבלו הוראות הגעה',
     contact: 'צרו קשר עם בית הקפה',
-    mapLabel: 'מפה — החליפו בהטמעת מפה אמיתית',
+    mapLabel: 'מפת המיקום של בית הקפה',
+  },
+  contactPage: {
+    heading: 'דברו איתנו',
+    description: 'שאלה על מקור קפה, פנייה סיטונאית או סתם שלום — כתבו לנו והצוות שלנו יחזור אליכם תוך יום עסקים.',
+    form: {
+      nameLabel: 'שם מלא',
+      namePlaceholder: 'השם שלכם',
+      emailLabel: 'אימייל',
+      emailPlaceholder: 'you@example.com',
+      messageLabel: 'הודעה',
+      messagePlaceholder: 'איך נוכל לעזור?',
+      submit: 'שליחת הודעה',
+      success: 'תודה! ההודעה בדרך אלינו — נחזור אליכם בקרוב.',
+      error: 'נא למלא שם, אימייל תקין והודעה.',
+    },
   },
   faq: {
     heading: 'שאלות נפוצות',
@@ -985,11 +1036,11 @@ const he: SectionsText = {
       {
         title: 'בית הקפה',
         links: [
-          { label: 'בקרו אצלנו', href: '#contact' },
+          { label: 'בקרו אצלנו', href: '/contact' },
           { label: 'תפריט בית הקפה', href: '#drinks' },
-          { label: 'שעות פתיחה', href: '#contact' },
+          { label: 'שעות פתיחה', href: '/contact' },
           { label: 'נגישות', href: '#footer' },
-          { label: 'יצירת קשר', href: '#contact' },
+          { label: 'יצירת קשר', href: '/contact' },
         ],
       },
     ],
@@ -1285,6 +1336,8 @@ const fr: SectionsText = {
     labels: { roast: 'Torréfaction', notes: 'Notes aromatiques', brew: 'Préparation recommandée', cafeBrew: 'Préparé dans notre café' },
     explore: 'Découvrir ce café',
     tryAgain: 'Recommencer',
+    back: 'Retour',
+    next: 'Suivant',
   },
   testimonials: {
     eyebrow: 'PARTAGÉ AUTOUR D’UN CAFÉ',
@@ -1349,7 +1402,22 @@ const fr: SectionsText = {
     features: ['Salle intérieure', 'Terrasse extérieure', 'Accessible en fauteuil roulant', 'Wi-Fi gratuit', 'Parking à proximité', 'Chiens bienvenus'],
     directions: 'Itinéraire',
     contact: 'Contacter le café',
-    mapLabel: 'Carte — à remplacer par votre carte interactive',
+    mapLabel: 'Carte du café',
+  },
+  contactPage: {
+    heading: 'Contactez-nous',
+    description: 'Une question sur une origine, une demande professionnelle ou un simple bonjour — écrivez-nous et notre équipe vous répondra sous un jour ouvré.',
+    form: {
+      nameLabel: 'Votre nom',
+      namePlaceholder: 'Nom complet',
+      emailLabel: 'Email',
+      emailPlaceholder: 'vous@exemple.com',
+      messageLabel: 'Message',
+      messagePlaceholder: 'Comment pouvons-nous vous aider ?',
+      submit: 'Envoyer le message',
+      success: 'Merci ! Votre message est en route — nous vous répondrons rapidement.',
+      error: 'Merci de renseigner un nom, un email valide et un message.',
+    },
   },
   faq: {
     heading: 'Questions fréquentes',
@@ -1424,11 +1492,11 @@ const fr: SectionsText = {
       {
         title: 'Café',
         links: [
-          { label: 'Nous rendre visite', href: '#contact' },
+          { label: 'Nous rendre visite', href: '/contact' },
           { label: 'Carte du café', href: '#drinks' },
-          { label: 'Horaires d’ouverture', href: '#contact' },
+          { label: 'Horaires d’ouverture', href: '/contact' },
           { label: 'Accessibilité', href: '#footer' },
-          { label: 'Contact', href: '#contact' },
+          { label: 'Contact', href: '/contact' },
         ],
       },
     ],

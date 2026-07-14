@@ -1,44 +1,37 @@
 import { motion } from 'framer-motion'
 import { Accessibility, Car, Clock, Dog, Mail, MapPin, Phone, Sofa, Sun, Wifi } from 'lucide-react'
+import { getDirectionsUrl } from '../../lib/location'
 import { SectionHeading, reveal, useSections } from './shared'
+import mapImg from '../../assets/map/Screenshot 2026-07-14 155506.png'
 
-const GOLD = '#8FA89B'
 const FEATURE_ICONS = [Sofa, Sun, Accessibility, Wifi, Car, Dog]
 
 /**
- * Stylized map placeholder.
- * PLACEHOLDER: replace this panel with a live map embed (Google Maps / Leaflet)
- * pointing at the real café address before launch.
+ * Café map — clicking it opens directions in Google Maps (desktop),
+ * the user's navigation app (Android) or Apple Maps (iOS).
  */
-function MapPlaceholder({ label }: { label: string }) {
+function CafeMap({ label, cta }: { label: string; cta: string }) {
   return (
-    <div className="relative h-full min-h-[320px] w-full overflow-hidden rounded-[2rem] border border-gold/15 bg-[#F4F0EA]">
-      <svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice" className="h-full w-full" aria-hidden="true">
-        {/* topographic-style lines */}
-        {Array.from({ length: 9 }, (_, i) => (
-          <path
-            key={i}
-            d={`M -20 ${30 + i * 34} C 80 ${8 + i * 34}, 160 ${58 + i * 34}, 240 ${26 + i * 34} S 380 ${52 + i * 34}, 420 ${30 + i * 34}`}
-            fill="none"
-            stroke={GOLD}
-            strokeOpacity={0.08 + (i % 3) * 0.03}
-            strokeWidth="1.2"
-          />
-        ))}
-        {/* roads */}
-        <path d="M 0 210 L 400 150" stroke="#f5f0e8" strokeOpacity="0.1" strokeWidth="5" />
-        <path d="M 150 320 L 230 0" stroke="#f5f0e8" strokeOpacity="0.08" strokeWidth="4" />
-        {/* pin glow */}
-        <circle cx="205" cy="165" r="34" fill={GOLD} opacity="0.12" />
-        <circle cx="205" cy="165" r="14" fill="none" stroke={GOLD} strokeOpacity="0.5" strokeWidth="1.4" className="animate-ping-slow" />
-      </svg>
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full">
-        <MapPin className="h-9 w-9 text-gold drop-shadow-[0_6px_14px_rgba(200,155,91,0.5)]" aria-hidden="true" />
-      </div>
-      <p className="absolute bottom-4 left-1/2 w-max max-w-[90%] -translate-x-1/2 rounded-full border border-cream/15 bg-espresso-950/80 px-4 py-1.5 text-[0.62rem] uppercase tracking-[0.18em] text-cream/55 backdrop-blur-sm">
-        {label}
-      </p>
-    </div>
+    <a
+      href={getDirectionsUrl()}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="group relative block h-full min-h-[320px] w-full overflow-hidden rounded-[2rem] border border-gold/15 bg-[#F4F0EA]"
+    >
+      <img
+        src={mapImg}
+        alt={label}
+        draggable={false}
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+      />
+      <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full">
+        <MapPin className="h-9 w-9 text-cta drop-shadow-[0_6px_14px_rgba(0,0,0,0.35)]" aria-hidden="true" />
+      </span>
+      <span className="absolute bottom-4 left-1/2 w-max max-w-[90%] -translate-x-1/2 rounded-full border border-cream/15 bg-espresso-950/85 px-4 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-cream/70 backdrop-blur-sm transition-colors duration-300 group-hover:text-cream">
+        {cta}
+      </span>
+    </a>
   )
 }
 
@@ -122,7 +115,9 @@ function VisitSection() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="#contact"
+                href={getDirectionsUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full bg-cta px-7 py-3.5 text-sm font-bold text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
               >
                 {s.visit.directions}
@@ -137,7 +132,7 @@ function VisitSection() {
           </motion.div>
 
           <motion.div {...reveal(0.15)}>
-            <MapPlaceholder label={s.visit.mapLabel} />
+            <CafeMap label={s.visit.mapLabel} cta={s.visit.directions} />
           </motion.div>
         </div>
       </div>

@@ -10,6 +10,7 @@ import HomePage from './pages/HomePage'
 import CoffeePage from './pages/CoffeePage'
 import CoffeeOriginsPage from './pages/coffeeOrigins/CoffeeOriginsPage'
 import QuizPage from './pages/QuizPage'
+import ContactPage from './pages/ContactPage'
 
 function App() {
   const a11y = useSyncExternalStore(subscribeA11y, getA11ySettings)
@@ -24,6 +25,7 @@ function App() {
             <Route path="/coffee" element={<CoffeePage />} />
             <Route path="/coffee-origins" element={<CoffeeOriginsPage />} />
             <Route path="/quiz" element={<QuizPage />} />
+            <Route path="/contact" element={<ContactPage />} />
           </Routes>
           <Footer />
         </BrowserRouter>

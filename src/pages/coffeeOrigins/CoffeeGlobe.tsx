@@ -78,7 +78,7 @@ function GlobeGroup({ activeId, countryLabels, paused }: GlobeGroupProps) {
     if (!group || paused) return
     // Smooth, non-jumpy rotation toward the active origin; scroll transitions always win
     // over any other motion, so there is no separate idle spin fighting this slerp.
-    group.quaternion.slerp(targetQuat, Math.min(1, delta * 2.4))
+    group.quaternion.slerp(targetQuat, Math.min(1, delta * 1.4))
   })
 
   return (
@@ -86,10 +86,6 @@ function GlobeGroup({ activeId, countryLabels, paused }: GlobeGroupProps) {
       <mesh ref={sphereRef}>
         <sphereGeometry args={[RADIUS, 48, 48]} />
         <meshBasicMaterial color="#efe8da" transparent opacity={0.55} />
-      </mesh>
-      <mesh>
-        <sphereGeometry args={[RADIUS - 0.01, 48, 48]} />
-        <meshBasicMaterial color="#e4dac4" transparent opacity={0.3} wireframe />
       </mesh>
       <LandDots />
       {COFFEE_ORIGIN_POINTS.map((point) => {

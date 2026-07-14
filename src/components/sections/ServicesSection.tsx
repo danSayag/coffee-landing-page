@@ -1,58 +1,67 @@
 ﻿import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import HashLink from '../HashLink'
-import { BeanShape, SectionHeading, SteamWisps, reveal, useSections } from './shared'
+import greenBeanImg from '../../assets/beans/coffee bean green.webp'
+import brownBeanImg from '../../assets/beans/brown coffee bean.webp'
+import cupImg from '../../assets/hero cup cutout.webp'
+import { SectionHeading, SteamWisps, reveal, useSections } from './shared'
 
 /** Hover visual per card: raw bean / bean roasting / bean becoming a cup. */
 function CardVisual({ kind }: { kind: 'green' | 'roasted' | 'cafe' }) {
   return (
-    <div className="relative flex h-44 items-center justify-center overflow-hidden">
+    <div className="relative flex h-52 items-center justify-center overflow-hidden">
       <div
         aria-hidden="true"
-        className="absolute h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(200,155,91,0.16),transparent_68%)] blur-md transition-opacity duration-700 group-hover:opacity-100 opacity-60"
+        className="absolute h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(200,155,91,0.16),transparent_68%)] blur-md transition-opacity duration-700 group-hover:opacity-100 opacity-60"
       />
       {kind === 'green' && (
         <div className="relative transition-transform duration-700 group-hover:-translate-y-1.5 group-hover:rotate-6">
-          <BeanShape color="#94a06b" seam="#5d6844" className="w-20 drop-shadow-[0_16px_26px_rgba(0,0,0,0.55)]" />
-          <BeanShape
-            color="#a3ad7c"
-            seam="#68724d"
-            className="absolute -left-9 top-7 w-12 -rotate-[28deg] opacity-70"
+          <img
+            src={greenBeanImg}
+            alt=""
+            aria-hidden="true"
+            className="w-28 drop-shadow-[0_16px_26px_rgba(0,0,0,0.35)]"
+          />
+          <img
+            src={greenBeanImg}
+            alt=""
+            aria-hidden="true"
+            className="absolute -left-11 top-9 w-16 -rotate-[28deg] opacity-70"
           />
         </div>
       )}
       {kind === 'roasted' && (
-        <div className="relative h-24 w-20">
+        <div className="relative h-32 w-28">
           {/* raw bean fades out, roasted bean fades in on hover */}
-          <BeanShape
-            color="#94a06b"
-            seam="#5d6844"
-            className="absolute inset-0 w-20 transition-all duration-700 group-hover:scale-90 group-hover:opacity-0"
+          <img
+            src={greenBeanImg}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-28 transition-all duration-700 group-hover:scale-90 group-hover:opacity-0"
           />
-          <BeanShape
-            color="#4a2c18"
-            seam="#1e1007"
-            className="absolute inset-0 w-20 opacity-0 transition-all duration-700 group-hover:rotate-6 group-hover:opacity-100 drop-shadow-[0_16px_26px_rgba(0,0,0,0.6)]"
+          <img
+            src={brownBeanImg}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-28 opacity-0 transition-all duration-700 group-hover:rotate-6 group-hover:opacity-100 drop-shadow-[0_16px_26px_rgba(0,0,0,0.4)]"
           />
         </div>
       )}
       {kind === 'cafe' && (
-        <div className="relative h-24 w-24">
-          <BeanShape
-            color="#4a2c18"
-            seam="#1e1007"
-            className="absolute left-1/2 top-1/2 w-16 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 group-hover:scale-75 group-hover:opacity-0"
-          />
-          <svg
-            viewBox="0 0 96 80"
-            className="absolute inset-0 h-full w-full opacity-0 transition-all duration-700 group-hover:opacity-100"
+        <div className="relative h-36 w-36">
+          <img
+            src={brownBeanImg}
+            alt=""
             aria-hidden="true"
-          >
-            <path d="M 18 34 L 74 34 L 68 68 Q 66 74 58 74 L 34 74 Q 26 74 24 68 Z" fill="#20150e" stroke="#8FA89B" strokeOpacity="0.7" strokeWidth="1.6" />
-            <path d="M 74 40 Q 90 42 86 52 Q 83 60 68 58" fill="none" stroke="#8FA89B" strokeOpacity="0.7" strokeWidth="1.6" />
-            <ellipse cx="46" cy="34" rx="28" ry="5" fill="#5e3d24" stroke="#8FA89B" strokeOpacity="0.5" strokeWidth="1.2" />
-          </svg>
-          <SteamWisps className="absolute -top-5 left-1/2 w-10 -translate-x-1/2 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+            className="absolute left-1/2 top-1/2 w-24 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 group-hover:scale-75 group-hover:opacity-0"
+          />
+          <img
+            src={cupImg}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-contain opacity-0 transition-all duration-700 group-hover:opacity-100 drop-shadow-[0_16px_26px_rgba(0,0,0,0.3)]"
+          />
+          <SteamWisps className="absolute -top-6 left-1/2 w-14 -translate-x-1/2 opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
         </div>
       )}
     </div>
