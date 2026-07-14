@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Coffee, Sparkles, Target } from 'lucide-react'
 import HashLink from '../HashLink'
+import { useStopAnimations } from '../a11y/useStopAnimations'
 import { EASE, SectionHeading, reveal, useSections } from './shared'
 
 const ICONS = [Coffee, Sparkles, Target]
 
 function MatchSection() {
   const s = useSections()
+  const reduce = useStopAnimations()
 
   return (
     <section id="match" className="relative overflow-hidden py-24 lg:py-32">
@@ -28,10 +30,10 @@ function MatchSection() {
                 {!isLast && (
                   <motion.span
                     aria-hidden="true"
-                    initial={{ scaleY: 0 }}
+                    initial={reduce ? false : { scaleY: 0 }}
                     whileInView={{ scaleY: 1 }}
                     viewport={{ once: true, margin: '-70px' }}
-                    transition={{ duration: 0.7, ease: EASE, delay: index * 0.15 + 0.35 }}
+                    transition={reduce ? { duration: 0 } : { duration: 0.7, ease: EASE, delay: index * 0.15 + 0.35 }}
                     style={{ transformOrigin: 'top' }}
                     className="absolute top-14 bottom-0 w-px bg-gradient-to-b from-gold/40 to-gold/10 ltr:left-7 rtl:right-7"
                   />

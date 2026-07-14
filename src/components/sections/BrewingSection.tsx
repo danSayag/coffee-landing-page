@@ -4,6 +4,11 @@ import { ArrowRight } from 'lucide-react'
 import type { BrewId } from '../../i18n/sections'
 import HashLink from '../HashLink'
 import { EASE, Meter, SectionHeading, SteamWisps, reveal, useSections } from './shared'
+import espressoImg from '../../assets/espresso.webp'
+import v60Img from '../../assets/v60.png'
+import coldbrewImg from '../../assets/cold-brew-iced-coffee.webp'
+import cappuccinoImg from '../../assets/cappuccino.webp'
+import mokaImg from '../../assets/moka pot.png'
 
 const BREW_ORDER: BrewId[] = ['espresso', 'v60', 'frenchpress', 'moka', 'coldbrew', 'cappuccino']
 
@@ -16,33 +21,24 @@ const BREW_META: Record<BrewId, { texture: number; intensity: number; clarity: n
   cappuccino: { texture: 5, intensity: 3, clarity: 2 },
 }
 
+const BREW_IMAGES: Partial<Record<BrewId, string>> = {
+  espresso: espressoImg,
+  v60: v60Img,
+  coldbrew: coldbrewImg,
+  cappuccino: cappuccinoImg,
+  moka: mokaImg,
+}
+
 const GOLD = '#8FA89B'
 const line = { fill: 'none', stroke: GOLD, strokeWidth: 2, strokeLinecap: 'round' as const, strokeOpacity: 0.85 }
 const dark = { fill: '#20150e', stroke: GOLD, strokeWidth: 1.6, strokeOpacity: 0.6 }
 
 function BrewIllustration({ id }: { id: BrewId }) {
+  const img = BREW_IMAGES[id]
+  if (img) {
+    return <img src={img} alt="" className="h-full w-full object-contain" aria-hidden="true" />
+  }
   switch (id) {
-    case 'espresso':
-      return (
-        <svg viewBox="0 0 160 160" className="h-full w-full" aria-hidden="true">
-          <path d="M 30 30 L 130 30 L 130 58 L 30 58 Z" {...dark} />
-          <path d="M 62 58 L 98 58 L 94 74 L 66 74 Z" {...dark} />
-          <line x1="72" y1="74" x2="70" y2="96" {...line} strokeOpacity="0.5" />
-          <line x1="88" y1="74" x2="90" y2="96" {...line} strokeOpacity="0.5" />
-          <path d="M 58 100 L 102 100 L 97 126 Q 96 132 88 132 L 72 132 Q 64 132 63 126 Z" {...dark} />
-          <ellipse cx="80" cy="100" rx="22" ry="4" fill="#7a4b2c" stroke={GOLD} strokeOpacity="0.4" strokeWidth="1" />
-        </svg>
-      )
-    case 'v60':
-      return (
-        <svg viewBox="0 0 160 160" className="h-full w-full" aria-hidden="true">
-          <path d="M 40 36 L 120 36 L 84 92 L 76 92 Z" {...dark} />
-          <line x1="56" y1="46" x2="76" y2="80" {...line} strokeOpacity="0.3" />
-          <line x1="104" y1="46" x2="84" y2="80" {...line} strokeOpacity="0.3" />
-          <line x1="80" y1="92" x2="80" y2="106" {...line} strokeDasharray="3 5" />
-          <path d="M 52 110 L 108 110 L 104 134 Q 103 140 95 140 L 65 140 Q 57 140 56 134 Z" {...dark} />
-        </svg>
-      )
     case 'frenchpress':
       return (
         <svg viewBox="0 0 160 160" className="h-full w-full" aria-hidden="true">
@@ -64,26 +60,8 @@ function BrewIllustration({ id }: { id: BrewId }) {
           <path d="M 74 12 L 86 12 L 82 22 L 78 22 Z" {...dark} />
         </svg>
       )
-    case 'coldbrew':
-      return (
-        <svg viewBox="0 0 160 160" className="h-full w-full" aria-hidden="true">
-          <path d="M 54 30 L 106 30 L 106 132 Q 106 140 98 140 L 62 140 Q 54 140 54 132 Z" {...dark} />
-          <rect x="60" y="72" width="40" height="62" rx="4" fill="#5e3d24" opacity="0.55" />
-          <rect x="66" y="46" width="12" height="16" rx="2" fill="none" stroke={GOLD} strokeOpacity="0.5" strokeWidth="1.4" transform="rotate(12 72 54)" />
-          <rect x="84" y="82" width="12" height="16" rx="2" fill="none" stroke={GOLD} strokeOpacity="0.4" strokeWidth="1.4" transform="rotate(-10 90 90)" />
-          <line x1="54" y1="30" x2="106" y2="30" {...line} strokeOpacity="0.6" />
-        </svg>
-      )
-    case 'cappuccino':
-      return (
-        <svg viewBox="0 0 160 160" className="h-full w-full" aria-hidden="true">
-          <path d="M 36 70 L 124 70 L 114 126 Q 112 136 100 136 L 60 136 Q 48 136 46 126 Z" {...dark} />
-          <path d="M 124 78 Q 146 82 140 98 Q 135 110 116 106" {...line} strokeOpacity="0.6" />
-          <ellipse cx="80" cy="70" rx="44" ry="8" fill="#e9dcc3" opacity="0.85" />
-          <path d="M 62 70 Q 80 60 98 70" fill="none" stroke="#7a4b2c" strokeWidth="1.6" strokeOpacity="0.7" />
-          <path d="M 70 70 Q 80 65 90 70" fill="none" stroke="#7a4b2c" strokeWidth="1.2" strokeOpacity="0.6" />
-        </svg>
-      )
+    default:
+      return null
   }
 }
 

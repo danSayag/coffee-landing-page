@@ -446,7 +446,7 @@ function OriginsSection({ onSelectOrigin }: OriginsSectionProps) {
       {isDesktop && !prefersReduced ? (
         <OriginsDesktop onSelectOrigin={onSelectOrigin} />
       ) : (
-        <OriginsMobile onSelectOrigin={onSelectOrigin} reduced={prefersReduced} />
+        <OriginsMobile onSelectOrigin={onSelectOrigin} />
       )}
     </section>
   )

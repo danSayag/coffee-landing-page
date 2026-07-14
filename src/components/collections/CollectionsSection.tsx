@@ -141,28 +141,28 @@ function CollectionsSection({ selection, onExplore }: CollectionsSectionProps) {
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <motion.p
-            initial={{ opacity: 0, y: 24 }}
+            initial={reduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.7, ease: EASE }}
+            transition={reduce ? { duration: 0 } : { duration: 0.7, ease: EASE }}
             className="text-[0.7rem] font-semibold uppercase tracking-[0.35em] text-gold"
           >
             {t.collections.kicker}
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={reduce ? false : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.8, ease: EASE, delay: 0.08 }}
+            transition={reduce ? { duration: 0 } : { duration: 0.8, ease: EASE, delay: 0.08 }}
             className="mt-4 font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-medium leading-[1.06]"
           >
             {t.collections.heading}
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 26 }}
+            initial={reduce ? false : { opacity: 0, y: 26 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.8, ease: EASE, delay: 0.16 }}
+            transition={reduce ? { duration: 0 } : { duration: 0.8, ease: EASE, delay: 0.16 }}
             className="mt-4 text-base leading-relaxed text-cream/60"
           >
             {t.collections.subtitle}
@@ -171,10 +171,10 @@ function CollectionsSection({ selection, onExplore }: CollectionsSectionProps) {
 
         {/* Endless card deck: the focused coffee sits in the middle, neighbours fan out behind. */}
         <motion.div
-          initial={{ opacity: 0, y: 44 }}
+          initial={reduce ? false : { opacity: 0, y: 44 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.85, ease: EASE }}
+          transition={reduce ? { duration: 0 } : { duration: 0.85, ease: EASE }}
           className="mt-14"
         >
           <div className="relative mx-auto w-full max-w-[19rem] sm:max-w-sm lg:max-w-md">

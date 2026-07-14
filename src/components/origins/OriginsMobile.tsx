@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { gsap } from '../../lib/gsap'
 import { useI18n } from '../../i18n'
 import type { OriginId } from '../../i18n/translations'
-import { getA11ySettings } from '../a11y/a11yStore'
+import { useStopAnimations } from '../a11y/useStopAnimations'
 import { ORIGINS } from './data'
 import OriginCard from './OriginCard'
 import OriginsBackground from './OriginsBackground'
@@ -14,7 +14,6 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 interface OriginsMobileProps {
   onSelectOrigin: (id: OriginId) => void
-  reduced: boolean
 }
 
 /**
@@ -22,7 +21,7 @@ interface OriginsMobileProps {
  * the flat dot-matrix map with tap-able bean markers, synced with
  * swipeable origin cards below.
  */
-function OriginsMobile({ onSelectOrigin, reduced }: OriginsMobileProps) {
+function OriginsMobile({ onSelectOrigin }: OriginsMobileProps) {
   const { t } = useI18n()
   const wrapRef = useRef<HTMLDivElement>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
@@ -31,7 +30,7 @@ function OriginsMobile({ onSelectOrigin, reduced }: OriginsMobileProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const playedRef = useRef(false)
 
-  const stopMotion = useMemo(() => reduced || getA11ySettings().stopAnimations, [reduced])
+  const stopMotion = useStopAnimations()
 
   // One-shot entrance: beans pop onto the map one after another.
   useEffect(() => {
@@ -142,28 +141,28 @@ function OriginsMobile({ onSelectOrigin, reduced }: OriginsMobileProps) {
 
       <div className="relative z-10 px-6 text-center">
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
+          initial={stopMotion ? false :{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.7, ease: EASE }}
+          transition={stopMotion ? { duration: 0 } :{ duration: 0.7, ease: EASE }}
           className="text-[0.68rem] font-semibold uppercase tracking-[0.35em] text-gold"
         >
           {t.origins.kicker}
         </motion.p>
         <motion.h2
-          initial={{ opacity: 0, y: 28 }}
+          initial={stopMotion ? false :{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.8, ease: EASE, delay: 0.08 }}
+          transition={stopMotion ? { duration: 0 } :{ duration: 0.8, ease: EASE, delay: 0.08 }}
           className="mx-auto mt-4 max-w-md font-display text-[clamp(2.1rem,8vw,3rem)] font-medium leading-[1.08]"
         >
           {t.origins.title}
         </motion.h2>
         <motion.p
-          initial={{ opacity: 0, y: 24 }}
+          initial={stopMotion ? false :{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.8, ease: EASE, delay: 0.16 }}
+          transition={stopMotion ? { duration: 0 } :{ duration: 0.8, ease: EASE, delay: 0.16 }}
           className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-cream/60"
         >
           {t.origins.subtitle}
@@ -171,10 +170,10 @@ function OriginsMobile({ onSelectOrigin, reduced }: OriginsMobileProps) {
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 26, scale: 0.96 }}
+        initial={stopMotion ? false :{ opacity: 0, y: 26, scale: 0.96 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, margin: '-40px' }}
-        transition={{ duration: 0.9, ease: EASE }}
+        transition={stopMotion ? { duration: 0 } :{ duration: 0.9, ease: EASE }}
         className="relative z-10 mx-auto mt-10 w-[min(94vw,900px)] px-3 sm:px-0"
       >
         <div className="aspect-360/136 w-full">

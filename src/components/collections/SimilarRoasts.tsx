@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useStopAnimations } from '../a11y/useStopAnimations'
 import { useI18n } from '../../i18n'
 import type { OriginId } from '../../i18n/translations'
 import { ORIGINS, ORIGIN_INDEX } from '../origins/data'
@@ -13,6 +14,7 @@ interface SimilarRoastsProps {
 
 function SimilarRoasts({ selectedId }: SimilarRoastsProps) {
   const { t } = useI18n()
+  const reduce = useStopAnimations()
   const selected = ORIGINS[ORIGIN_INDEX[selectedId]]
   const recommendations = selected.similar.map((id) => ORIGINS[ORIGIN_INDEX[id]])
 
@@ -27,10 +29,10 @@ function SimilarRoasts({ selectedId }: SimilarRoastsProps) {
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <div className="border-t border-cream/10 pt-20 text-center lg:pt-24">
           <motion.h2
-            initial={{ opacity: 0, y: 28 }}
+            initial={reduce ? false : { opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.8, ease: EASE }}
+            transition={reduce ? { duration: 0 } : { duration: 0.8, ease: EASE }}
             className="font-display text-[clamp(2rem,4vw,3.1rem)] font-medium leading-[1.08]"
           >
             {t.similar.heading}
@@ -60,11 +62,11 @@ function SimilarRoasts({ selectedId }: SimilarRoastsProps) {
                 <motion.article
                   key={origin.id}
                   layout
-                  initial={{ opacity: 0, y: 40, scale: 0.96 }}
+                  initial={reduce ? false : { opacity: 0, y: 40, scale: 0.96 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, margin: '-60px' }}
-                  exit={{ opacity: 0, scale: 0.94, transition: { duration: 0.3 } }}
-                  transition={{ duration: 0.75, ease: EASE, delay: index * 0.1 }}
+                  exit={{ opacity: 0, scale: 0.94, transition: { duration: reduce ? 0 : 0.3 } }}
+                  transition={reduce ? { duration: 0 } : { duration: 0.75, ease: EASE, delay: index * 0.1 }}
                   className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-cream/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.45),rgba(230,220,199,0.85))] shadow-[0_24px_60px_-24px_rgba(0,0,0,0.7)] backdrop-blur-sm transition-colors duration-500 hover:border-gold/40"
                 >
                   <div className="relative h-36 shrink-0 overflow-hidden">

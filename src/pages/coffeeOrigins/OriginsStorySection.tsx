@@ -85,10 +85,10 @@ function OriginsStorySection() {
               className="flex min-h-[50vh] flex-col justify-center py-10 lg:min-h-screen lg:py-0"
             >
               <motion.div
-                initial={{ opacity: 0, y: 24 }}
+                initial={osReduced ? false : { opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.7, ease: EASE }}
+                transition={osReduced ? { duration: 0 } : { duration: 0.7, ease: EASE }}
               >
                 <OriginContent item={item} index={index} total={content.items.length} labels={content.labels} onExplore={() => handleExplore(item.id)} />
               </motion.div>

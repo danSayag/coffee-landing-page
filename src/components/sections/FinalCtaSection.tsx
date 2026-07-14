@@ -66,21 +66,23 @@ function FinalCtaSection({ onExplore }: FinalCtaSectionProps) {
         <div className="mx-auto max-w-3xl">
           {/* the roasted bean returns and becomes the final cup */}
           <div className="relative mx-auto w-56 sm:w-64">
+            {!reduce && (
+              <motion.div
+                initial={{ y: -90, opacity: 0, rotate: -30, scale: 0.7 }}
+                whileInView={{ y: -6, opacity: [0, 1, 1, 0], rotate: 40, scale: 0.4 }}
+                viewport={{ once: true, margin: '-120px' }}
+                transition={{ duration: 1.3, ease: 'easeIn', times: [0, 0.25, 0.8, 1] }}
+                className="absolute left-1/2 top-6 w-9 -translate-x-1/2"
+                aria-hidden="true"
+              >
+                <CoffeeBean className="w-full" />
+              </motion.div>
+            )}
             <motion.div
-              initial={{ y: -90, opacity: 0, rotate: -30, scale: 0.7 }}
-              whileInView={{ y: -6, opacity: [0, 1, 1, 0], rotate: 40, scale: 0.4 }}
-              viewport={{ once: true, margin: '-120px' }}
-              transition={{ duration: 1.3, ease: 'easeIn', times: [0, 0.25, 0.8, 1] }}
-              className="absolute left-1/2 top-6 w-9 -translate-x-1/2"
-              aria-hidden="true"
-            >
-              <CoffeeBean className="w-full" />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 34, scale: 0.94 }}
+              initial={reduce ? false : { opacity: 0, y: 34, scale: 0.94 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: '-120px' }}
-              transition={{ duration: 1, ease: EASE, delay: 0.2 }}
+              transition={reduce ? { duration: 0 } : { duration: 1, ease: EASE, delay: 0.2 }}
             >
               <SteamWisps className="absolute -top-12 left-1/2 w-14 -translate-x-1/2" />
               <FinalCup />

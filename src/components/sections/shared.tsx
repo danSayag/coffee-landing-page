@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { useI18n } from '../../i18n'
 import { sectionsText, type SectionsText } from '../../i18n/sections'
+import { getA11ySettings } from '../a11y/a11yStore'
 
 export const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -10,7 +11,22 @@ export function useSections(): SectionsText {
   return sectionsText[lang]
 }
 
+const reducedMotionQuery = typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)') : null
+
+/**
+ * Non-hook read of "stop animations" (a11y widget or OS setting) for plain
+ * helpers like `reveal()`. Stays in sync because App subscribes to the a11y
+ * store and re-renders the whole tree on every change.
+ */
+function animationsStopped(): boolean {
+  return getA11ySettings().stopAnimations || Boolean(reducedMotionQuery?.matches)
+}
+
 export function reveal(delay = 0) {
+  if (animationsStopped()) {
+    // No hidden initial state and no in-view gating — the page loads all at once.
+    return { initial: false as const, animate: { opacity: 1, y: 0 }, transition: { duration: 0 } }
+  }
   return {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },

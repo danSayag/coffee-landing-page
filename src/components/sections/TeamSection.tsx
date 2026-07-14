@@ -1,38 +1,17 @@
 ﻿import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { SectionHeading, reveal, useSections } from './shared'
+import danaImg from '../../assets/Dana Rivera.png'
+import omerImg from '../../assets/Omer Katz.png'
+import mayaImg from '../../assets/Maya Chen.png'
+
+const MEMBER_IMAGES: Record<string, string> = {
+  'Dana Rivera': danaImg,
+  'Omer Katz': omerImg,
+  'Maya Chen': mayaImg,
+}
 
 const GOLD = '#8FA89B'
-
-/** Abstract editorial portrait ג€” silhouette with warm rim light. */
-function Portrait({ variant }: { variant: number }) {
-  const hair = [
-    'M 60 58 Q 58 30 90 26 Q 124 24 122 56 Q 121 44 104 40 Q 74 36 68 58 Z',
-    'M 58 62 Q 54 24 90 22 Q 128 22 126 64 L 118 60 Q 120 34 92 32 Q 66 34 66 62 Z',
-    'M 62 54 Q 62 26 90 24 Q 120 24 120 58 Q 112 78 108 60 Q 108 38 88 36 Q 70 38 70 60 Z',
-  ][variant % 3]
-  return (
-    <svg viewBox="0 0 180 200" preserveAspectRatio="xMidYMid slice" className="h-full w-full" aria-hidden="true">
-      <defs>
-        <linearGradient id={`portrait-bg-${variant}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#f1e2c4" />
-          <stop offset="100%" stopColor="#e4cd9c" />
-        </linearGradient>
-      </defs>
-      <rect width="180" height="200" fill={`url(#portrait-bg-${variant})`} />
-      <circle cx={variant === 1 ? 140 : 40} cy="42" r="52" fill="#e8c88f" opacity="0.09" />
-      {/* shoulders */}
-      <path d="M 34 200 Q 40 138 90 134 Q 140 138 146 200 Z" fill="#0f0a06" stroke={GOLD} strokeOpacity="0.35" strokeWidth="1.4" />
-      {/* apron strap */}
-      <path d="M 66 152 Q 90 164 114 152" fill="none" stroke={GOLD} strokeOpacity="0.4" strokeWidth="1.4" />
-      {/* head */}
-      <circle cx="90" cy="86" r="34" fill="#140d08" stroke={GOLD} strokeOpacity="0.4" strokeWidth="1.4" />
-      <path d={hair} fill="#0b0704" stroke={GOLD} strokeOpacity="0.3" strokeWidth="1.2" />
-      {/* rim light */}
-      <path d="M 118 62 Q 128 84 116 106" fill="none" stroke="#e8c88f" strokeOpacity="0.55" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  )
-}
 
 function TeamSection() {
   const s = useSections()
@@ -59,7 +38,11 @@ function TeamSection() {
             >
               <div className="relative h-60 shrink-0 overflow-hidden">
                 <div className="h-[112%] w-full transition-transform duration-[1400ms] ease-out group-hover:-translate-y-3">
-                  <Portrait variant={index} />
+                  <img
+                    src={MEMBER_IMAGES[member.name]}
+                    alt={member.name}
+                    className="h-full w-full object-cover object-top"
+                  />
                 </div>
                 <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-espresso-950/85 via-transparent to-transparent" />
                 <p className="absolute bottom-4 font-display text-xl font-medium text-cream ltr:left-5 rtl:right-5">

@@ -44,10 +44,10 @@ function CafeSection() {
         {/* editorial composition */}
         <div className="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-[1.6fr_1fr] lg:gap-6">
           <motion.figure
-            initial={{ clipPath: 'inset(12% 8% 12% 8% round 32px)', opacity: 0.4 }}
+            initial={reduce ? false : { clipPath: 'inset(12% 8% 12% 8% round 32px)', opacity: 0.4 }}
             whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 32px)', opacity: 1 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 1.2, ease: EASE }}
+            transition={reduce ? { duration: 0 } : { duration: 1.2, ease: EASE }}
             className="relative h-[340px] overflow-hidden rounded-[2rem] border border-gold/15 sm:h-[440px] lg:h-[520px]"
           >
             <motion.div style={reduce ? undefined : { y: yMain }} className="absolute -inset-y-10 inset-x-0">
@@ -59,10 +59,10 @@ function CafeSection() {
             {s.cafe.labels.slice(0, 2).map((label, i) => (
               <motion.p
                 key={label}
-                initial={{ opacity: 0, y: 14 }}
+                initial={reduce ? false : { opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: EASE, delay: 0.5 + i * 0.2 }}
+                transition={reduce ? { duration: 0 } : { duration: 0.7, ease: EASE, delay: 0.5 + i * 0.2 }}
                 className={`absolute rounded-full border border-gold/30 bg-espresso-950/80 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold-soft backdrop-blur-md ${
                   i === 0 ? 'left-6 top-6' : 'bottom-6 ltr:right-6 rtl:left-6 rtl:right-auto'
                 }`}
@@ -77,20 +77,20 @@ function CafeSection() {
             {[dripCoffeeImg, capuchinoImg].map((src, i) => (
               <motion.figure
                 key={i}
-                initial={{ clipPath: 'inset(16% 10% 16% 10% round 24px)', opacity: 0.4 }}
+                initial={reduce ? false : { clipPath: 'inset(16% 10% 16% 10% round 24px)', opacity: 0.4 }}
                 whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 24px)', opacity: 1 }}
                 viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 1.1, ease: EASE, delay: 0.15 + i * 0.15 }}
+                transition={reduce ? { duration: 0 } : { duration: 1.1, ease: EASE, delay: 0.15 + i * 0.15 }}
                 className="relative h-[160px] overflow-hidden rounded-3xl border border-gold/15 sm:h-[210px] lg:h-[248px]"
               >
                 <motion.div style={reduce ? undefined : { y: ySide }} className="absolute -inset-y-12 inset-x-0">
                   <img src={src} alt="" className="h-full w-full object-cover" aria-hidden="true" />
                 </motion.div>
                 <motion.p
-                  initial={{ opacity: 0 }}
+                  initial={reduce ? false : { opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: 0.7 + i * 0.2 }}
+                  transition={reduce ? { duration: 0 } : { duration: 0.7, delay: 0.7 + i * 0.2 }}
                   className="absolute bottom-4 rounded-full border border-gold/30 bg-espresso-950/80 px-3.5 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-gold-soft backdrop-blur-md ltr:left-4 rtl:right-4"
                 >
                   {s.cafe.labels[2 + i]}

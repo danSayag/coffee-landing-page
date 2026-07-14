@@ -1,4 +1,4 @@
-import { useEffect, useState, useSyncExternalStore, type ReactNode } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Accessibility, CirclePause, Contrast, Minus, Plus, RotateCcw, Underline, X } from 'lucide-react'
 import { useI18n } from '../../i18n'
@@ -51,6 +51,7 @@ function SettingRow({ icon, label, control }: { icon: ReactNode; label: string; 
 function AccessibilityWidget() {
   const { t } = useI18n()
   const [open, setOpen] = useState(false)
+  const rootRef = useRef<HTMLDivElement>(null)
   const settings = useSyncExternalStore(subscribeA11y, getA11ySettings)
 
   useEffect(() => {
@@ -58,14 +59,22 @@ function AccessibilityWidget() {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setOpen(false)
     }
+    // Close when clicking anywhere outside the widget (button or panel).
+    const onPointerDown = (event: PointerEvent) => {
+      if (rootRef.current && !rootRef.current.contains(event.target as Node)) setOpen(false)
+    }
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
   }, [open])
 
   const set = (patch: Partial<A11ySettings>) => setA11ySettings(patch)
 
   return (
-    <>
+    <div ref={rootRef} className="contents">
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
@@ -173,7 +182,7 @@ function AccessibilityWidget() {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   )
 }
 

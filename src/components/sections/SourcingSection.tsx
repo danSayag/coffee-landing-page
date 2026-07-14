@@ -1,6 +1,7 @@
 ﻿import { motion } from 'framer-motion'
 import { ArrowRight, Handshake, Leaf, MapPin, Package } from 'lucide-react'
 import HashLink from '../HashLink'
+import { useStopAnimations } from '../a11y/useStopAnimations'
 import { EASE, SectionHeading, reveal, useSections } from './shared'
 
 const GOLD = '#8FA89B'
@@ -9,6 +10,7 @@ const ICONS = [Handshake, MapPin, Leaf, Package]
 /** Thin animated journey: farm ג†’ roastery ג†’ cafֳ©. */
 function JourneyPath() {
   const s = useSections()
+  const reduce = useStopAnimations()
   const stops = [
     { y: 30, label: s.sourcing.path.farm },
     { y: 150, label: s.sourcing.path.roastery },
@@ -24,10 +26,10 @@ function JourneyPath() {
           strokeWidth="1.6"
           strokeOpacity="0.6"
           strokeDasharray="4 6"
-          initial={{ pathLength: 0 }}
+          initial={reduce ? false : { pathLength: 0 }}
           whileInView={{ pathLength: 1 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 2.2, ease: 'easeInOut' }}
+          transition={reduce ? { duration: 0 } : { duration: 2.2, ease: 'easeInOut' }}
         />
         {stops.map((stop, i) => (
           <motion.circle
@@ -38,20 +40,20 @@ function JourneyPath() {
             fill="#2B2625"
             stroke={GOLD}
             strokeWidth="1.8"
-            initial={{ scale: 0, opacity: 0 }}
+            initial={reduce ? false : { scale: 0, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.5, ease: EASE, delay: 0.4 + i * 0.7 }}
+            transition={reduce ? { duration: 0 } : { duration: 0.5, ease: EASE, delay: 0.4 + i * 0.7 }}
           />
         ))}
       </svg>
       {stops.map((stop, i) => (
         <motion.span
           key={stop.label}
-          initial={{ opacity: 0, x: 10 }}
+          initial={reduce ? false : { opacity: 0, x: 10 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6, ease: EASE, delay: 0.5 + i * 0.7 }}
+          transition={reduce ? { duration: 0 } : { duration: 0.6, ease: EASE, delay: 0.5 + i * 0.7 }}
           className="absolute text-[0.62rem] font-bold uppercase tracking-[0.24em] text-gold-soft ltr:left-[calc(50%+18px)] rtl:right-[calc(50%+18px)]"
           style={{ top: stop.y - 7 }}
         >
