@@ -75,6 +75,7 @@ export interface SectionsText {
     cta: string
   }
   quiz: {
+    hero: { kicker: string; heading: string; supporting: string; cta: string; scrollHint: string }
     heading: string
     description: string
     stepLabel: string // "Question {n} of 3"
@@ -386,6 +387,14 @@ const en: SectionsText = {
     cta: 'Take the Taste Quiz',
   },
   quiz: {
+    hero: {
+      kicker: 'THE TASTE QUIZ',
+      heading: 'Three Questions Between You and Your Cup',
+      supporting:
+        'Every palate has a coffee that fits it. Tell us how you brew and what you love, and we will point you to the origin and roast made for you.',
+      cta: 'Start the Quiz',
+      scrollHint: 'Scroll to the quiz',
+    },
     heading: 'Find the Coffee That Feels Like Yours',
     description:
       'Answer three quick questions and discover the origin, roast and brewing style that best match your taste.',
@@ -813,6 +822,14 @@ const he: SectionsText = {
     cta: 'עברו לשאלון הטעימה',
   },
   quiz: {
+    hero: {
+      kicker: 'שאלון הטעימה',
+      heading: 'שלוש שאלות ביניכם ובין הכוס המושלמת',
+      supporting:
+        'לכל חך יש קפה שמתאים בדיוק לו. ספרו לנו איך אתם מכינים קפה ומה אתם אוהבים, ואנחנו נכוון אתכם אל המקור והקלייה שנוצרו בשבילכם.',
+      cta: 'התחילו את השאלון',
+      scrollHint: 'גללו אל השאלון',
+    },
     heading: 'מצאו את הקפה שמתאים לכם',
     description: 'ענו על שלוש שאלות קצרות וגלו את המקור, הקלייה ושיטת ההכנה שמתאימים לטעם שלכם.',
     stepLabel: 'שאלה {n} מתוך 3',
@@ -1236,6 +1253,14 @@ const fr: SectionsText = {
     cta: 'Faire le quiz des saveurs',
   },
   quiz: {
+    hero: {
+      kicker: 'LE QUIZ DES SAVEURS',
+      heading: 'Trois questions entre vous et votre tasse idéale',
+      supporting:
+        'Chaque palais a un café qui lui correspond. Dites-nous comment vous préparez votre café et ce que vous aimez, et nous vous guiderons vers l’origine et la torréfaction faites pour vous.',
+      cta: 'Commencer le quiz',
+      scrollHint: 'Défiler vers le quiz',
+    },
     heading: 'Trouvez le café qui vous ressemble',
     description:
       'Répondez à trois questions rapides et découvrez l’origine, la torréfaction et la méthode de préparation qui correspondent le mieux à vos goûts.',

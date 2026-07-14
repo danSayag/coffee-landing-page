@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import QuizHeroSection from '../components/sections/QuizHeroSection'
 import QuizSection from '../components/sections/QuizSection'
 import type { OriginId } from '../i18n/translations'
 
@@ -19,6 +20,7 @@ function QuizPage() {
 
   return (
     <main>
+      <QuizHeroSection />
       <QuizSection onExplore={handleExplore} />
     </main>
   )
