@@ -6,7 +6,8 @@ import type { OriginId } from '../../i18n/translations'
 import { scoreQuiz } from '../../i18n/sections'
 import { ORIGINS, ORIGIN_INDEX } from '../origins/data'
 import OriginArt from '../collections/OriginArt'
-import { EASE, SectionHeading, useSections } from './shared'
+import { ROAST_META } from './roastMeta'
+import { EASE, Meter, SectionHeading, useSections } from './shared'
 
 interface QuizSectionProps {
   onExplore: (id: OriginId) => void
@@ -27,6 +28,7 @@ function QuizSection({ onExplore }: QuizSectionProps) {
 
   const resultId = done ? scoreQuiz(answers) : null
   const result = resultId ? t.origins.items[resultId] : null
+  const roastMeta = resultId ? ROAST_META[ORIGINS[ORIGIN_INDEX[resultId]].roastLevel] : null
   const brewAnswer = answers[0]
   const brewLabel =
     brewAnswer === 5 ? s.quiz.labels.cafeBrew : (s.quiz.questions[0]?.options[brewAnswer] ?? '')
@@ -126,6 +128,14 @@ function QuizSection({ onExplore }: QuizSectionProps) {
                         <dd className="mt-0.5 text-cream/80">{brewLabel}</dd>
                       </div>
                     </dl>
+
+                    {roastMeta && (
+                      <div className="mx-auto mt-6 grid max-w-sm grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 md:mx-0">
+                        <Meter label={s.roasting.meterLabels.acidity} value={roastMeta.acidity} animateKey={resultId} />
+                        <Meter label={s.roasting.meterLabels.sweetness} value={roastMeta.sweetness} animateKey={resultId} />
+                        <Meter label={s.roasting.meterLabels.body} value={roastMeta.body} animateKey={resultId} />
+                      </div>
+                    )}
 
                     <div className="mt-7 flex flex-wrap justify-center gap-3 md:justify-start">
                       <button

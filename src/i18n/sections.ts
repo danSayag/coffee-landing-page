@@ -8,13 +8,6 @@ import type { Lang, OriginId } from './translations'
 export type RoastId = 'light' | 'medium' | 'dark'
 export type BrewId = 'espresso' | 'v60' | 'frenchpress' | 'moka' | 'coldbrew' | 'cappuccino'
 
-export interface RoastInfo {
-  name: string
-  desc: string
-  brew: string
-  notes: string[]
-}
-
 export interface BrewInfo {
   name: string
   desc: string
@@ -28,9 +21,7 @@ export interface SectionsText {
     heading: string
     description: string
     stages: { num: string; title: string; text: string }[]
-    selectorTitle: string
-    roasts: Record<RoastId, RoastInfo>
-    meterLabels: { acidity: string; sweetness: string; body: string; brew: string; notes: string }
+    meterLabels: { acidity: string; sweetness: string; body: string }
     curveLabels: { temperature: string; airflow: string; development: string; time: string }
   }
   services: {
@@ -177,28 +168,7 @@ const en: SectionsText = {
         text: 'The roast is completed when acidity, sweetness, body and aroma reach their ideal balance.',
       },
     ],
-    selectorTitle: 'Choose Your Roast',
-    roasts: {
-      light: {
-        name: 'Light Roast',
-        desc: 'Floral, citrus, tea-like and bright.',
-        brew: 'Best for V60, Chemex and filter brewing.',
-        notes: ['Jasmine', 'Citrus', 'White Tea'],
-      },
-      medium: {
-        name: 'Medium Roast',
-        desc: 'Balanced, caramel-like, sweet and rounded.',
-        brew: 'Best for espresso, AeroPress and moka pot.',
-        notes: ['Caramel', 'Red Fruit', 'Cocoa'],
-      },
-      dark: {
-        name: 'Dark Roast',
-        desc: 'Deep cocoa, toasted nuts, molasses and full body.',
-        brew: 'Best for milk-based drinks and French press.',
-        notes: ['Dark Cocoa', 'Toasted Nuts', 'Molasses'],
-      },
-    },
-    meterLabels: { acidity: 'Acidity', sweetness: 'Sweetness', body: 'Body', brew: 'Recommended Brewing', notes: 'Flavor Notes' },
+    meterLabels: { acidity: 'Acidity', sweetness: 'Sweetness', body: 'Body' },
     curveLabels: { temperature: 'Temperature', airflow: 'Airflow', development: 'Development', time: 'Time' },
   },
   services: {
@@ -628,28 +598,7 @@ const he: SectionsText = {
         text: 'הקלייה מסתיימת כאשר החמיצות, המתיקות, הגוף והארומה מגיעים לאיזון הנכון.',
       },
     ],
-    selectorTitle: 'בחרו את הקלייה שלכם',
-    roasts: {
-      light: {
-        name: 'קלייה בהירה',
-        desc: 'פרחוני, הדרי, עדין ובהיר.',
-        brew: 'מתאים במיוחד ל־V60, כימקס וקפה פילטר.',
-        notes: ['יסמין', 'הדרים', 'תה לבן'],
-      },
-      medium: {
-        name: 'קלייה בינונית',
-        desc: 'מאוזן, קרמלי, מתקתק ועגול.',
-        brew: 'מתאים במיוחד לאספרסו, אירופרס ומקינטה.',
-        notes: ['קרמל', 'פירות אדומים', 'קקאו'],
-      },
-      dark: {
-        name: 'קלייה כהה',
-        desc: 'קקאו עמוק, אגוזים קלויים, מולסה וגוף מלא.',
-        brew: 'מתאים במיוחד למשקאות עם חלב ולפרנץ׳ פרס.',
-        notes: ['קקאו מריר', 'אגוזים קלויים', 'מולסה'],
-      },
-    },
-    meterLabels: { acidity: 'חמיצות', sweetness: 'מתיקות', body: 'גוף', brew: 'שיטת הכנה מומלצת', notes: 'תווי טעם' },
+    meterLabels: { acidity: 'חמיצות', sweetness: 'מתיקות', body: 'גוף' },
     curveLabels: { temperature: 'טמפרטורה', airflow: 'זרימת אוויר', development: 'פיתוח', time: 'זמן' },
   },
   services: {
@@ -1069,28 +1018,7 @@ const fr: SectionsText = {
         text: 'La torréfaction s’achève lorsque l’acidité, la douceur, le corps et les arômes atteignent leur équilibre idéal.',
       },
     ],
-    selectorTitle: 'Choisissez votre torréfaction',
-    roasts: {
-      light: {
-        name: 'Torréfaction claire',
-        desc: 'Florale, agrumes, délicate comme un thé et lumineuse.',
-        brew: 'Idéale pour V60, Chemex et café filtre.',
-        notes: ['Jasmin', 'Agrumes', 'Thé blanc'],
-      },
-      medium: {
-        name: 'Torréfaction moyenne',
-        desc: 'Équilibrée, caramélisée, douce et ronde.',
-        brew: 'Idéale pour espresso, AeroPress et cafetière moka.',
-        notes: ['Caramel', 'Fruits rouges', 'Cacao'],
-      },
-      dark: {
-        name: 'Torréfaction foncée',
-        desc: 'Cacao profond, noix grillées, mélasse et corps ample.',
-        brew: 'Idéale pour les boissons lactées et la French press.',
-        notes: ['Cacao noir', 'Noix grillées', 'Mélasse'],
-      },
-    },
-    meterLabels: { acidity: 'Acidité', sweetness: 'Douceur', body: 'Corps', brew: 'Préparation recommandée', notes: 'Notes aromatiques' },
+    meterLabels: { acidity: 'Acidité', sweetness: 'Douceur', body: 'Corps' },
     curveLabels: { temperature: 'Température', airflow: 'Flux d’air', development: 'Développement', time: 'Temps' },
   },
   services: {

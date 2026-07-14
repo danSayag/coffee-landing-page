@@ -18,7 +18,7 @@ function FaqSection() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:grid lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <div>
           <div className="lg:sticky lg:top-28">
-            <SectionHeading heading={s.faq.heading} description={s.faq.description} align="start" />
+            <SectionHeading heading={s.faq.heading} align="start" />
           </div>
         </div>
 

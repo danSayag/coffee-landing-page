@@ -132,8 +132,9 @@ function CollectionsSection({ selection, onExplore }: CollectionsSectionProps) {
   return (
     <section id="coffee" className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F1EBDF_0%,#F4F0EA_40%,#ECE3D2_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(900px_600px_at_80%_10%,rgba(200,155,91,0.07),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(160deg,#ECE3D2_0%,#F4F0EA_55%,#F4F0EA_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(1100px_720px_at_78%_30%,rgba(200,155,91,0.08),transparent_62%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(820px_620px_at_6%_88%,rgba(143,168,155,0.10),transparent_60%)]" />
         <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
       </div>
 

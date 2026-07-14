@@ -1,39 +1,9 @@
-﻿import { useLayoutEffect, useRef, useState } from 'react'
+﻿import { useLayoutEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from '../../lib/gsap'
-import type { RoastId } from '../../i18n/sections'
 import { useMediaQuery } from '../origins/OriginsSection'
-import { EASE, Meter, SectionHeading, SteamWisps, reveal, useSections } from './shared'
-
-// Bean color through the roast: green ג†’ yellow ג†’ cinnamon ג†’ medium ג†’ deep brown
-const ROAST_COLORS = ['#94a06b', '#c2a75f', '#a9744a', '#7a4b2c', '#432815']
-
-const ROAST_META: Record<RoastId, { bean: string; seam: string; acidity: number; sweetness: number; body: number; curve: string }> = {
-  light: {
-    bean: '#b08154',
-    seam: '#6d4a2c',
-    acidity: 5,
-    sweetness: 3,
-    body: 2,
-    curve: 'M 8 88 C 60 82, 110 58, 150 40 C 175 29, 195 26, 212 25',
-  },
-  medium: {
-    bean: '#7a4b2c',
-    seam: '#3d2413',
-    acidity: 3,
-    sweetness: 4,
-    body: 3,
-    curve: 'M 8 88 C 60 80, 105 52, 145 33 C 172 20, 196 17, 212 16',
-  },
-  dark: {
-    bean: '#432815',
-    seam: '#1e1007',
-    acidity: 1,
-    sweetness: 4,
-    body: 5,
-    curve: 'M 8 88 C 55 76, 100 44, 138 25 C 168 10, 196 8, 212 7',
-  },
-}
+import { ROAST_COLORS } from './roastMeta'
+import { SectionHeading, SteamWisps, reveal, useSections } from './shared'
 
 /** Handcrafted roasting drum ג€” thin gold linework over dark metal. */
 function RoasterIllustration({
@@ -168,86 +138,6 @@ function SmokePath({ x }: { x: number }) {
         />
       ))}
     </>
-  )
-}
-
-function RoastSelector() {
-  const s = useSections()
-  const [roast, setRoast] = useState<RoastId>('medium')
-  const meta = ROAST_META[roast]
-  const info = s.roasting.roasts[roast]
-
-  return (
-    <motion.div {...reveal(0.1)} className="mt-16 rounded-[2rem] border border-gold/15 bg-[linear-gradient(155deg,rgba(255,255,255,0.5),rgba(230,220,199,0.8))] p-7 shadow-[0_36px_100px_-30px_rgba(0,0,0,0.75)] sm:p-9">
-      <p className="text-center text-[0.68rem] font-semibold uppercase tracking-[0.32em] text-gold">{s.roasting.selectorTitle}</p>
-
-      <div role="tablist" aria-label={s.roasting.selectorTitle} className="mt-5 flex flex-wrap justify-center gap-2.5">
-        {(Object.keys(s.roasting.roasts) as RoastId[]).map((id) => (
-          <button
-            key={id}
-            role="tab"
-            aria-selected={roast === id}
-            onClick={() => setRoast(id)}
-            className={`rounded-full border px-6 py-2.5 text-sm font-semibold transition-all duration-300 ${
-              roast === id
-                ? 'border-gold bg-gold text-espresso-950 shadow-[0_8px_24px_-8px_rgba(200,155,91,0.6)]'
-                : 'border-cream/15 text-cream/65 hover:border-gold/50 hover:text-cream'
-            }`}
-          >
-            {s.roasting.roasts[id].name}
-          </button>
-        ))}
-      </div>
-
-      <div className="mt-9 grid grid-cols-1 items-center gap-9 lg:grid-cols-[auto_1fr_1fr] lg:gap-12">
-        {/* bean preview */}
-        <div className="mx-auto flex flex-col items-center gap-3">
-          <motion.svg
-            key={roast}
-            initial={{ scale: 0.88, opacity: 0.5 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, ease: EASE }}
-            viewBox="0 0 64 80"
-            className="w-24 drop-shadow-[0_16px_28px_rgba(0,0,0,0.55)]"
-            aria-hidden="true"
-          >
-            <ellipse cx="32" cy="40" rx="26" ry="36" fill={meta.bean} />
-            <path d="M32 6 C 18 26, 46 52, 32 74" stroke={meta.seam} strokeWidth="5" strokeLinecap="round" fill="none" />
-          </motion.svg>
-          {/* roast curve */}
-          <svg viewBox="0 0 220 100" className="w-44" aria-hidden="true">
-            <line x1="8" y1="88" x2="212" y2="88" stroke="#f5f0e8" strokeOpacity="0.12" />
-            <line x1="8" y1="88" x2="8" y2="6" stroke="#f5f0e8" strokeOpacity="0.12" />
-            <motion.path
-              key={roast}
-              d={meta.curve}
-              fill="none"
-              stroke="#8FA89B"
-              strokeWidth="2"
-              strokeLinecap="round"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 1.1, ease: EASE }}
-            />
-          </svg>
-        </div>
-
-        {/* description */}
-        <div className="text-center lg:ltr:text-left lg:rtl:text-right">
-          <p className="font-display text-2xl font-medium italic leading-snug text-cream">{info.desc}</p>
-          <p className="mt-3 text-sm leading-relaxed text-cream/60">{info.brew}</p>
-          <p className="mt-5 text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-cream/45">{s.roasting.meterLabels.notes}</p>
-          <p className="mt-1.5 font-display text-lg italic text-gold-soft">{info.notes.join(' ג€¢ ')}</p>
-        </div>
-
-        {/* meters */}
-        <div className="flex flex-col gap-4">
-          <Meter label={s.roasting.meterLabels.acidity} value={meta.acidity} animateKey={roast} />
-          <Meter label={s.roasting.meterLabels.sweetness} value={meta.sweetness} animateKey={roast} />
-          <Meter label={s.roasting.meterLabels.body} value={meta.body} animateKey={roast} />
-        </div>
-      </div>
-    </motion.div>
   )
 }
 
@@ -437,10 +327,6 @@ function RoastingSection() {
           </motion.div>
         </div>
       )}
-
-      <div className="relative mx-auto max-w-7xl px-6 pb-24 sm:px-8 lg:pb-28">
-        <RoastSelector />
-      </div>
     </section>
   )
 }

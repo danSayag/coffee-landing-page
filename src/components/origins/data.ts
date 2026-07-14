@@ -1,4 +1,5 @@
 import type { OriginId } from '../../i18n/translations'
+import type { RoastId } from '../../i18n/sections'
 
 export interface OriginMeta {
   id: OriginId
@@ -13,6 +14,8 @@ export interface OriginMeta {
     accent: string
   }
   similar: [OriginId, OriginId, OriginId]
+  /** Light/medium/dark bucket for this origin's roast, independent of the localized display label. */
+  roastLevel: RoastId
 }
 
 export const ORIGINS: OriginMeta[] = [
@@ -23,6 +26,7 @@ export const ORIGINS: OriginMeta[] = [
     side: 'right',
     art: { sky: ['#f3ddb0', '#e9c98f'], ridge: '#c99a5e', accent: '#d9a05b' },
     similar: ['kenya', 'colombia', 'costarica'],
+    roastLevel: 'light',
   },
   {
     id: 'colombia',
@@ -31,6 +35,7 @@ export const ORIGINS: OriginMeta[] = [
     side: 'left',
     art: { sky: ['#f2d9c9', '#e8c3ac'], ridge: '#c98f74', accent: '#d98b7a' },
     similar: ['ethiopia', 'costarica', 'kenya'],
+    roastLevel: 'light',
   },
   {
     id: 'brazil',
@@ -39,6 +44,7 @@ export const ORIGINS: OriginMeta[] = [
     side: 'right',
     art: { sky: ['#f0dcb8', '#e3c495'], ridge: '#b98a52', accent: '#c1854a' },
     similar: ['guatemala', 'costarica', 'colombia'],
+    roastLevel: 'dark',
   },
   {
     id: 'kenya',
@@ -47,6 +53,7 @@ export const ORIGINS: OriginMeta[] = [
     side: 'left',
     art: { sky: ['#f2d4b8', '#e6bd94'], ridge: '#c17f55', accent: '#d97c5b' },
     similar: ['ethiopia', 'colombia', 'costarica'],
+    roastLevel: 'light',
   },
   {
     id: 'guatemala',
@@ -55,6 +62,7 @@ export const ORIGINS: OriginMeta[] = [
     side: 'right',
     art: { sky: ['#eeddb0', '#e0c88e'], ridge: '#b99457', accent: '#caa05e' },
     similar: ['brazil', 'costarica', 'colombia'],
+    roastLevel: 'medium',
   },
   {
     id: 'costarica',
@@ -63,6 +71,7 @@ export const ORIGINS: OriginMeta[] = [
     side: 'left',
     art: { sky: ['#eee0bb', '#e2cc98'], ridge: '#bb9a5f', accent: '#d4b36a' },
     similar: ['guatemala', 'colombia', 'kenya'],
+    roastLevel: 'medium',
   },
 ]
 

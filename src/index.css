@@ -19,7 +19,7 @@
   --color-cta-bright: #b06f4a;
 
   --font-display: "Cormorant Garamond", "Noto Serif Hebrew", Georgia, serif;
-  --font-body: "Manrope", "Assistant", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Manrope", "Noto Sans Hebrew", ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
