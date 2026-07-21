@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Coffee, Sparkles, Target } from 'lucide-react'
-import HashLink from '../HashLink'
+import { Coffee, Sparkles, Target } from 'lucide-react'
 import { useStopAnimations } from '../a11y/useStopAnimations'
+import { formatIndex } from '../../lib/format'
+import GoldCtaLink from '../ui/GoldCtaLink'
+import SectionBackground from '../ui/SectionBackground'
 import { EASE, SectionHeading, reveal, useSections } from './shared'
 
 const ICONS = [Coffee, Sparkles, Target]
@@ -12,11 +14,10 @@ function MatchSection() {
 
   return (
     <section id="match" className="relative overflow-hidden py-24 lg:py-32">
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F1EBDF_0%,#F4F0EA_60%,#F4F0EA_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(820px_540px_at_85%_20%,rgba(200,155,91,0.07),transparent_62%)]" />
-        <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-      </div>
+      <SectionBackground
+        gradient="linear-gradient(180deg,#F1EBDF 0%,#F4F0EA 60%,#F4F0EA 100%)"
+        overlays={['radial-gradient(820px 540px at 85% 20%,rgba(200,155,91,0.07),transparent 62%)']}
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <SectionHeading eyebrow={s.match.eyebrow} heading={s.match.heading} description={s.match.description} />
@@ -42,7 +43,7 @@ function MatchSection() {
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </span>
                 <div className="pt-1.5">
-                  <p className="font-display text-sm italic text-gold/60">{String(index + 1).padStart(2, '0')}</p>
+                  <p className="font-display text-sm italic text-gold/60">{formatIndex(index)}</p>
                   <h3 className="mt-1 font-display text-xl font-medium text-cream">{step.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-cream/60">{step.text}</p>
                 </div>
@@ -52,13 +53,7 @@ function MatchSection() {
         </div>
 
         <motion.div {...reveal(0.6)} className="mt-8 flex justify-center">
-          <HashLink
-            href="/quiz#quiz"
-            className="group inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
-          >
-            {s.match.cta}
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
-          </HashLink>
+          <GoldCtaLink href="/quiz#quiz">{s.match.cta}</GoldCtaLink>
         </motion.div>
       </div>
     </section>

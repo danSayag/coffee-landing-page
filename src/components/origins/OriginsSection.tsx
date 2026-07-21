@@ -1,11 +1,15 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import { gsap, ScrollTrigger } from '../../lib/gsap'
 import { useI18n } from '../../i18n'
 import type { OriginId } from '../../i18n/translations'
+import { mulberry32 } from '../../lib/random'
+import { EASE } from '../../lib/motion'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 import CoffeeBean from '../hero/CoffeeBean'
 import { getA11ySettings, subscribeA11y } from '../a11y/a11yStore'
+import CtaArrowIcon from '../ui/CtaArrowIcon'
 import { ORIGINS } from './data'
 import OriginCard from './OriginCard'
 import OriginsBackground from './OriginsBackground'
@@ -14,31 +18,6 @@ import WorldMap, { createWorldMapEls, mapPos } from './WorldMap'
 
 export interface OriginsSectionProps {
   onSelectOrigin: (id: OriginId) => void
-}
-
-export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(() =>
-    typeof window === 'undefined' ? false : window.matchMedia(query).matches,
-  )
-  useEffect(() => {
-    const mql = window.matchMedia(query)
-    const onChange = () => setMatches(mql.matches)
-    mql.addEventListener('change', onChange)
-    return () => mql.removeEventListener('change', onChange)
-  }, [query])
-  return matches
-}
-
-// Deterministic per-bean flight randomness
-function mulberry32(seed: number) {
-  let state = seed
-  return () => {
-    state |= 0
-    state = (state + 0x6d2b79f5) | 0
-    let t = Math.imul(state ^ (state >>> 15), 1 | state)
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
-  }
 }
 
 // Where each bean enters from (fractions of the section size), echoing the
@@ -342,7 +321,7 @@ function OriginsDesktop({ onSelectOrigin }: OriginsSectionProps) {
                 initial={{ opacity: 0, y: 8, scale: 0.94 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 6, scale: 0.96 }}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.25, ease: EASE }}
                 className="pointer-events-none absolute z-30 w-52 -translate-x-1/2 -translate-y-full rounded-2xl border border-gold/30 bg-espresso-900/95 p-4 text-center shadow-[0_18px_50px_rgba(0,0,0,0.6)] backdrop-blur-md"
                 style={{
                   left: `${mapPos(hoveredOrigin.lat, hoveredOrigin.lon).x * 100}%`,
@@ -369,7 +348,7 @@ function OriginsDesktop({ onSelectOrigin }: OriginsSectionProps) {
               initial={{ opacity: 0, x: cardOnLeft ? -44 : 44, y: 10 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
               exit={{ opacity: 0, x: cardOnLeft ? -28 : 28, transition: { duration: 0.25 } }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.55, ease: EASE }}
               className={`absolute top-1/2 z-40 w-[350px] -translate-y-1/2 xl:w-[400px] ${
                 cardOnLeft ? 'left-2 xl:left-6' : 'right-2 xl:right-6'
               }`}
@@ -394,10 +373,7 @@ function OriginsDesktop({ onSelectOrigin }: OriginsSectionProps) {
                       className="group mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-cta px-6 py-3.5 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_10px_30px_-10px_rgba(200,155,91,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
                     >
                       {t.collections.explore}
-                      <ArrowRight
-                        className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1"
-                        aria-hidden="true"
-                      />
+                      <CtaArrowIcon />
                     </button>
                   }
                 />

@@ -1,10 +1,12 @@
 ﻿import { motion } from 'framer-motion'
-import { ArrowRight, Handshake, Leaf, MapPin, Package } from 'lucide-react'
-import HashLink from '../HashLink'
+import { Handshake, Leaf, MapPin, Package } from 'lucide-react'
 import { useStopAnimations } from '../a11y/useStopAnimations'
+import { GOLD_HEX } from '../../lib/colors'
+import { formatIndex } from '../../lib/format'
+import GoldCtaLink from '../ui/GoldCtaLink'
+import SectionBackground from '../ui/SectionBackground'
 import { EASE, SectionHeading, reveal, useSections } from './shared'
 
-const GOLD = '#8FA89B'
 const ICONS = [Handshake, MapPin, Leaf, Package]
 
 /** Thin animated journey: farm ג†’ roastery ג†’ cafֳ©. */
@@ -22,7 +24,7 @@ function JourneyPath() {
         <motion.path
           d="M 40 30 C 10 70, 70 110, 40 150 C 10 190, 70 230, 40 270"
           fill="none"
-          stroke={GOLD}
+          stroke={GOLD_HEX}
           strokeWidth="1.6"
           strokeOpacity="0.6"
           strokeDasharray="4 6"
@@ -38,7 +40,7 @@ function JourneyPath() {
             cy={stop.y}
             r="6"
             fill="#2B2625"
-            stroke={GOLD}
+            stroke={GOLD_HEX}
             strokeWidth="1.8"
             initial={reduce ? false : { scale: 0, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
@@ -69,11 +71,10 @@ function SourcingSection() {
 
   return (
     <section id="sourcing" className="relative overflow-hidden py-24 lg:py-32">
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#F1EBDF_50%,#F1EBDF_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(760px_520px_at_12%_25%,rgba(200,155,91,0.06),transparent_62%)]" />
-        <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-      </div>
+      <SectionBackground
+        gradient="linear-gradient(180deg,#F4F0EA 0%,#F1EBDF 50%,#F1EBDF 100%)"
+        overlays={['radial-gradient(760px 520px at 12% 25%,rgba(200,155,91,0.06),transparent 62%)']}
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[220px_1fr] lg:gap-16">
@@ -97,7 +98,7 @@ function SourcingSection() {
                       <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/30 bg-gold/10 text-gold transition-transform duration-500 group-hover:scale-110">
                         <Icon className="h-4.5 w-4.5" aria-hidden="true" />
                       </span>
-                      <span className="font-display text-sm italic text-gold/60">{String(index + 1).padStart(2, '0')}</span>
+                      <span className="font-display text-sm italic text-gold/60">{formatIndex(index)}</span>
                     </div>
                     <h3 className="mt-4 font-display text-xl font-medium text-cream">{principle.title}</h3>
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-cream/60">{principle.text}</p>
@@ -107,13 +108,7 @@ function SourcingSection() {
             </div>
 
             <motion.div {...reveal(0.4)} className="mt-10 flex justify-center lg:justify-start">
-              <HashLink
-                href="/coffee"
-                className="group inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
-              >
-                {s.sourcing.cta}
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
-              </HashLink>
+              <GoldCtaLink href="/coffee">{s.sourcing.cta}</GoldCtaLink>
             </motion.div>
           </div>
         </div>

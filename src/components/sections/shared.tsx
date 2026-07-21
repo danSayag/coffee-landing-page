@@ -3,8 +3,9 @@ import { motion } from 'framer-motion'
 import { useI18n } from '../../i18n'
 import { sectionsText, type SectionsText } from '../../i18n/sections'
 import { getA11ySettings } from '../a11y/a11yStore'
+import { EASE } from '../../lib/motion'
 
-export const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
+export { EASE }
 
 export function useSections(): SectionsText {
   const { lang } = useI18n()

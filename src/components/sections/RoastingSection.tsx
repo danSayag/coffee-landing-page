@@ -1,7 +1,8 @@
 ﻿import { useLayoutEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from '../../lib/gsap'
-import { useMediaQuery } from '../origins/OriginsSection'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
+import { GOLD_HEX } from '../../lib/colors'
 import { SectionHeading, SteamWisps, reveal, useSections } from './shared'
 import greenBeanImg from '../../assets/beans/coffee bean green.webp'
 import brownBeanImg from '../../assets/beans/brown coffee bean.webp'
@@ -149,7 +150,7 @@ function RoastingSection() {
           ref={curveRef}
           d="M 8 58 C 60 53, 105 34, 145 22 C 172 13, 196 11, 212 10"
           fill="none"
-          stroke="#8FA89B"
+          stroke={GOLD_HEX}
           strokeWidth="2"
           strokeLinecap="round"
         />

@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
 import { Send } from 'lucide-react'
 import VisitSection from '../components/sections/VisitSection'
+import SectionBackground from '../components/ui/SectionBackground'
 import { reveal, useSections } from '../components/sections/shared'
 
 const inputClasses =
@@ -118,11 +119,10 @@ function ContactPage() {
   return (
     <main>
       <section className="relative overflow-hidden pb-16 pt-36 lg:pt-44">
-        <div aria-hidden="true" className="absolute inset-0">
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#F1EBDF_70%,#F4F0EA_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(900px_500px_at_50%_0%,rgba(200,155,91,0.09),transparent_62%)]" />
-          <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-        </div>
+        <SectionBackground
+          gradient="linear-gradient(180deg,#F4F0EA 0%,#F1EBDF 70%,#F4F0EA 100%)"
+          overlays={['radial-gradient(900px 500px at 50% 0%,rgba(200,155,91,0.09),transparent 62%)']}
+        />
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
           <motion.div {...reveal()} className="mx-auto max-w-2xl text-center">

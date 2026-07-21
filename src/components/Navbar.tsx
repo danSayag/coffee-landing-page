@@ -5,6 +5,8 @@ import { useLocation } from 'react-router-dom'
 import { useI18n } from '../i18n'
 import LanguageSwitcher from './a11y/LanguageSwitcher'
 import HashLink from './HashLink'
+import { EASE } from '../lib/motion'
+import { GOLD_HEX } from '../lib/colors'
 
 // Sections that only exist on the home page ('/').
 const HOME_SECTION_IDS = ['home', 'origins', 'cafe', 'story', 'contact']
@@ -54,7 +56,7 @@ function Navbar() {
     <motion.header
       initial={{ y: -32, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+      transition={{ duration: 0.9, ease: EASE, delay: 0.15 }}
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow] duration-500 ${
         scrolled || menuOpen
           ? 'border-b border-cream/5 bg-espresso-950/80 shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md'
@@ -65,7 +67,7 @@ function Navbar() {
         <HashLink href="#home" className="flex items-center gap-2.5" aria-label="Terra Roasters — home">
           <svg viewBox="0 0 64 64" className="h-7 w-7" aria-hidden="true" focusable="false">
             <g transform="rotate(24 32 32)">
-              <ellipse cx="32" cy="32" rx="14" ry="20" fill="#8FA89B" />
+              <ellipse cx="32" cy="32" rx="14" ry="20" fill={GOLD_HEX} />
               <path
                 d="M32 13 C 22 25, 42 40, 32 51"
                 stroke="#2B2625"
@@ -132,7 +134,7 @@ function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.35, ease: EASE }}
             className="overflow-hidden border-t border-cream/5 bg-espresso-950/95 backdrop-blur-md lg:hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-5">

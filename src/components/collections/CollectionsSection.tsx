@@ -4,10 +4,11 @@ import { ArrowUpRight, ChevronLeft, ChevronRight, MapPinned } from 'lucide-react
 import { useI18n } from '../../i18n'
 import type { OriginId } from '../../i18n/translations'
 import { useStopAnimations } from '../a11y/useStopAnimations'
+import { EASE } from '../../lib/motion'
+import SectionBackground from '../ui/SectionBackground'
 import { ORIGINS, ORIGIN_INDEX, type OriginMeta } from '../origins/data'
 import OriginArt from './OriginArt'
 
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 const COUNT = ORIGINS.length
 const SWIPE_THRESHOLD = 64
 
@@ -131,12 +132,13 @@ function CollectionsSection({ selection, onExplore }: CollectionsSectionProps) {
 
   return (
     <section id="coffee" className="relative overflow-hidden py-24 lg:py-32">
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(160deg,#ECE3D2_0%,#F4F0EA_55%,#F4F0EA_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(1100px_720px_at_78%_30%,rgba(200,155,91,0.08),transparent_62%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(820px_620px_at_6%_88%,rgba(143,168,155,0.10),transparent_60%)]" />
-        <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-      </div>
+      <SectionBackground
+        gradient="linear-gradient(160deg,#ECE3D2 0%,#F4F0EA 55%,#F4F0EA 100%)"
+        overlays={[
+          'radial-gradient(1100px 720px at 78% 30%,rgba(200,155,91,0.08),transparent 62%)',
+          'radial-gradient(820px 620px at 6% 88%,rgba(143,168,155,0.10),transparent 60%)',
+        ]}
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">

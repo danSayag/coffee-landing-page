@@ -5,12 +5,11 @@ import { gsap } from '../../lib/gsap'
 import { useI18n } from '../../i18n'
 import type { OriginId } from '../../i18n/translations'
 import { useStopAnimations } from '../a11y/useStopAnimations'
+import { EASE } from '../../lib/motion'
 import { ORIGINS } from './data'
 import OriginCard from './OriginCard'
 import OriginsBackground from './OriginsBackground'
 import WorldMap, { createWorldMapEls } from './WorldMap'
-
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 interface OriginsMobileProps {
   onSelectOrigin: (id: OriginId) => void

@@ -6,6 +6,7 @@ import { EASE, SectionHeading, SteamWisps, reveal, useSections } from './shared'
 import cafeShopImg from '../../assets/coffee shop/coffee shop pic.png'
 import dripCoffeeImg from '../../assets/drinks/drip coffee.png'
 import capuchinoImg from '../../assets/drinks/capuchino.png'
+import SectionBackground from '../ui/SectionBackground'
 
 function CafeSection() {
   const s = useSections()
@@ -41,11 +42,10 @@ function CafeSection() {
 
   return (
     <section id="cafe" className="relative overflow-hidden py-24 lg:py-32">
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#ECE3D2_45%,#F1EBDF_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(1000px_640px_at_70%_30%,rgba(200,155,91,0.08),transparent_62%)]" />
-        <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-      </div>
+      <SectionBackground
+        gradient="linear-gradient(180deg,#F4F0EA 0%,#ECE3D2 45%,#F1EBDF 100%)"
+        overlays={['radial-gradient(1000px 640px at 70% 30%,rgba(200,155,91,0.08),transparent 62%)']}
+      />
 
       <div ref={wrapRef} className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <div className="grid grid-cols-1 items-end gap-10 lg:grid-cols-[1.1fr_1fr]">

@@ -3,7 +3,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react'
 import { useI18n } from '../../i18n'
 import { getA11ySettings, subscribeA11y } from '../a11y/a11yStore'
-import { useMediaQuery } from '../origins/OriginsSection'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
+import SectionBackground from '../ui/SectionBackground'
 import { EASE, SectionHeading, useSections } from './shared'
 
 function TestimonialsSection() {
@@ -32,11 +33,10 @@ function TestimonialsSection() {
 
   return (
     <section id="testimonials" className="relative overflow-hidden py-24 lg:py-32">
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F1EBDF_0%,#EFE7D8_50%,#F4F0EA_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(820px_540px_at_85%_80%,rgba(200,155,91,0.06),transparent_62%)]" />
-        <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-      </div>
+      <SectionBackground
+        gradient="linear-gradient(180deg,#F1EBDF 0%,#EFE7D8 50%,#F4F0EA 100%)"
+        overlays={['radial-gradient(820px 540px at 85% 80%,rgba(200,155,91,0.06),transparent 62%)']}
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <SectionHeading eyebrow={s.testimonials.eyebrow} heading={s.testimonials.heading} />

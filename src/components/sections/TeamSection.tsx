@@ -1,5 +1,7 @@
 ﻿import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { GOLD_HEX } from '../../lib/colors'
+import CtaArrowIcon from '../ui/CtaArrowIcon'
+import SectionBackground from '../ui/SectionBackground'
 import { SectionHeading, reveal, useSections } from './shared'
 import danaImg from '../../assets/staff/Dana Rivera.png'
 import omerImg from '../../assets/staff/Omer Katz.png'
@@ -11,18 +13,15 @@ const MEMBER_IMAGES: Record<string, string> = {
   'Maya Chen': mayaImg,
 }
 
-const GOLD = '#8FA89B'
-
 function TeamSection() {
   const s = useSections()
 
   return (
     <section id="story" className="relative overflow-hidden py-24 lg:py-32">
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#EFE7D8_55%,#F4F0EA_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(800px_520px_at_80%_70%,rgba(200,155,91,0.06),transparent_60%)]" />
-        <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-      </div>
+      <SectionBackground
+        gradient="linear-gradient(180deg,#F4F0EA 0%,#EFE7D8 55%,#F4F0EA 100%)"
+        overlays={['radial-gradient(800px 520px at 80% 70%,rgba(200,155,91,0.06),transparent 60%)']}
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <SectionHeading eyebrow={s.team.eyebrow} heading={s.team.heading} description={s.team.description} />
@@ -57,7 +56,7 @@ function TeamSection() {
                   {member.philosophy}
                 </p>
                 <svg viewBox="0 0 120 8" className="mt-2 w-24 opacity-50" aria-hidden="true">
-                  <path d="M2 6 C 30 1, 70 1, 118 5" fill="none" stroke={GOLD} strokeWidth="1.6" strokeLinecap="round" />
+                  <path d="M2 6 C 30 1, 70 1, 118 5" fill="none" stroke={GOLD_HEX} strokeWidth="1.6" strokeLinecap="round" />
                 </svg>
 
                 <dl className="mt-5 grid grid-cols-2 gap-3 border-t border-cream/10 pt-4 text-sm">
@@ -81,7 +80,7 @@ function TeamSection() {
             className="group inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
           >
             {s.team.cta}
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
+            <CtaArrowIcon />
           </a>
         </motion.div>
       </div>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
+import SectionBackground from '../ui/SectionBackground'
 import { EASE, SectionHeading, reveal, useSections } from './shared'
 
 function FaqSection() {
@@ -9,11 +10,10 @@ function FaqSection() {
 
   return (
     <section id="faq" className="relative py-24 lg:py-32">
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#F1EBDF_55%,#F4F0EA_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(820px_540px_at_15%_20%,rgba(200,155,91,0.06),transparent_62%)]" />
-        <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-      </div>
+      <SectionBackground
+        gradient="linear-gradient(180deg,#F4F0EA 0%,#F1EBDF 55%,#F4F0EA 100%)"
+        overlays={['radial-gradient(820px 540px at 15% 20%,rgba(200,155,91,0.06),transparent 62%)']}
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:grid lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <div>

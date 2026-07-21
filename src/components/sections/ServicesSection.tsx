@@ -1,9 +1,11 @@
 ﻿import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import HashLink from '../HashLink'
+import { formatIndex } from '../../lib/format'
 import greenBeanImg from '../../assets/beans/coffee bean green.webp'
 import brownBeanImg from '../../assets/beans/brown coffee bean.webp'
 import cupImg from '../../assets/hero cup cutout.webp'
+import SectionBackground from '../ui/SectionBackground'
 import { SectionHeading, SteamWisps, reveal, useSections } from './shared'
 
 /** Hover visual per card: raw bean / bean roasting / bean becoming a cup. */
@@ -75,11 +77,10 @@ function ServicesSection() {
 
   return (
     <section id="services" className="relative overflow-hidden py-24 lg:py-32">
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F1EBDF_0%,#ECE3D2_55%,#F4F0EA_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(860px_540px_at_85%_20%,rgba(200,155,91,0.07),transparent_60%)]" />
-        <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-      </div>
+      <SectionBackground
+        gradient="linear-gradient(180deg,#F1EBDF 0%,#ECE3D2 55%,#F4F0EA 100%)"
+        overlays={['radial-gradient(860px 540px at 85% 20%,rgba(200,155,91,0.07),transparent 60%)']}
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <SectionHeading heading={s.services.heading} description={s.services.description} />
@@ -94,7 +95,7 @@ function ServicesSection() {
               }`}
             >
               <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <p className="font-display text-sm italic text-gold/60">{String(index + 1).padStart(2, '0')}</p>
+              <p className="font-display text-sm italic text-gold/60">{formatIndex(index)}</p>
               <CardVisual kind={KINDS[index]} />
               <h3 className="mt-2 font-display text-2xl font-medium leading-tight text-cream">{card.title}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-cream/60">{card.text}</p>

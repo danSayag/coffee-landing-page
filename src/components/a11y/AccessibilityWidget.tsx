@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } fro
 import { AnimatePresence, motion } from 'framer-motion'
 import { Accessibility, CirclePause, Contrast, Minus, Plus, RotateCcw, Underline, X } from 'lucide-react'
 import { useI18n } from '../../i18n'
+import { EASE } from '../../lib/motion'
 import {
   MAX_FONT_STEP,
   getA11ySettings,
@@ -10,8 +11,6 @@ import {
   subscribeA11y,
   type A11ySettings,
 } from './a11yStore'
-
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
 function Toggle({ checked, onChange, label }: { checked: boolean; onChange: (next: boolean) => void; label: string }) {
   return (

@@ -1,20 +1,13 @@
 ﻿import { Fragment } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, Check } from 'lucide-react'
+import { Check } from 'lucide-react'
 import HeroBackground from './hero/HeroBackground'
 import CoffeeComposition from './hero/CoffeeComposition'
 import HashLink from './HashLink'
+import CtaArrowIcon from './ui/CtaArrowIcon'
 import { useI18n } from '../i18n'
-
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
-
-function fadeUp(delay: number) {
-  return {
-    initial: { opacity: 0, y: 28 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.9, ease: EASE, delay },
-  }
-}
+import { EASE, fadeUp } from '../lib/motion'
+import { GOLD_HEX } from '../lib/colors'
 
 function Hero() {
   const { t } = useI18n()
@@ -57,7 +50,7 @@ function Hero() {
                       <motion.path
                         d="M4 9 C 38 3, 102 3, 136 7"
                         fill="none"
-                        stroke="#8FA89B"
+                        stroke={GOLD_HEX}
                         strokeWidth="2"
                         strokeLinecap="round"
                         initial={{ pathLength: 0, opacity: 0 }}
@@ -84,7 +77,7 @@ function Hero() {
               className="group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-cta px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright hover:shadow-[0_16px_44px_-10px_rgba(200,155,91,0.65)] sm:w-auto"
             >
               {t.hero.ctaExplore}
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
+              <CtaArrowIcon />
             </HashLink>
             <HashLink
               href="#cafe"

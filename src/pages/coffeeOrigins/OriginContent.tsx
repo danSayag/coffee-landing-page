@@ -1,4 +1,5 @@
-import { ArrowRight } from 'lucide-react'
+import CtaArrowIcon from '../../components/ui/CtaArrowIcon'
+import { formatIndex } from '../../lib/format'
 import type { CoffeeOriginContent, CoffeeOriginsContent } from './content'
 
 interface OriginContentProps {
@@ -14,7 +15,7 @@ function OriginContent({ item, index, total, labels, onExplore }: OriginContentP
     <div className="max-w-xl">
       <div className="flex items-center gap-4">
         <p dir="ltr" className="font-display text-sm italic text-gold/70">
-          {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+          {formatIndex(index)} / {String(total).padStart(2, '0')}
         </p>
         <div className="flex gap-1.5" aria-hidden="true">
           {Array.from({ length: total }).map((_, i) => (
@@ -57,10 +58,7 @@ function OriginContent({ item, index, total, labels, onExplore }: OriginContentP
         className="group mt-8 inline-flex items-center gap-2 rounded-full bg-cta px-7 py-3.5 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
       >
         {item.cta}
-        <ArrowRight
-          className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1"
-          aria-hidden="true"
-        />
+        <CtaArrowIcon />
       </button>
     </div>
   )

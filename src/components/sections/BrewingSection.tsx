@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
 import type { BrewId } from '../../i18n/sections'
-import HashLink from '../HashLink'
+import { GOLD_HEX } from '../../lib/colors'
+import GoldCtaLink from '../ui/GoldCtaLink'
+import SectionBackground from '../ui/SectionBackground'
 import { EASE, Meter, SectionHeading, SteamWisps, reveal, useSections } from './shared'
 import espressoImg from '../../assets/drinks/espresso.webp'
 import v60Img from '../../assets/drinks/v60.png'
@@ -31,9 +32,8 @@ const BREW_IMAGES: Partial<Record<BrewId, string>> = {
   frenchpress: frenchpressImg,
 }
 
-const GOLD = '#8FA89B'
-const line = { fill: 'none', stroke: GOLD, strokeWidth: 2, strokeLinecap: 'round' as const, strokeOpacity: 0.85 }
-const dark = { fill: '#20150e', stroke: GOLD, strokeWidth: 1.6, strokeOpacity: 0.6 }
+const line = { fill: 'none', stroke: GOLD_HEX, strokeWidth: 2, strokeLinecap: 'round' as const, strokeOpacity: 0.85 }
+const dark = { fill: '#20150e', stroke: GOLD_HEX, strokeWidth: 1.6, strokeOpacity: 0.6 }
 
 function BrewIllustration({ id }: { id: BrewId }) {
   const img = BREW_IMAGES[id]
@@ -45,7 +45,7 @@ function BrewIllustration({ id }: { id: BrewId }) {
       return (
         <svg viewBox="0 0 160 160" className="h-full w-full" aria-hidden="true">
           <path d="M 60 24 L 100 24 L 106 62 L 54 62 Z" {...dark} />
-          <path d="M 54 66 L 106 66 L 100 76 L 60 76 Z" fill="#160f0a" stroke={GOLD} strokeOpacity="0.4" strokeWidth="1.2" />
+          <path d="M 54 66 L 106 66 L 100 76 L 60 76 Z" fill="#160f0a" stroke={GOLD_HEX} strokeOpacity="0.4" strokeWidth="1.2" />
           <path d="M 56 80 L 104 80 L 112 130 Q 113 138 104 138 L 56 138 Q 47 138 48 130 Z" {...dark} />
           <path d="M 104 34 Q 122 40 118 56 L 106 54" {...line} strokeOpacity="0.5" />
           <path d="M 74 12 L 86 12 L 82 22 L 78 22 Z" {...dark} />
@@ -64,11 +64,10 @@ function BrewingSection() {
 
   return (
     <section id="brewing" className="relative overflow-hidden py-24 lg:py-32">
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#F1EBDF_60%,#F4F0EA_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(800px_540px_at_15%_75%,rgba(200,155,91,0.06),transparent_62%)]" />
-        <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-      </div>
+      <SectionBackground
+        gradient="linear-gradient(180deg,#F4F0EA 0%,#F1EBDF 60%,#F4F0EA 100%)"
+        overlays={['radial-gradient(800px 540px at 15% 75%,rgba(200,155,91,0.06),transparent 62%)']}
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <SectionHeading heading={s.brewing.heading} description={s.brewing.description} />
@@ -157,13 +156,7 @@ function BrewingSection() {
         </div>
 
         <motion.div {...reveal(0.2)} className="mt-12 flex justify-center">
-          <HashLink
-            href="/quiz#quiz"
-            className="group inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
-          >
-            {s.brewing.cta}
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
-          </HashLink>
+          <GoldCtaLink href="/quiz#quiz">{s.brewing.cta}</GoldCtaLink>
         </motion.div>
       </div>
     </section>

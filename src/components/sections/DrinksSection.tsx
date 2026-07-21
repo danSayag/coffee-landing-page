@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import HashLink from '../HashLink'
+import GoldCtaLink from '../ui/GoldCtaLink'
+import SectionBackground from '../ui/SectionBackground'
 import { SectionHeading, SteamWisps, reveal, useSections } from './shared'
 import espressoImg from '../../assets/drinks/espresso.webp'
 import flatwhiteImg from '../../assets/drinks/flat white.webp'
@@ -83,11 +83,10 @@ function DrinksSection() {
 
   return (
     <section id="drinks" className="relative overflow-hidden py-24 lg:py-32">
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F1EBDF_0%,#F4F0EA_50%,#F4F0EA_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(880px_560px_at_25%_15%,rgba(200,155,91,0.07),transparent_60%)]" />
-        <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-      </div>
+      <SectionBackground
+        gradient="linear-gradient(180deg,#F1EBDF 0%,#F4F0EA 50%,#F4F0EA 100%)"
+        overlays={['radial-gradient(880px 560px at 25% 15%,rgba(200,155,91,0.07),transparent 60%)']}
+      />
 
       <div className="relative z-10 mx-auto flex max-w-7xl flex-col px-6 sm:px-8">
         <SectionHeading heading={s.drinks.heading} description={s.drinks.description} />
@@ -99,13 +98,7 @@ function DrinksSection() {
         </div>
 
         <motion.div {...reveal(0.3)} className="mt-12 flex justify-center">
-          <HashLink
-            href="/coffee"
-            className="group inline-flex items-center gap-2 rounded-full bg-cta px-8 py-4 text-sm font-bold tracking-wide text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
-          >
-            {s.drinks.cta}
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
-          </HashLink>
+          <GoldCtaLink href="/coffee">{s.drinks.cta}</GoldCtaLink>
         </motion.div>
       </div>
     </section>

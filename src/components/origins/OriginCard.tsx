@@ -1,5 +1,6 @@
 import { Fragment, memo, type ReactNode } from 'react'
 import type { OriginText } from '../../i18n/translations'
+import { formatIndex } from '../../lib/format'
 
 interface OriginCardProps {
   index: number
@@ -28,7 +29,7 @@ const OriginCard = memo(function OriginCard({ index, text, flavorNotesLabel, com
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
 
       <header className="flex items-baseline gap-3">
-        <span className="font-display text-sm italic text-gold/70">{String(index + 1).padStart(2, '0')}</span>
+        <span className="font-display text-sm italic text-gold/70">{formatIndex(index)}</span>
         <h3 className="text-[0.72rem] font-bold uppercase tracking-[0.34em] text-gold">{text.country}</h3>
       </header>
 

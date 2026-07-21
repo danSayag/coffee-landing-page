@@ -6,10 +6,9 @@ import { useI18n } from '../../i18n'
 import { getA11ySettings, subscribeA11y } from '../a11y/a11yStore'
 import LanguageSwitcher from '../a11y/LanguageSwitcher'
 import HashLink from '../HashLink'
-import { useMediaQuery } from '../origins/OriginsSection'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
+import { GOLD_HEX } from '../../lib/colors'
 import { reveal, useSections } from './shared'
-
-const GOLD = '#8FA89B'
 
 function iconProps(props: SVGProps<SVGSVGElement>): SVGProps<SVGSVGElement> {
   return {
@@ -202,7 +201,7 @@ function Footer() {
               key={i}
               d={`M -20 ${60 + i * 60} C 160 ${20 + i * 60}, 320 ${100 + i * 60}, 480 ${50 + i * 60} S 760 ${90 + i * 60}, 820 ${60 + i * 60}`}
               fill="none"
-              stroke={GOLD}
+              stroke={GOLD_HEX}
               strokeWidth="1"
             />
           ))}
@@ -220,9 +219,9 @@ function Footer() {
       {/* top divider with traveling bean */}
       <div aria-hidden="true" className="relative h-14">
         <svg viewBox="0 0 1200 56" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
-          <path ref={beanPathRef} d="M 0 40 C 250 12, 480 52, 700 28 C 880 10, 1050 40, 1200 24" fill="none" stroke={GOLD} strokeOpacity="0.22" strokeWidth="1.2" />
+          <path ref={beanPathRef} d="M 0 40 C 250 12, 480 52, 700 28 C 880 10, 1050 40, 1200 24" fill="none" stroke={GOLD_HEX} strokeOpacity="0.22" strokeWidth="1.2" />
           <g ref={beanRef}>
-            <ellipse rx="7" ry="9.5" fill="#5e3d24" stroke={GOLD} strokeOpacity="0.6" strokeWidth="1" />
+            <ellipse rx="7" ry="9.5" fill="#5e3d24" stroke={GOLD_HEX} strokeOpacity="0.6" strokeWidth="1" />
             <path d="M0 -8 C -3.5 -3, 3.5 3, 0 8.5" stroke="#241610" strokeWidth="2" fill="none" strokeLinecap="round" />
           </g>
         </svg>
@@ -235,7 +234,7 @@ function Footer() {
             <HashLink href="#home" className="flex items-center gap-2.5" aria-label="Terra Roasters — home">
               <svg viewBox="0 0 64 64" className="h-8 w-8" aria-hidden="true" focusable="false">
                 <g transform="rotate(24 32 32)">
-                  <ellipse cx="32" cy="32" rx="14" ry="20" fill={GOLD} />
+                  <ellipse cx="32" cy="32" rx="14" ry="20" fill={GOLD_HEX} />
                   <path d="M32 13 C 22 25, 42 40, 32 51" stroke="#2B2625" strokeWidth="3.5" strokeLinecap="round" fill="none" />
                 </g>
               </svg>

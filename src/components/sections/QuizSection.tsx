@@ -6,6 +6,8 @@ import type { OriginId } from '../../i18n/translations'
 import { scoreQuiz } from '../../i18n/sections'
 import { ORIGINS, ORIGIN_INDEX } from '../origins/data'
 import OriginArt from '../collections/OriginArt'
+import CtaArrowIcon from '../ui/CtaArrowIcon'
+import SectionBackground from '../ui/SectionBackground'
 import { ROAST_META } from './roastMeta'
 import { EASE, Meter, SectionHeading, useSections } from './shared'
 
@@ -53,11 +55,10 @@ function QuizSection({ onExplore }: QuizSectionProps) {
 
   return (
     <section id="quiz" className="relative overflow-hidden py-24 lg:py-32">
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F1EBDF_0%,#ECE3D2_50%,#F4F0EA_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(900px_560px_at_50%_0%,rgba(200,155,91,0.08),transparent_62%)]" />
-        <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-      </div>
+      <SectionBackground
+        gradient="linear-gradient(180deg,#F1EBDF 0%,#ECE3D2 50%,#F4F0EA 100%)"
+        overlays={['radial-gradient(900px 560px at 50% 0%,rgba(200,155,91,0.08),transparent 62%)']}
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <SectionHeading heading={s.quiz.heading} description={s.quiz.description} />
@@ -187,7 +188,7 @@ function QuizSection({ onExplore }: QuizSectionProps) {
                         className="group inline-flex items-center gap-2 rounded-full bg-cta px-7 py-3.5 text-sm font-bold text-espresso-950 shadow-[0_8px_28px_-10px_rgba(200,155,91,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-cta-bright"
                       >
                         {s.quiz.explore}
-                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" aria-hidden="true" />
+                        <CtaArrowIcon />
                       </button>
                       <button
                         type="button"

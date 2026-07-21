@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Accessibility, Car, Clock, Dog, Mail, MapPin, Phone, Sofa, Sun, Wifi } from 'lucide-react'
 import { getDirectionsUrl } from '../../lib/location'
+import SectionBackground from '../ui/SectionBackground'
 import { SectionHeading, reveal, useSections } from './shared'
 import mapImg from '../../assets/map/Screenshot 2026-07-14 155506.png'
 
@@ -40,11 +41,10 @@ function VisitSection() {
 
   return (
     <section id="contact" className="relative overflow-hidden py-24 lg:py-32">
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#F4F0EA_0%,#ECE3D2_50%,#F4F0EA_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(880px_560px_at_20%_20%,rgba(200,155,91,0.07),transparent_60%)]" />
-        <div className="bg-noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-      </div>
+      <SectionBackground
+        gradient="linear-gradient(180deg,#F4F0EA 0%,#ECE3D2 50%,#F4F0EA 100%)"
+        overlays={['radial-gradient(880px 560px at 20% 20%,rgba(200,155,91,0.07),transparent 60%)']}
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8">
         <SectionHeading heading={s.visit.heading} description={s.visit.description} />
